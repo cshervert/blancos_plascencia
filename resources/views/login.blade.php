@@ -1,3 +1,4 @@
+@section('title', 'Login')
 @include('includes.head')
 <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
     <div class="container">
