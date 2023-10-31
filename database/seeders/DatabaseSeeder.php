@@ -10,7 +10,12 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
+        $this->call(CuentaBancariaSeeder::class);
+        $this->call(EmpresaSeeder::class);
+
+        $this->call(PermisoSeeder::class);
         $this->call(RolSeeder::class);
+        $this->call(PermisoRolSeeder::class);
 
         Usuario::factory()->create([
             'nombre'    => 'Juan Carlos Salvador Hervert',
@@ -22,7 +27,8 @@ class DatabaseSeeder extends Seeder
             'email'     => 'hervert0719@gmail.com',
             'username'  => 'hervert',
             'password'  => '123123',
-            'id_rol'    => 1
+            'id_rol'    => 1,
+            'activo'    => true
         ]);
 
         Usuario::factory()->create([
@@ -35,7 +41,11 @@ class DatabaseSeeder extends Seeder
             'email'     => 'mitsy@gmail.com',
             'username'  => 'mitsy',
             'password'  => '123123',
-            'id_rol'    => 2
+            'id_rol'    => 2,
+            'activo'    => true
         ]);
+
+        $this->call(PermisoUsuarioSeeder::class);
+        $this->call(SucursalSeeder::class);
     }
 }

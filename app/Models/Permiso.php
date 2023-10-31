@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rol extends Model
+class Permiso extends Model
 {
     use HasFactory;
-    protected $table = 'roles';
+    protected $table = 'permisos';
     protected $primaryKey = 'id';
-    protected $fillable = ['rol', 'activo'];
+    protected $fillable = ['permiso'];
+    public $timestamps = false;
 }

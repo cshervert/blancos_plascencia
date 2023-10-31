@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('cuentas_bancarias', function (Blueprint $table) {
             $table->id();
-            $table->string('rol');
-            $table->boolean('activo');
+            $table->char('cuenta', 50);
+            $table->char('sucursal', 100);
+            $table->char('clave', 50);
+            $table->char('banco', 100);
+            $table->char('cuenta_contable', 10);
+            $table->boolean('mostrar');
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('cuentas_bancarias');
     }
 };
