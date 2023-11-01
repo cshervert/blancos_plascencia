@@ -15,6 +15,10 @@ class DatabaseSeeder extends Seeder
         $this->call(PermisoSeeder::class);
         $this->call(RolSeeder::class);
         $this->call(PermisoRolSeeder::class);
+        $this->call(EstatusCompraSeeder::class);
+        $this->call(MonedaSeeder::class);
+        $this->call(DepartamentoSeeder::class);
+        $this->call(CategoriaSeeder::class);
 
         Usuario::factory()->create([
             'nombre'    => 'Juan Carlos Salvador Hervert',
