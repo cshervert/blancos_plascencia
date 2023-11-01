@@ -56,5 +56,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ImpuestoSeeder::class);
         $this->call(UnidadSeeder::class);
         $this->call(EtiquetaSeeder::class);
+        $this->call(PrecioSeeder::class);
+        $this->call(PaqueteSeeder::class);
+        $this->call(ArticuloSeeder::class);
+        $this->call(ArticuloPaqueteSeeder::class);
     }
 }
