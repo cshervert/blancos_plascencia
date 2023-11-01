@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CuentaBancariaSeeder::class);
         $this->call(EmpresaSeeder::class);
-
         $this->call(PermisoSeeder::class);
         $this->call(RolSeeder::class);
         $this->call(PermisoRolSeeder::class);
@@ -47,5 +46,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call(PermisoUsuarioSeeder::class);
         $this->call(SucursalSeeder::class);
+        $this->call(SucursalUsuarioSeeder::class);
+        $this->call(TipoImpuestoSeeder::class);
+        $this->call(DesgloseImpuestoSeeder::class);
+        $this->call(ImpuestoSeeder::class);
+        $this->call(UnidadSeeder::class);
+        $this->call(EtiquetaSeeder::class);
     }
 }
