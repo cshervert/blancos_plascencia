@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('estatus', function (Blueprint $table) {
+        Schema::create('tipos_movimientos', function (Blueprint $table) {
             $table->id();
-            $table->char('estatus', 30);
+            $table->char('tipo', 100);
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estatus');
+        Schema::dropIfExists('tipos_movimientos');
     }
 };

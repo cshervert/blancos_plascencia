@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('estatus', function (Blueprint $table) {
+        Schema::create('cajas', function (Blueprint $table) {
             $table->id();
-            $table->char('estatus', 30);
+            $table->char('nombre', 200);
+            $table->unsignedBigInteger('id_sucursal');
+            $table->foreign('id_sucursal')->references('id')->on('sucursales');
+            $table->boolean('activo');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estatus');
+        Schema::dropIfExists('cajas');
     }
 };

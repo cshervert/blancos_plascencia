@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Estatus;
 
 class EstatusCompraSeeder extends Seeder
 {
@@ -16,12 +17,12 @@ class EstatusCompraSeeder extends Seeder
     public function run()
     {
         $estatus = [
-            ['nombre' => 'Pendiente'],
-            ['nombre' => 'Completado'],
-            ['nombre' => 'Cancelado']
+            ['estatus' => 'Pendiente'],
+            ['estatus' => 'Completado'],
+            ['estatus' => 'Cancelado']
         ];
-        // foreach ($estatus as $status) {
-            DB::table('estatus_compra')->insert($estatus);
-        // }
+        foreach ($estatus as $item) {
+            Estatus::create($item);
+        }
     }
 }

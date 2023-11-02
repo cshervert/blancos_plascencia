@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('grupos', function (Blueprint $table) {
+        Schema::create('compras', function (Blueprint $table) {
             $table->id();
-            $table->char('nombre', 150);
+            $table->unsignedBigInteger('id_moneda');
+            $table->foreign('id_moneda')->references('id')->on('monedas');
+            $table->double('tasa_cambio', 8, 2);
+            $table->unsignedBigInteger('id_estatus');
+            $table->foreign('id_estatus')->references('id')->on('estatus');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('grupos');
+        Schema::dropIfExists('compras');
     }
 };

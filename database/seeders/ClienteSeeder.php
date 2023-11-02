@@ -16,7 +16,7 @@ class ClienteSeeder extends Seeder
     public function run()
     {
         Cliente::create([
-            'no_cliente'    => 001,
+            'numero_cliente'    => 001,
             'clave'    => 'JCSH001',
             'representante'    => 'Juan Carlos Salvador Hervert',
             'nombre'    => 'Juan Carlos Salvador Hervert',
@@ -25,7 +25,7 @@ class ClienteSeeder extends Seeder
             'telefono'  => '3320168482',
             'celular'   => '3310960761',
             'email'     => 'hervert0719@gmail.com',
-            'no_precio'      => 4,
+            'numero_precio'      => 4,
             'limite_credito' => 100000,
             'dias_credito'    => 30,
             'id_facturacion'    => 1,

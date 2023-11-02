@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Inventario extends Model
+class Movimiento extends Model
 {
     use HasFactory;
-    protected $table = 'inventarios';
+    protected $table = 'movimientos';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'id_articulo',
-        'existencia_inicial',
-        'entradas',
-        'salidas',
-        'existencia'
+        'id_tipo_movimiento',
+        'id_sucursal_origen',
+        'id_sucursal_destino',
+        'cantidad'
     ];
 }

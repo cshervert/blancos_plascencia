@@ -4,10 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use App\Models\GrupoCliente;
+use App\Models\EntradaInventario;
 
-class GrupoClienteSeeder extends Seeder
+class EntradaInventarioSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,14 +15,14 @@ class GrupoClienteSeeder extends Seeder
      */
     public function run()
     {
-        $group_client = [
+        $entries = [
             [
-                'id_grupo' => 1,
-                'id_cliente' => 1,
+                'id_entrada'     => 1,
+                'id_inventario'  => 1,
             ]
         ];
-        foreach ($group_client as $item) {
-            GrupoCliente::create($item);
+        foreach ($entries as $item) {
+            EntradaInventario::create($item);
         }
     }
 }

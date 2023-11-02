@@ -11,7 +11,7 @@ class Proveedor extends Model
     protected $table = 'proveedores';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'no_proveedor',
+        'numero_proveedor',
         'representante',
         'nombre',
         'alias',

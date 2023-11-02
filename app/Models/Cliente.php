@@ -11,7 +11,7 @@ class Cliente extends Model
     protected $table = 'clientes';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'no_cliente',
+        'numero_cliente',
         'clave',
         'representante',
         'nombre',
@@ -20,7 +20,7 @@ class Cliente extends Model
         'telefono',
         'celular',
         'email',
-        'no_precio',
+        'numero_precio',
         'limite_credito',
         'dias_credito',
         'id_facturacion',

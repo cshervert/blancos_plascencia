@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
-            $table->integer('no_cliente');
+            $table->integer('numero_cliente');
             $table->char('clave', 10);
             $table->char('representante', 200);
             $table->char('nombre', 200);
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->char('telefono', 20);
             $table->char('celular', 20);
             $table->char('email', 200);
-            $table->tinyInteger('no_precio');
+            $table->tinyInteger('numero_precio');
             $table->double('limite_credito', 8, 2);
             $table->integer('dias_credito');
             $table->unsignedBigInteger('id_facturacion');

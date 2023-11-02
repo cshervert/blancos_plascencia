@@ -68,5 +68,12 @@ class DatabaseSeeder extends Seeder
         $this->call(PaqueteSeeder::class);
         $this->call(ArticuloSeeder::class);
         $this->call(ArticuloPaqueteSeeder::class);
+        $this->call(ComprasSeeder::class);
+        $this->call(EntradaSeeder::class);
+        $this->call(InventarioSeeder::class);
+        $this->call(EntradaInventarioSeeder::class);
+        $this->call(SucursalInventarioSeeder::class);
+        $this->call(CajaSeeder::class);
+        $this->call(TipoMovimientoSeeder::class);
     }
 }
