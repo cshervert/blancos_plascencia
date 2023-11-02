@@ -24,6 +24,18 @@ class DepartamentoSeeder extends Seeder
                 'departamento' => 'Baño',
                 'activo' => 1,
             ],
+            [
+                'departamento' => 'Sala',
+                'activo' => 1,
+            ],
+            [
+                'departamento' => 'Cocina',
+                'activo' => 1,
+            ],
+            [
+                'departamento' => 'Mascotas',
+                'activo' => 1,
+            ],
         ];
         foreach ($departamento as $item) {
             Departamento::create($item);
