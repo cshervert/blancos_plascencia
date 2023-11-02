@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
         $this->call(MonedaSeeder::class);
         $this->call(DepartamentoSeeder::class);
         $this->call(CategoriaSeeder::class);
+        $this->call(DepartamentoTrabajoSeeder::class);
+        $this->call(PuestoTrabajoSeeder::class);
+        $this->call(EmpleadoSeeder::class);
 
         Usuario::factory()->create([
             'nombre'    => 'Juan Carlos Salvador Hervert',
@@ -56,7 +59,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ImpuestoSeeder::class);
         $this->call(UnidadSeeder::class);
         $this->call(EtiquetaSeeder::class);
-        $this->call(PrecioSeeder::class);
+        // $this->call(PrecioSeeder::class);
         $this->call(PaqueteSeeder::class);
         $this->call(ArticuloSeeder::class);
         $this->call(ArticuloPaqueteSeeder::class);
