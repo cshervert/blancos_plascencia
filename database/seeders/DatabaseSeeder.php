@@ -22,6 +22,11 @@ class DatabaseSeeder extends Seeder
         $this->call(DepartamentoTrabajoSeeder::class);
         $this->call(PuestoTrabajoSeeder::class);
         $this->call(EmpleadoSeeder::class);
+        $this->call(GrupoSeeder::class);
+        $this->call(DatosFacturacionSeeder::class);
+        $this->call(ClienteSeeder::class);
+        $this->call(GrupoClienteSeeder::class);
+        $this->call(ProveedorSeeder::class);
 
         Usuario::factory()->create([
             'nombre'    => 'Juan Carlos Salvador Hervert',

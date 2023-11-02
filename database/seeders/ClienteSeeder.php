@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Empleado;
+use App\Models\Cliente;
 
-class EmpleadoSeeder extends Seeder
+class ClienteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,20 +15,20 @@ class EmpleadoSeeder extends Seeder
      */
     public function run()
     {
-        Empleado::create([
-            'alias'    => 'Hervert',
+        Cliente::create([
+            'no_cliente'    => 001,
+            'clave'    => 'JCSH001',
+            'representante'    => 'Juan Carlos Salvador Hervert',
             'nombre'    => 'Juan Carlos Salvador Hervert',
-            'direccion' => 'Loma Baja #25',
-            'nss'  => '1234567890',
+            'rfc'  => '1234567890',
             'curp'  => 'sahj950719hjchd22',
-            'ciudad'    => 'Zapopan',
             'telefono'  => '3320168482',
             'celular'   => '3310960761',
             'email'     => 'hervert0719@gmail.com',
-            'comision'      => 10,
-            'fecha_nac'      => '1995-07-19',
-            'id_puesto'    => 1,
-            'activo'    => true
+            'no_precio'      => 4,
+            'limite_credito' => 100000,
+            'dias_credito'    => 30,
+            'id_facturacion'    => 1,
         ]);
     }
 }
