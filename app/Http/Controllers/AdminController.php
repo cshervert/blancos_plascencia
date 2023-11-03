@@ -16,7 +16,9 @@ class AdminController extends Controller
         $this->middleware('auth');
         Carbon::setLocale('es');
         $this->request = $request;
-        $this->completarInformacion();
+        if (auth()->user()) {
+            $this->completarInformacion();
+        }
     }
 
     private function completarInformacion()
