@@ -10,7 +10,6 @@
 <script src="{{ asset('assets/vendors/scripts/dashboard.js') }}"></script>
 <!-- Template Main JS File -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="{{ asset('js/auth/login.js') }}"></script>
 <script src="{{ asset('js/libraries/axios.js') }}"></script>
 </body>
 

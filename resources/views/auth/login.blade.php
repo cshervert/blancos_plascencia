@@ -1,5 +1,5 @@
 @section('title', 'Login')
-@include('includes.head')
+@include('auth.default.head')
 <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
     <div class="container">
         <div class="row align-items-center">
@@ -46,4 +46,4 @@
         </div>
     </div>
 </div>
-@include('includes.footer')
+@include('auth.default.footer')

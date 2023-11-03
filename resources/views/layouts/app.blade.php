@@ -1,6 +1,6 @@
-@include('includes.head')
-{{-- @include('includes.pre_loader') --}}
-@include('includes.header')
-@include('includes.sidebar')
+@include('layouts.includes.head')
+{{-- @include('layouts.includes.pre_loader') --}}
+@include('layouts.includes.header')
+@include('layouts.includes.sidebar')
 @yield('content')
-@include('includes.footer')
+@include('layouts.includes.footer')|
