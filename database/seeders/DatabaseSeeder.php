@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ClienteSeeder::class);
         $this->call(GrupoClienteSeeder::class);
         $this->call(ProveedorSeeder::class);
+        $this->call(SucursalSeeder::class);
 
         Usuario::factory()->create([
             'nombre'    => 'Juan Carlos Salvador Hervert',
@@ -38,6 +39,7 @@ class DatabaseSeeder extends Seeder
             'email'     => 'hervert0719@gmail.com',
             'username'  => 'hervert',
             'password'  => '123123',
+            'id_sucursal'  => 1,
             'id_rol'    => 1,
             'activo'    => true
         ]);
@@ -52,12 +54,12 @@ class DatabaseSeeder extends Seeder
             'email'     => 'mitsy@gmail.com',
             'username'  => 'mitsy',
             'password'  => '123123',
+            'id_sucursal'  => 1,
             'id_rol'    => 2,
             'activo'    => true
         ]);
 
         $this->call(PermisoUsuarioSeeder::class);
-        $this->call(SucursalSeeder::class);
         $this->call(SucursalUsuarioSeeder::class);
         $this->call(TipoImpuestoSeeder::class);
         $this->call(DesgloseImpuestoSeeder::class);

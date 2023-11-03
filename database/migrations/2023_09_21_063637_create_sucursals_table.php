@@ -27,8 +27,6 @@ return new class extends Migration
             $table->char('telefono', 20);
             $table->char('celular', 20);
             $table->boolean('activo');
-            $table->unsignedBigInteger('id_usuario_encargado');
-            $table->foreign('id_usuario_encargado')->references('id')->on('usuarios');
             $table->timestamps();
         });
     }

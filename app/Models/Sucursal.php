@@ -22,7 +22,6 @@ class Sucursal extends Model
         'email',
         'telefono',
         'celular',
-        'activo',
-        'id_usuario_encargado'
+        'activo'
     ];
 }

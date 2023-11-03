@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('username')->unique();
             $table->string('password');
+            $table->unsignedBigInteger('id_sucursal');
+            $table->foreign('id_sucursal')->references('id')->on('sucursales');
             $table->unsignedBigInteger('id_rol');
             $table->foreign('id_rol')->references('id')->on('roles');
             $table->boolean('activo');
