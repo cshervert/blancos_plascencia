@@ -34,6 +34,11 @@ class Usuario extends Authenticatable
         'password'
     ];
 
+    public function sucursal()
+    {
+        return $this->hasOne(Sucursal::class, 'id', 'id_sucursal');
+    }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes["password"] = bcrypt($value);
