@@ -1,29 +1,79 @@
-$(function () {
-    $("#FormLogin").on("submit", submitLogin);
-});
+toastr.options = {
+    closeButton: true,
+    progressBar: true,
+    positionClass: "toast-bottom-right",
+};
 
-const submitLogin = (event) => {
+const submitLogin = async (event) => {
     event.preventDefault();
+    let validate = await validateFormLogin();
+    if (!validate) {
+        $("#label-msg").html("Credenciales Requeridas!");
+        toastr.error("Credenciales Requeridas");
+        return;
+    }
+    alertLoading(true);
     axios
         .post("/login", {
             username: $("#username").val(),
             password: $("#password").val(),
         })
         .then(function ({ data }) {
+            alertLoading(false);
             let { result, message } = data;
             if (result === "success") {
                 window.location.href = "/dashboard";
             } else {
-                Swal.fire({
-                    icon: "error",
-                    text: "Credenciales incorrectas",
-                });
+                $("#label-msg").html("Credenciales incorrectas!");
+                toastr.error("Credenciales incorrectas");
             }
         })
         .catch(function (error) {
-            Swal.fire({
-                icon: "error",
-                text: "Credenciales requeridas",
-            });
+            alertLoading(false);
+            toastr.error("Credenciales Requeridas");
         });
 };
+
+const validateFormLogin = () => {
+    let validate = true;
+    let usuario = $("#username").val();
+    let password = $("#password").val();
+    if (usuario == "" || usuario.length < 5) {
+        validate = false;
+        $("#username").addClass("form-control-danger");
+    } else {
+        $("#username").removeClass("form-control-danger");
+    }
+    if (password == "" || password.length < 5) {
+        validate = false;
+        $("#password").addClass("form-control-danger");
+    } else {
+        $("#password").removeClass("form-control-danger");
+    }
+    return validate;
+};
+
+const clearFormLogin = () => {
+    if (validateFormLogin()) {
+        $("#label-msg").html("");
+    }
+};
+
+const alertLoading = (flag) => {
+    let timerInterval = flag === false ? 100 : 50000;
+    Swal.fire({
+        title: "Espere un momento ...",
+        timer: timerInterval,
+        width: 250,
+        position: "center",
+        html: `<div class="spinner-border text-primary mt-2 mb-2" role="status">
+                    <span class="sr-only"></span>
+                </div>`,
+        showConfirmButton: false,
+        allowOutsideClick: false,
+    });
+};
+
+$(function () {
+    $("#FormLogin").on("submit", submitLogin);
+});

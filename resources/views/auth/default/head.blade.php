@@ -11,6 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/styles/core.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/styles/icon-font.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/styles/style.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/sweetalert2/sweetalert2.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/toastr/toastr.min.css') }}">
 
 </head>
 

@@ -9,18 +9,21 @@
                         <img src="{{ asset('assets/vendors/images/logo_blancos.png') }}" alt="logo"
                             class="border-radius-10">
                     </div>
-                    <form id="FormLogin" class="mt-1">
+                    <form id="FormLogin" class="mt-2">
                         @csrf
+                        <div class="form-control-feedback has-danger mb-2">
+                            <small id="label-msg"></small>
+                        </div>
                         <div class="input-group custom">
                             <input type="text" class="form-control form-control-lg" placeholder="Usuario o email"
-                                id="username">
+                                id="username" onkeyup="clearFormLogin();">
                             <div class="input-group-append custom">
                                 <span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
                             </div>
                         </div>
                         <div class="input-group custom">
                             <input type="password" class="form-control form-control-lg" placeholder="**********"
-                                id="password">
+                                id="password" onkeyup="clearFormLogin();">
                             <div class="input-group-append custom">
                                 <span class="input-group-text"><i class="dw dw-padlock1"></i></span>
                             </div>
