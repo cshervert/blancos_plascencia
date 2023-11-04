@@ -22,7 +22,7 @@
                     <span class="user-icon">
                         <img src="{{ asset('assets/vendors/images/user.png') }}" alt="" width="30px">
                     </span>
-                    <span class="user-name">Juan Carlos</span>
+                    <span class="user-name">{{ $usuario['username'] }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                     <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Perfil</a>

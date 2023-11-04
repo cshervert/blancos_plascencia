@@ -39,6 +39,11 @@ class Usuario extends Authenticatable
         return $this->hasOne(Sucursal::class, 'id', 'id_sucursal');
     }
 
+    public function rol()
+    {
+        return $this->hasOne(Rol::class, 'id', 'id_rol');
+    }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes["password"] = bcrypt($value);

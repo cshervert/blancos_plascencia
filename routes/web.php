@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RolController;
+use App\Http\Controllers\UsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +26,13 @@ Route::get('/login', [LoginController::class, "index"])->name('login');
 Route::post('/login', [LoginController::class, "login"]);
 Route::get('/logout', [LogoutController::class, "logout"]);
 
-Route::get('/dashboard', [DashboardController::class, "index"])->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard')->middleware('auth');
+
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('roles')->group(function () {
+        Route::get('/', [RolController::class, "index"])->name('roles');
+    });
+    Route::prefix('usuarios')->group(function () {
+        Route::get('/', [UsuarioController::class, "index"])->name('usuarios');
+    });
+});
