@@ -18,3 +18,17 @@ const alertLoading = (flag) => {
         allowOutsideClick: false,
     });
 };
+
+const alertDefault = (titulo, mensaje, icono, referencia = null) => {
+    Swal.fire({
+        title: titulo,
+        text: mensaje,
+        icon: icono,
+        confirmButtonText: "Aceptar",
+        width: 400,
+    }).then((result) => {
+        if (referencia) {
+            location.href = referencia;
+        }
+    });
+};

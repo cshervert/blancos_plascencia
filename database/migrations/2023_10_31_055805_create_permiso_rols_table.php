@@ -19,11 +19,10 @@ return new class extends Migration
             $table->foreign('id_permiso')->references('id')->on('permisos');
             $table->unsignedBigInteger('id_rol');
             $table->foreign('id_rol')->references('id')->on('roles');
-            $table->boolean('crear');
             $table->boolean('leer');
+            $table->boolean('crear');
             $table->boolean('editar');
             $table->boolean('eliminar');
-            $table->boolean('activo');
         });
     }
 

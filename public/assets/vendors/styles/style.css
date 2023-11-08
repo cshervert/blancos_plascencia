@@ -914,7 +914,7 @@ textarea.form-control {
 }
 .bootstrap-select .dropdown-menu li .dropdown-item.active:hover,
 .select2-container--default .select2-results__option[aria-selected="true"] {
-    background-color: #521a49;
+    background-color: #bcb7bb;
     color: #fff;
 }
 .select2-container--default
@@ -3807,7 +3807,7 @@ body.IE .register-page-wrap .container {
     font-weight: 500;
 }
 .swal2-popup .swal2-styled.swal2-confirm {
-    background: #100099;
+    background: #521a49;
 }
 .documentation-wrap {
     position: relative;

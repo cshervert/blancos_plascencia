@@ -16,8 +16,7 @@ class PermisoRol extends Model
         'crear',
         'leer',
         'editar',
-        'eliminar',
-        'activo',
+        'eliminar'
     ];
     public $timestamps = false;
 }

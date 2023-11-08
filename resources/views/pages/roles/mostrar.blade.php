@@ -38,16 +38,17 @@
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->rol }}</td>
-                            <td>{{ $item->updated_at }}</td>
+                            <td>{{ date_format($item->updated_at,"Y/m/d H:i:s"); }}</td>
                             <td>
                                 <input type="checkbox" class="switch-btn" data-color="#28a745" @if ($item->activo)
-                                checked @endif>
+                                checked @endif onchange="ChangeStatus(this);" id="{{ $item->id }}">
                             </td>
                             <td>
-                                <button class="btn btn-info btn-circle btn-xl" type="button">
+                                <a class="btn btn-info btn-circle btn-xl" href="{{ url('roles/editar/' . $item->id) }}">
                                     <i class="icon-copy dw dw-edit-1"></i>
-                                </button>
-                                <button class="btn btn-danger btn-circle btn-xl" type="button">
+                                </a>
+                                <button class="btn btn-danger btn-circle btn-xl" type="button" id="{{ $item->id }}"
+                                    onclick="DeleteRol(this);">
                                     <i class="icon-copy dw dw-delete-2"></i>
                                 </button>
                             </td>
@@ -59,4 +60,7 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script src="{{ asset('js/auth/rol.js') }}"></script>
 @endsection
