@@ -17,9 +17,9 @@
                     </nav>
                 </div>
                 <div class="col-md-6 col-sm-12 text-right">
-                    <button class="btn btn-success" type="button">
-                        AGREGAR <i class="icon-copy dw dw-add"></i>
-                    </button>
+                    <a class="btn btn-success" href="{{ route('nuevo') }}">
+                        CREAR <i class="icon-copy dw dw-add"></i>
+                    </a>
                 </div>
             </div>
             <div class="card-box mb-30">
@@ -40,7 +40,8 @@
                             <td>{{ $item->rol }}</td>
                             <td>{{ $item->updated_at }}</td>
                             <td>
-                                <input type="checkbox" class="switch-btn" data-color="#28a745" @if ($item->activo) checked @endif>
+                                <input type="checkbox" class="switch-btn" data-color="#28a745" @if ($item->activo)
+                                checked @endif>
                             </td>
                             <td>
                                 <button class="btn btn-info btn-circle btn-xl" type="button">

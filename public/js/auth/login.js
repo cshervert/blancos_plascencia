@@ -1,15 +1,9 @@
-toastr.options = {
-    closeButton: true,
-    progressBar: true,
-    positionClass: "toast-bottom-right",
-};
-
 const submitLogin = async (event) => {
     event.preventDefault();
     let validate = await validateFormLogin();
     if (!validate) {
-        $("#label-msg").html("Credenciales Requeridas!");
-        toastr.error("Credenciales Requeridas");
+        $("#label-msg").html("Credenciales Obligatorias!");
+        toastr.error("Credenciales Obligatorias");
         return;
     }
     alertLoading(true);
@@ -30,7 +24,7 @@ const submitLogin = async (event) => {
         })
         .catch(function (error) {
             alertLoading(false);
-            toastr.error("Credenciales Requeridas");
+            toastr.error("Credenciales Obligatorias");
         });
 };
 
@@ -57,21 +51,6 @@ const clearFormLogin = () => {
     if (validateFormLogin()) {
         $("#label-msg").html("");
     }
-};
-
-const alertLoading = (flag) => {
-    let timerInterval = flag === false ? 100 : 50000;
-    Swal.fire({
-        title: "Espere un momento ...",
-        timer: timerInterval,
-        width: 250,
-        position: "center",
-        html: `<div class="spinner-border text-primary mt-2 mb-2" role="status">
-                    <span class="sr-only"></span>
-                </div>`,
-        showConfirmButton: false,
-        allowOutsideClick: false,
-    });
 };
 
 $(function () {

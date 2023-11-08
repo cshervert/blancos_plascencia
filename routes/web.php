@@ -31,6 +31,8 @@ Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard
 Route::middleware(['auth'])->group(function () {
     Route::prefix('roles')->group(function () {
         Route::get('/', [RolController::class, "index"])->name('roles');
+        Route::get('/nuevo', [RolController::class, "nuevo"])->name('nuevo');
+        Route::post('/crear', [RolController::class, "crear"]);
     });
     Route::prefix('usuarios')->group(function () {
         Route::get('/', [UsuarioController::class, "index"])->name('usuarios');

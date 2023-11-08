@@ -3120,8 +3120,8 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 
 .custom-control-input:checked ~ .custom-control-label::before {
   color: #fff;
-  border-color: #1b00ff;
-  background-color: #1b00ff; }
+  border-color: #521a49;
+  background-color: #521a49; }
 
 .custom-control-input:focus ~ .custom-control-label::before {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);

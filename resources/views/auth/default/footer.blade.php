@@ -6,6 +6,7 @@
 <!-- Template Main JS File -->
 <script src="{{ asset('js/libraries/axios.js') }}"></script>
 <script src="{{ asset('js/auth/login.js') }}"></script>
+<script src="{{ asset('js/libraries/helpers.js') }}"></script>
 </body>
 
 </html>

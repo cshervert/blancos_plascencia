@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/sweetalert2/sweetalert2.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/switchery/switchery.min.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/vendors/styles/style.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/src/plugins/toastr/toastr.min.css') }}">
 
 </head>
 

@@ -9,11 +9,14 @@
 <script src="{{ asset('assets/src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('assets/src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('assets/src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('assets/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js') }}"></script>
 <script src="{{ asset('assets/vendors/scripts/dashboard.js') }}"></script>
 <script src="{{ asset('assets/vendors/scripts/advanced-components.js') }}"></script>
 <!-- Template Main JS File -->
 <script src="{{ asset('js/libraries/axios.js') }}"></script>
+<script src="{{ asset('js/libraries/helpers.js') }}"></script>
+@yield('scripts')
 </body>
 
 </html>
