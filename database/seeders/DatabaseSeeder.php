@@ -10,8 +10,8 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $this->call(CuentaBancariaSeeder::class);
         $this->call(EmpresaSeeder::class);
+        $this->call(CuentaBancariaSeeder::class);
         $this->call(PermisoSeeder::class);
         $this->call(RolSeeder::class);
         $this->call(PermisoRolSeeder::class);

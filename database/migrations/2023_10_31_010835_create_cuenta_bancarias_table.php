@@ -21,6 +21,9 @@ return new class extends Migration
             $table->char('banco', 100);
             $table->char('cuenta_contable', 10);
             $table->boolean('mostrar');
+            $table->unsignedBigInteger('id_empresa');
+            $table->foreign('id_empresa')->references('id')
+                ->on('empresas');
             $table->timestamps();
         });
     }

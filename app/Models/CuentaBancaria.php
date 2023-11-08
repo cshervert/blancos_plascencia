@@ -17,6 +17,6 @@ class CuentaBancaria extends Model
         'banco',
         'cuenta_contable',
         'mostrar',
-        'id_cuenta_bancaria'
+        'id_empresa'
     ];
 }

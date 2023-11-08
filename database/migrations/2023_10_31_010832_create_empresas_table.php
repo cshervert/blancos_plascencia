@@ -28,9 +28,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->char('telefono', 20);
             $table->char('celular', 20);
-            $table->unsignedBigInteger('id_cuenta_bancaria');
-            $table->foreign('id_cuenta_bancaria')->references('id')
-                ->on('cuentas_bancarias');
             $table->timestamps();
         });
     }

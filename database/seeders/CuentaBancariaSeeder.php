@@ -21,7 +21,8 @@ class CuentaBancariaSeeder extends Seeder
             'clave'     => '01254878787874544',
             'banco'     => 'BBVA BANCOMER',
             'cuenta_contable' => 'NA',
-            'mostrar'   => true
+            'mostrar'   => true,            
+            'id_empresa' => 1
         ]);
     }
 }

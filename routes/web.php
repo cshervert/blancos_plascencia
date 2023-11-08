@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\EmpresaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,9 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('usuarios')->group(function () {
         Route::get('/', [UsuarioController::class, "index"])->name('usuarios');
     });
+    Route::prefix('empresa')->group(function () {
+        Route::get('/', [EmpresaController::class, "index"])->name('empresa');
+        Route::post('/save', [EmpresaController::class, "saveEmpresa"])->name('saveEmpresa');
+    });
 });
+// Route::get('/empresa', [EmpresaController::class, "index"])->middleware('auth')->name('empresa');

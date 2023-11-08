@@ -29,7 +29,6 @@ class EmpresaSeeder extends Seeder
             'email'     => 'vianneytesis3@gmail.com',
             'telefono'  => '3318671617',
             'celular'   => '3322654459',
-            'id_cuenta_bancaria' => 1
         ]);
     }
 }
