@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('empresa')->group(function () {
         Route::get('/', [EmpresaController::class, "index"])->name('empresa');
         Route::post('/save', [EmpresaController::class, "saveEmpresa"])->name('saveEmpresa');
+        Route::post('/saveCuenta', [EmpresaController::class, "saveCuenta"])->name('saveCuenta');
+        Route::delete('/eliminarCuenta', [EmpresaController::class, "eliminarCuenta"]);
     });
 });
 // Route::get('/empresa', [EmpresaController::class, "index"])->middleware('auth')->name('empresa');

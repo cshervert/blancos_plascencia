@@ -81,4 +81,63 @@ class EmpresaController extends AdminController
 
         return $data;
     }
+
+    public function saveCuenta(Request $request)
+    {
+        $data['code'] = 500;
+        $data['msg'] = "Error";
+
+        $data = $request->all();
+        // var_dump($data);
+        $mostrar = empty($data['mostrar']) ? 0 : 1;
+        if($data['id'] == null){
+            $response = CuentaBancaria::create([
+                'cuenta' => $data['cuenta'],
+                'sucursal' => $data['sucursal'],
+                'clave' => $data['clave'],
+                'banco' => $data['banco'],
+                'cuenta_contable' => $data['cuenta'],
+                'mostrar' => $mostrar,
+                'id_empresa'=> $data['id_empresa']
+            ]); 
+        }else{
+            $response = CuentaBancaria::where('id',$data['id'])
+                ->update([
+                    'cuenta' => $data['cuenta'],
+                    'sucursal' => $data['sucursal'],
+                    'clave' => $data['clave'],
+                    'banco' => $data['banco'],
+                    'cuenta_contable' => $data['cuenta'],
+                    'mostrar' => $mostrar,
+                    'id_empresa'=> $data['id_empresa']
+                ]);
+        }
+
+        if($response){
+            $data['code'] = 200;
+            $data['msg'] = "Guardado correctamente";
+        }
+        
+        return $data;
+    }
+
+    public function eliminarCuenta()
+    {
+        $data['code'] = 500;
+        $data['msg'] = "Error";
+        
+        $id = $this->request->get("id");
+        $cuenta = CuentaBancaria::where("id", $id)->first();
+        if ($cuenta) {
+            $response = CuentaBancaria::where('id', $id)->delete();
+            if($response){
+                $data['code'] = 200;
+                $data['msg'] = "Eliminado correctamente";
+            }
+        }else{
+            $data['msg'] = "No existe el registro";
+        }
+
+        return $data;
+    }
 }

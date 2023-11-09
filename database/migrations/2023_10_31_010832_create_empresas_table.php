@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->char('nombre', 200);
             $table->char('rfc', 13);
-            $table->char('curp', 13);
+            $table->char('curp', 18);
             $table->char('domicilio', 200);
             $table->char('numero_interior', 10);
             $table->char('numero_exterior', 10);

@@ -55,11 +55,11 @@
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label">R.F.C</label>
                         <div class="col-sm-12 col-md-4">
-                            <input class="form-control" type="text" name="rfc" placeholder="" value="{{ $empresa->rfc ? $empresa->rfc : ''}}">
+                            <input class="form-control" maxlength="13" type="text" name="rfc" placeholder="" value="{{ $empresa->rfc ? $empresa->rfc : ''}}">
                         </div>
                         <label class="col-sm-12 col-md-2 col-form-label">CURP</label>
                         <div class="col-sm-12 col-md-4">
-                            <input class="form-control" type="text" name="curp" placeholder="" value="{{ $empresa->curp ? $empresa->curp : ''}}" >
+                            <input class="form-control" maxlength="18" type="text" name="curp" placeholder="" value="{{ $empresa->curp ? $empresa->curp : ''}}" >
                         </div>
                     </div>
                     <div class="form-group row">
@@ -132,34 +132,35 @@
                                     <div class="login-title">
                                         <h2 class="text-center text-primary">Agregar Cuenta Bancaria</h2>
                                     </div>
-                                    <form>
-                                        <input class="form-control" type="hidden" name="id" placeholder="" value="{{ $empresa->id ? $empresa->id : ''}}">
+                                    <form id="formCuenta">
+                                        <input class="form-control" type="hidden" name="id" id="id" placeholder="" value="">
+                                        <input class="form-control" type="hidden" name="id_empresa" placeholder="" value="{{ $empresa->id ? $empresa->id : ''}}">
                                         <div class="input-group custom">
-                                            <input type="text" class="form-control form-control-lg" placeholder="Cuenta">
+                                            <input type="text" name="cuenta" id="cuenta" class="form-control form-control-lg" placeholder="Cuenta">
                                         </div>
                                         <div class="input-group custom">
-                                            <input type="password" class="form-control form-control-lg" placeholder="Sucursal">
+                                            <input type="text" name="sucursal" id="sucursal" class="form-control form-control-lg" placeholder="Sucursal">
                                         </div>
                                         <div class="input-group custom">
-                                            <input type="text" class="form-control form-control-lg" placeholder="Clave">
+                                            <input type="text" name="clave" id="clave" class="form-control form-control-lg" placeholder="Clave">
                                         </div>
                                         <div class="input-group custom">
-                                            <input type="password" class="form-control form-control-lg" placeholder="Banco">
+                                            <input type="text" name="banco" id="banco" class="form-control form-control-lg" placeholder="Banco">
                                         </div>
                                         <div class="input-group custom">
-                                            <input type="text" class="form-control form-control-lg" placeholder="Cuenta contable">
+                                            <input type="text" name="contable" id="contable" class="form-control form-control-lg" placeholder="Cuenta contable">
                                         </div>
                                         <div class="row pb-30">
                                             <div class="col-12">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                    <label class="custom-control-label" for="customCheck1">Mostrar</label>
+                                                    <input type="checkbox" class="custom-control-input" id="mostrar" name="mostrar">
+                                                    <label class="custom-control-label" for="mostrar">Mostrar</label>
                                                 </div>
                                             </div>
                                         </div>                                                                            
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Close</button> 
-                                            <button type="button" class="btn btn-success">Agregar</button>
+                                            <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Cerrar</button> 
+                                            <button type="button" id="btnCuenta" class="btn btn-success">Agregar</button>
 										</div>
                                     </form>
                                 </div>
@@ -192,10 +193,10 @@
                                         checked @endif>
                                     </td>
                                     <td class="text-center">
-                                        <button class="btn btn-info btn-circle btn-xl" type="button">
+                                        <button class="btn btn-info btn-circle btn-xl" type="button" onclick="openModal({{$item}});">
                                             <i class="icon-copy dw dw-edit-1"></i>
                                         </button>
-                                        <button class="btn btn-danger btn-circle btn-xl" type="button">
+                                        <button class="btn btn-danger btn-circle btn-xl" type="button" onclick="deleteCuenta({{$item->id}});">
                                             <i class="icon-copy dw dw-delete-2"></i>
                                         </button>
                                     </td>

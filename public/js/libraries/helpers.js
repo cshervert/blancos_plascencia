@@ -6,6 +6,7 @@ toastr.options = {
 
 const alertLoading = (flag) => {
     let timerInterval = flag === false ? 100 : 50000;
+    console.log("entro");
     Swal.fire({
         title: "Espere un momento ...",
         timer: timerInterval,
@@ -20,6 +21,7 @@ const alertLoading = (flag) => {
 };
 
 const alertDefault = (titulo, mensaje, icono, referencia = null) => {
+    console.log(mensaje);
     Swal.fire({
         title: titulo,
         text: mensaje,
