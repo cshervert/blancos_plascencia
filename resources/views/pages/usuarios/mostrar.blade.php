@@ -17,7 +17,7 @@
                     </nav>
                 </div>
                 <div class="col-md-6 col-sm-12 text-right">
-                    <a class="btn btn-success" href="{{ route('nuevo_rol') }}">
+                    <a class="btn btn-success" href="{{ route('nuevo_usuario') }}">
                         CREAR USUARIO <i class="icon-copy dw dw-add"></i>
                     </a>
                 </div>
@@ -27,8 +27,8 @@
                     <thead>
                         <tr>
                             <th class="col-1">ID</th>
-                            <th class="col-2">Usuario</th>
-                            <th class="col-2">Nombre</th>
+                            <th class="col-1">Usuario</th>
+                            <th class="col-3">Nombre</th>
                             <th class="col-1">Rol</th>
                             <th class="col-3">Sucursal</th>
                             <th class="col-1">Estatus</th>
@@ -45,7 +45,7 @@
                             <td>{{ $item->sucursal->nombre }}</td>
                             <td class="text-center">
                                 <label class="cl-switch cl-switch-large cl-switch-green">
-                                    <input type="checkbox" id="{{ $item->id }}" onchange="ChangeStatusRol(this)" @if($item->activo) checked @endif>
+                                    <input type="checkbox" id="{{ $item->id }}" onchange="ChangeStatusUsuario(this)" @if($item->activo) checked @endif>
                                     <span class="switcher"></span>
                                 </label>
                             </td>
@@ -53,7 +53,7 @@
                                 <a class="btn btn-info btn-circle btn-xl" href="{{ url('roles/editar/' . $item->id) }}">
                                     <i class="icon-copy dw dw-edit-1"></i>
                                 </a>
-                                <button type="button" class="btn btn-danger btn-circle btn-xl" id="{{ $item->id }}" onclick="DeleteRol(this);">
+                                <button type="button" class="btn btn-danger btn-circle btn-xl" id="{{ $item->id }}" onclick="DeleteUsuario(this);">
                                     <i class="icon-copy dw dw-delete-2"></i>
                                 </button>
                             </td>
@@ -67,5 +67,5 @@
 </div>
 @endsection
 @section('scripts')
-{{-- <script src="{{ asset('js/auth/rol.js') }}"></script> --}}
+<script src="{{ asset('js/auth/usuario.js') }}"></script>
 @endsection

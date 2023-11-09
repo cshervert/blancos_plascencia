@@ -27,6 +27,7 @@ const validChangeStatusRol = (id, estatus) => {
             if (stats.status == "success") {
                 toastr.success("El estatus se ha cambiado.");
             } else {
+                $(`#${id}`).prop("checked", !estatus);
                 toastr.error(stats.message);
             }
         })

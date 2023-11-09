@@ -42,6 +42,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('usuarios')->group(function () {
         Route::get('/', [UsuarioController::class, "index"])->name('usuarios');
+        Route::get('/nuevo', [UsuarioController::class, "nuevo"])->name('nuevo_usuario');
+        Route::put('/estatus/editar', [UsuarioController::class, "CambiarEstatus"]);
+        Route::delete('/eliminar', [UsuarioController::class, "eliminar"]);
     });
 
     Route::prefix('empresa')->group(function () {

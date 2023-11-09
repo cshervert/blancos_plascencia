@@ -129,7 +129,7 @@ a {
   background-color: transparent; }
 
 a:hover {
-  color: #0056b3;
+  color: #521a49;
   text-decoration: underline; }
 
 a:not([href]) {
@@ -4193,8 +4193,8 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #1b00ff;
-  border-color: #1b00ff; }
+  background-color: #521a49;
+  border-color: #521a49; }
 
 .page-item.disabled .page-link {
   color: #6c757d;
