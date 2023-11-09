@@ -32,10 +32,11 @@ Route::get('/dashboard', [DashboardController::class, "index"])->name('dashboard
 Route::middleware(['auth'])->group(function () {
     Route::prefix('roles')->group(function () {
         Route::get('/', [RolController::class, "index"])->name('roles');
-        Route::get('/nuevo', [RolController::class, "nuevo"])->name('nuevo');
-        Route::post('/crear', [RolController::class, "crear"]);
+        Route::get('/nuevo', [RolController::class, "nuevo"])->name('nuevo_rol');
+        Route::put('/estatus/editar', [RolController::class, "CambiarEstatus"]);
         Route::delete('/eliminar', [RolController::class, "eliminar"]);
-        Route::get('/editar/{id?}', [RolController::class, "editar"])->name('editar');
+        Route::post('/crear', [RolController::class, "crear"]);
+        Route::get('/editar/{id?}', [RolController::class, "editar"])->name('editar_rol');
         Route::put('/editar', [RolController::class, "modificar"]);
     });
     Route::prefix('usuarios')->group(function () {

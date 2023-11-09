@@ -28,6 +28,35 @@ class RolController extends AdminController
         return view('pages/roles/crear')->with('permisos', $permisos);
     }
 
+    public function CambiarEstatus()
+    {
+        $idRol  = $this->request->get("id");
+        $activo = $this->request->get("estatus");
+        $result = Rol::where('id', $idRol)->update(["activo" => $activo]);
+        if (!$result) {
+            $this->responseError(400, "No se realizo el cambio de estatus.");
+        }
+        return response()->json($this->response);
+    }
+
+    public function eliminar()
+    {
+        $idRol = $this->request->get("id");
+        $existeUsuario = Usuario::where("id_rol", $idRol)->first();
+        if (!$existeUsuario) {
+            $eliminarPermisos = PermisoRol::where('id_rol', $idRol)->delete();
+            $eliminarRol      = Rol::where('id', $idRol)->delete();
+            if ($eliminarPermisos && $eliminarRol) {
+                $this->responseSuccess("Rol y permisos eliminados correctamente.");
+            } else {
+                $this->responseError(400, "Ocurrió un error al eliminar el rol y permisos, vuelva a intentarlo.");
+            }
+        } else {
+            $this->responseError(400, "Este Rol cuenta con usuarios, no se puede eliminar.");
+        }
+        return response()->json($this->response);
+    }
+
     public function crear()
     {
         $nombreRol = $this->request->get("rol");
@@ -66,34 +95,6 @@ class RolController extends AdminController
         return response()->json($this->response);
     }
 
-    public function obtenerValorDePermiso($list, $idpermiso)
-    {
-        foreach ($list as $id) {
-            if ($id == $idpermiso) {
-                return 1;
-            }
-        }
-        return 0;
-    }
-
-    public function eliminar()
-    {
-        $idRol = $this->request->get("id");
-        $existeUsuario = Usuario::where("id_rol", $idRol)->first();
-        if (!$existeUsuario) {
-            $eliminarPermisos = PermisoRol::where('id_rol', $idRol)->delete();
-            $eliminarRol      = Rol::where('id', $idRol)->delete();
-            if ($eliminarPermisos && $eliminarRol) {
-                $this->responseSuccess("Rol y permisos eliminados correctamente.");
-            } else {
-                $this->responseError(400, "Ocurrió un error al eliminar el rol y permisos, vuelva a intentarlo.");
-            }
-        } else {
-            $this->responseError(400, "Este Rol cuenta con usuarios, no se puede eliminar.");
-        }
-        return response()->json($this->response);
-    }
-
     public function editar($id)
     {
         $rol = Rol::where('id', $id)->first();
@@ -107,28 +108,6 @@ class RolController extends AdminController
         return view('pages/roles/editar')
             ->with('rol', $rol)
             ->with('permisos', $permisosActivos);
-    }
-
-    public function obtenerPermisosRol($permisosRol, $permisoActual)
-    {
-        $permisosTemporales['id']       = $permisoActual['id'];
-        $permisosTemporales['permiso']  = $permisoActual['permiso'];
-        $permisosTemporales['leer']     = 0;
-        $permisosTemporales['crear']    = 0;
-        $permisosTemporales['editar']   = 0;
-        $permisosTemporales['eliminar'] = 0;
-        $permisosTemporales['existe']   = 0;
-        foreach ($permisosRol as $permiso) {
-            if ($permiso->id_permiso === $permisosTemporales['id']) {
-                $permisosTemporales['leer']     = $permiso->leer;
-                $permisosTemporales['crear']    = $permiso->crear;
-                $permisosTemporales['editar']   = $permiso->editar;
-                $permisosTemporales['eliminar'] = $permiso->eliminar;
-                $permisosTemporales['existe']   = 1;
-                break;
-            }
-        }
-        return $permisosTemporales;
     }
 
     public function modificar()
@@ -180,5 +159,37 @@ class RolController extends AdminController
             $this->responseError(500, "El nombre del Rol ya existe.");
         }
         return response()->json($this->response);
+    }
+
+    public function obtenerValorDePermiso($list, $idpermiso)
+    {
+        foreach ($list as $id) {
+            if ($id == $idpermiso) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    public function obtenerPermisosRol($permisosRol, $permisoActual)
+    {
+        $permisosTemporales['id']       = $permisoActual['id'];
+        $permisosTemporales['permiso']  = $permisoActual['permiso'];
+        $permisosTemporales['leer']     = 0;
+        $permisosTemporales['crear']    = 0;
+        $permisosTemporales['editar']   = 0;
+        $permisosTemporales['eliminar'] = 0;
+        $permisosTemporales['existe']   = 0;
+        foreach ($permisosRol as $permiso) {
+            if ($permiso->id_permiso === $permisosTemporales['id']) {
+                $permisosTemporales['leer']     = $permiso->leer;
+                $permisosTemporales['crear']    = $permiso->crear;
+                $permisosTemporales['editar']   = $permiso->editar;
+                $permisosTemporales['eliminar'] = $permiso->eliminar;
+                $permisosTemporales['existe']   = 1;
+                break;
+            }
+        }
+        return $permisosTemporales;
     }
 }
