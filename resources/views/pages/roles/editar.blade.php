@@ -25,7 +25,7 @@
                     </a>
                 </div>
             </div>
-            <div class="pd-20 card-box">
+            <div class="pd-30 card-box">
                 <form id="FormUpdateRol">
                     @csrf
                     <input type="hidden" name="id" value="{{ $rol->id }}">

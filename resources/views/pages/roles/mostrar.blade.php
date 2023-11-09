@@ -22,8 +22,8 @@
                     </a>
                 </div>
             </div>
-            <div class="card-box mb-30">
-                <table class="table hover nowrap">
+            <div class="card-box pd-30">
+                <table class="table hover nowrap mb-0">
                     <thead>
                         <tr>
                             <th class="col-1">ID</th>

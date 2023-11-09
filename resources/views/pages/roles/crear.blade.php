@@ -24,7 +24,7 @@
                     </a>
                 </div>
             </div>
-            <div class="pd-20 card-box">
+            <div class="pd-30 card-box">
                 <form id="FormCreateRol">
                     @csrf
                     <div class="form-group">
