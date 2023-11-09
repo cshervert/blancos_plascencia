@@ -45,7 +45,7 @@
                                     <span class="switcher"></span>
                                 </label>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <a class="btn btn-info btn-circle btn-xl" href="{{ url('roles/editar/' . $item->id) }}">
                                     <i class="icon-copy dw dw-edit-1"></i>
                                 </a>

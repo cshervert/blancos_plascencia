@@ -36,10 +36,11 @@ class LoginRequest extends FormRequest
         if ($this->isEmail($username)) {
             return [
                 "email"     => $username,
-                "password"  => $this->get("password")
+                "password"  => $this->get("password"),
+                "activo"    => $this->get("activo")
             ];
         }
-        return $this->only('username', 'password');
+        return $this->only('username', 'password', 'activo');
     }
 
     public function isEmail($value)

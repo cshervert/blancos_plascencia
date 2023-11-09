@@ -41,7 +41,8 @@ class DatabaseSeeder extends Seeder
             'password'  => '123123',
             'id_sucursal'  => 1,
             'id_rol'    => 1,
-            'activo'    => true
+            'activo'    => true,
+            'eliminado' => false
         ]);
 
         Usuario::factory()->create([
@@ -56,7 +57,8 @@ class DatabaseSeeder extends Seeder
             'password'  => '123123',
             'id_sucursal'  => 1,
             'id_rol'    => 2,
-            'activo'    => true
+            'activo'    => true,
+            'eliminado' => false
         ]);
 
         $this->call(PermisoUsuarioSeeder::class);

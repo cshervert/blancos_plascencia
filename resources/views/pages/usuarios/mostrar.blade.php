@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Dashboard')
+@section('title', 'Usuarios')
 @section('content')
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
@@ -17,23 +17,22 @@
                     </nav>
                 </div>
                 <div class="col-md-6 col-sm-12 text-right">
-                    <button class="btn btn-success" type="button">
-                        AGREGAR <i class="icon-copy dw dw-add"></i>
-                    </button>
+                    <a class="btn btn-success" href="{{ route('nuevo_rol') }}">
+                        CREAR USUARIO <i class="icon-copy dw dw-add"></i>
+                    </a>
                 </div>
             </div>
-            <div class="card-box mb-30">
-                <table class="table hover nowrap">
+            <div class="card-box pd-20">
+                <table class="data-table table hover mb-0">
                     <thead>
                         <tr>
-                            <th class="">ID</th>
+                            <th class="col-1">ID</th>
                             <th class="col-1">Usuario</th>
-                            <th class="col-3">Nombre</th>
-                            <th class="col-1">Celular</th>
+                            <th class="col-2">Nombre</th>
                             <th class="col-1">Rol</th>
-                            <th class="col-2">Sucursal</th>
-                            <th class="col-1">status</th>
-                            <th class="col-2 text-center">Acciones</th>
+                            <th class="col-3">Sucursal</th>
+                            <th class="col-1">Estatus</th>
+                            <th class="col-1">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,18 +41,19 @@
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->username }}</td>
                             <td>{{ $item->nombre }}</td>
-                            <td>{{ $item->celular }}</td>
                             <td>{{ $item->rol->rol }}</td>
                             <td>{{ $item->sucursal->nombre }}</td>
-                            <td>
-                                <input type="checkbox" class="switch-btn" data-color="#28a745" @if ($item->activo)
-                                checked @endif>
+                            <td class="text-center">
+                                <label class="cl-switch cl-switch-large cl-switch-green">
+                                    <input type="checkbox" id="{{ $item->id }}" onchange="ChangeStatusRol(this)" @if($item->activo) checked @endif>
+                                    <span class="switcher"></span>
+                                </label>
                             </td>
                             <td class="text-center">
-                                <button class="btn btn-info btn-circle btn-xl" type="button">
+                                <a class="btn btn-info btn-circle btn-xl" href="{{ url('roles/editar/' . $item->id) }}">
                                     <i class="icon-copy dw dw-edit-1"></i>
-                                </button>
-                                <button class="btn btn-danger btn-circle btn-xl" type="button">
+                                </a>
+                                <button type="button" class="btn btn-danger btn-circle btn-xl" id="{{ $item->id }}" onclick="DeleteRol(this);">
                                     <i class="icon-copy dw dw-delete-2"></i>
                                 </button>
                             </td>
@@ -65,4 +65,7 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+{{-- <script src="{{ asset('js/auth/rol.js') }}"></script> --}}
 @endsection

@@ -11,6 +11,7 @@ const submitLogin = async (event) => {
         .post("/login", {
             username: $("#username").val(),
             password: $("#password").val(),
+            activo: 1
         })
         .then(function ({ data }) {
             alertLoading(false);

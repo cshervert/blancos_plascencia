@@ -39,9 +39,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/editar/{id?}', [RolController::class, "editar"])->name('editar_rol');
         Route::put('/editar', [RolController::class, "modificar"]);
     });
+
     Route::prefix('usuarios')->group(function () {
         Route::get('/', [UsuarioController::class, "index"])->name('usuarios');
     });
+
     Route::prefix('empresa')->group(function () {
         Route::get('/', [EmpresaController::class, "index"])->name('empresa');
         Route::post('/save', [EmpresaController::class, "saveEmpresa"])->name('saveEmpresa');

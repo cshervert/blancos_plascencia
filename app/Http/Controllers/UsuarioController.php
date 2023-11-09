@@ -13,9 +13,9 @@ class UsuarioController extends AdminController
         parent::__construct($request);
     }
 
-    public function index(Request $request)
+    public function index()
     {
-        $usuarios = Usuario::all();
+        $usuarios = Usuario::where('eliminado', 0)->get();
         return view('pages/usuarios/mostrar')->with('usuarios', $usuarios);
     }
 }

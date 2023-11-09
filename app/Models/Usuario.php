@@ -28,6 +28,7 @@ class Usuario extends Authenticatable
         'id_sucursal',
         'id_rol',
         'activo',
+        'eliminado'
     ];
 
     protected $hidden = [

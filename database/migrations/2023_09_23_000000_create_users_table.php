@@ -27,6 +27,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_rol');
             $table->foreign('id_rol')->references('id')->on('roles');
             $table->boolean('activo');
+            $table->boolean('eliminado');
             $table->timestamps();
         });
     }
