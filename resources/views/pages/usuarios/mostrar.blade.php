@@ -27,12 +27,12 @@
                     <thead>
                         <tr>
                             <th class="col-1">ID</th>
-                            <th class="col-1">Usuario</th>
+                            <th class="col-2">Usuario</th>
                             <th class="col-2">Nombre</th>
                             <th class="col-1">Rol</th>
                             <th class="col-3">Sucursal</th>
                             <th class="col-1">Estatus</th>
-                            <th class="col-1">Acciones</th>
+                            <th class="col-2">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>

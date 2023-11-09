@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="card-box pd-30">
-                <table class="table hover nowrap mb-0">
+                <table class="data-table table hover nowrap mb-0">
                     <thead>
                         <tr>
                             <th class="col-1">ID</th>

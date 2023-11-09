@@ -4,7 +4,6 @@
 <script src="{{ asset('assets/src/plugins/sweetalert2/sweetalert2.all.js') }}"></script>
 <script src="{{ asset('assets/src/plugins/toastr/toastr.min.js') }}"></script>
 <!-- Template Main JS File -->
-<script src="{{ asset('js/libraries/helpers.js') }}"></script>
 <script src="{{ asset('js/libraries/axios.js') }}"></script>
 <script src="{{ asset('js/auth/login.js') }}"></script>
 </body>

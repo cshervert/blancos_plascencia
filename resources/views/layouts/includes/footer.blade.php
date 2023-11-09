@@ -5,6 +5,10 @@
 <script src="{{ asset('assets/src/plugins/sweetalert2/sweetalert2.all.js') }}"></script>
 <script src="{{ asset('assets/src/plugins/toastr/toastr.min.js') }}"></script>
 <!-- Template Main JS File -->
+<script src="{{ asset('assets/src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/datatables/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/datatables/js/responsive.bootstrap4.min.js') }}"></script>
 <script src="{{ asset('js/libraries/axios.js') }}"></script>
 <script src="{{ asset('js/libraries/helpers.js') }}"></script>
 @yield('scripts')
