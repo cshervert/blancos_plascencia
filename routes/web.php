@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\ClienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,10 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/eliminarCuenta', [EmpresaController::class, "eliminarCuenta"]);
         Route::put('/editCuenta', [EmpresaController::class, "cambiarEstatusCuenta"]);
 
+    });
+
+    Route::prefix('clientes')->group(function () {
+        Route::get('/', [ClienteController::class, "index"])->name('clientes');
     });
 });
 // Route::get('/empresa', [EmpresaController::class, "index"])->middleware('auth')->name('empresa');
