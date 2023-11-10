@@ -28,7 +28,7 @@ class EmpresaController extends AdminController
         return $empresa;
     }
 
-    public function saveEmpresa(Request $request)
+    public function guardarEmpresa(Request $request)
     {
         // var_dump($request->input('id'));
         // var_dump($request->input('nombre'));
@@ -82,7 +82,7 @@ class EmpresaController extends AdminController
         return $data;
     }
 
-    public function saveCuenta(Request $request)
+    public function guardarCuenta(Request $request)
     {
         $data['code'] = 500;
         $data['msg'] = "Error";
@@ -138,6 +138,21 @@ class EmpresaController extends AdminController
             $data['msg'] = "No existe el registro";
         }
 
+        return $data;
+    }
+
+    public function cambiarEstatusCuenta()
+    {
+        $data['code'] = 500;
+        $data['msg'] = "Error";
+
+        $id  = $this->request->get("id");
+        $status = $this->request->get("estatus");
+        $response = CuentaBancaria::where('id', $id)->update(["mostrar" => $status]);
+        if($response){
+            $data['code'] = 200;
+            $data['msg'] = "Actualizado correctamente";
+        }
         return $data;
     }
 }

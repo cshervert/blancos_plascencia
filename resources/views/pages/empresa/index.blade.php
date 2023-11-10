@@ -189,8 +189,12 @@
                                     <td>{{ $item->clave }}</td>
                                     <td>{{ $item->banco }}</td>
                                     <td>
-                                        <input type="checkbox" class="switch-btn" data-color="#28a745" @if ($item->mostrar)
-                                        checked @endif>
+                                        <!-- <input type="checkbox" class="switch-btn" data-color="#28a745" @if ($item->mostrar)
+                                        checked @endif> -->
+                                        <label class="cl-switch cl-switch-large cl-switch-green">
+                                            <input type="checkbox" id="{{ $item->id }}" onchange="changeCuenta(this)" @if($item->mostrar) checked @endif>
+                                            <span class="switcher"></span>
+                                        </label>
                                     </td>
                                     <td class="text-center">
                                         <button class="btn btn-info btn-circle btn-xl" type="button" onclick="openModal({{$item}});">
