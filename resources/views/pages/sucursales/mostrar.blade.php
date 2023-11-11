@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Usuarios')
+@section('title', 'Sucursales')
 @section('content')
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Usuarios</h4>
+                        <h4>Sucursales</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -17,8 +17,8 @@
                     </nav>
                 </div>
                 <div class="col-md-6 col-sm-12 text-right">
-                    <a class="btn btn-success" href="{{ route('nuevo_usuario') }}">
-                        CREAR USUARIO <i class="icon-copy dw dw-add ml-1"></i>
+                    <a class="btn btn-success" href="{{ route('nueva_sucursal') }}">
+                        CREAR SUCURSAL <i class="icon-copy dw dw-add ml-1"></i>
                     </a>
                 </div>
             </div>
@@ -26,34 +26,35 @@
                 <table class="data-table table hover mb-0">
                     <thead>
                         <tr>
-                            <th class="col-1">ID</th>
-                            <th class="col-1">Usuario</th>
-                            <th class="col-3">Nombre</th>
-                            <th class="col-1">Rol</th>
-                            <th class="col-3">Sucursal</th>
-                            <th class="col-1">Estatus</th>
-                            <th class="col-2">Acciones</th>
+                            <th>ID</th>
+                            <th class="col-4">Nombre</th>
+                            <th class="col-4">Información</th>
+                            <th class="col-2 text-center">Estatus</th>
+                            <th class="col-2 text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($usuarios as $item)
+                        @foreach ($sucursales as $item)
                         <tr>
                             <td>{{ $item->id }}</td>
-                            <td>{{ $item->username }}</td>
                             <td>{{ $item->nombre }}</td>
-                            <td>{{ $item->rol->rol }}</td>
-                            <td>{{ $item->sucursal->nombre }}</td>
+                            <td>
+                                <p class="m-0"><b>Domicilio:</b> {{ $item->domicilio }} #{{ $item->numero_exterior}}</p>
+                                <p class="m-0"><B>Teléfono:</B> {{ $item->telefono }}</p>
+                                <p class="m-0"><B>Email:</B> {{ $item->email }}</p>
+                            </td>
                             <td class="text-center">
                                 <label class="cl-switch cl-switch-large cl-switch-green">
-                                    <input type="checkbox" id="{{ $item->id }}" onchange="ChangeStatusUsuario(this)" @if($item->activo) checked @endif>
+                                    <input type="checkbox" id="{{ $item->id }}" onchange="ChangeStatusSucursal(this)" @if($item->activo) checked @endif>
                                     <span class="switcher"></span>
                                 </label>
                             </td>
                             <td class="text-center">
-                                <a class="btn btn-info btn-circle btn-xl" href="{{ url('roles/editar/' . $item->id) }}">
+                                <a class="btn btn-info btn-circle btn-xl"
+                                    href="{{ url('sucursales/editar/' . $item->id) }}">
                                     <i class="icon-copy dw dw-edit-1"></i>
                                 </a>
-                                <button type="button" class="btn btn-danger btn-circle btn-xl" id="{{ $item->id }}" onclick="DeleteUsuario(this);">
+                                <button type="button" class="btn btn-danger btn-circle btn-xl" id="{{ $item->id }}" onclick="DeleteSucursal(this);">
                                     <i class="icon-copy dw dw-delete-2"></i>
                                 </button>
                             </td>
@@ -67,5 +68,5 @@
 </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('js/auth/usuario.js') }}"></script>
+<script src="{{ asset('js/sucursal.js') }}"></script>
 @endsection

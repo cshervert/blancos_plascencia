@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\AdminController;
 use App\Models\Usuario;
 use App\Models\Permiso;
+use App\Models\Sucursal;
+use App\Models\Rol;
 
 class UsuarioController extends AdminController
 {
@@ -22,8 +24,11 @@ class UsuarioController extends AdminController
 
     public function nuevo()
     {
-        $permisos = Permiso::all();
-        return view('pages/usuarios/crear')->with('permisos', $permisos);
+        $sucursales = Sucursal::where("activo", 1)->get();
+        $roles = Rol::where("activo", 1)->get();
+        return view('pages/usuarios/crear')
+            ->with('sucursales', $sucursales)
+            ->with('roles', $roles);
     }
 
     public function CambiarEstatus()

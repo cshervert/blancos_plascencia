@@ -28,7 +28,8 @@ class SucursalSeeder extends Seeder
                 'email'     => 'vianneytesis1@gmail.com',
                 'telefono'  => '523325982830',
                 'celular'   => '523325982830',
-                'activo'    => 1
+                'activo'    => 1,
+                'eliminado' => 0
             ],
             [
                 'nombre'    => 'Blancos Plascencia Tesistan 2',
@@ -42,7 +43,8 @@ class SucursalSeeder extends Seeder
                 'email'     => 'vianneytesis2@gmail.com',
                 'telefono'  => '523321907340',
                 'celular'   => '523321907340',
-                'activo'    => 1
+                'activo'    => 1,
+                'eliminado' => 0
             ], [
                 'nombre'    => 'Blancos Plascencia Tesistan 3',
                 'domicilio' => 'Calle Valle de Tesistan 60',
@@ -55,7 +57,8 @@ class SucursalSeeder extends Seeder
                 'email'     => 'vianneytesis3@gmail.com',
                 'telefono'  => '523318671617',
                 'celular'   => '523318671617',
-                'activo'    => 1
+                'activo'    => 1,
+                'eliminado' => 0
             ], [
                 'nombre'    => 'Vianney Blancos Plascencia 4',
                 'domicilio' => 'Av. Juan Gil Preciado',
@@ -68,7 +71,8 @@ class SucursalSeeder extends Seeder
                 'email'     => 'vianneytesis4@gmail.com',
                 'telefono'  => '523321767732',
                 'celular'   => '523321767732',
-                'activo'    => 1
+                'activo'    => 1,
+                'eliminado' => 0
             ]
         ];
         foreach ($branch_offices as $item) {

@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\SucursalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +34,9 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('roles')->group(function () {
         Route::get('/', [RolController::class, "index"])->name('roles');
         Route::get('/nuevo', [RolController::class, "nuevo"])->name('nuevo_rol');
+        Route::post('/crear', [RolController::class, "crear"]);
         Route::put('/estatus/editar', [RolController::class, "CambiarEstatus"]);
         Route::delete('/eliminar', [RolController::class, "eliminar"]);
-        Route::post('/crear', [RolController::class, "crear"]);
         Route::get('/editar/{id?}', [RolController::class, "editar"])->name('editar_rol');
         Route::put('/editar', [RolController::class, "modificar"]);
     });
@@ -52,6 +53,16 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/save', [EmpresaController::class, "saveEmpresa"])->name('saveEmpresa');
         Route::post('/saveCuenta', [EmpresaController::class, "saveCuenta"])->name('saveCuenta');
         Route::delete('/eliminarCuenta', [EmpresaController::class, "eliminarCuenta"]);
+    });
+
+    Route::prefix('sucursales')->group(function () {
+        Route::get('/', [SucursalController::class, "index"])->name('sucursales');
+        Route::get('/nuevo', [SucursalController::class, "nuevo"])->name('nueva_sucursal');
+        Route::post('/crear', [SucursalController::class, "crear"]);
+        Route::put('/estatus/editar', [SucursalController::class, "cambiarEstatus"]);
+        Route::delete('/eliminar', [SucursalController::class, "eliminar"]);
+        Route::get('/editar/{id?}', [SucursalController::class, "editar"])->name('editar_sucursal');
+        Route::put('/editar', [SucursalController::class, "modificar"]);
     });
 });
 // Route::get('/empresa', [EmpresaController::class, "index"])->middleware('auth')->name('empresa');

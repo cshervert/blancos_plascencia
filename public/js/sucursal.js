@@ -1,6 +1,6 @@
-const ChangeStatusUsuario = (obj) => {
-    let idUsuario = obj.id;
-    let estatus = $(`#${idUsuario}`).prop("checked") ? 1 : 0;
+const ChangeStatusSucursal = (obj) => {
+    let idSucursal = obj.id;
+    let estatus = $(`#${idSucursal}`).prop("checked") ? 1 : 0;
     Swal.fire({
         icon: "question",
         text: "¿Estás seguro de cambiar el estatus?",
@@ -12,16 +12,16 @@ const ChangeStatusUsuario = (obj) => {
         width: 400,
     }).then((result) => {
         if (result.isConfirmed) {
-            validChangeStatusUsuario(idUsuario, estatus);
+            validChangeStatusSucursal(idSucursal, estatus);
         } else {
-            $(`#${idUsuario}`).prop("checked", !estatus);
+            $(`#${idSucursal}`).prop("checked", !estatus);
         }
     });
 };
 
-const validChangeStatusUsuario = (id, estatus) => {
+const validChangeStatusSucursal = (id, estatus) => {
     axios
-        .put("/usuarios/estatus/editar", { id: id, estatus: estatus })
+        .put("/sucursales/estatus/editar", { id: id, estatus: estatus })
         .then(function ({ data }) {
             let { stats } = data;
             if (stats.status == "success") {
@@ -36,10 +36,10 @@ const validChangeStatusUsuario = (id, estatus) => {
         });
 };
 
-const DeleteUsuario = (obj) => {
+const DeleteSucursal = (obj) => {
     Swal.fire({
         title: "¿Estás seguro de realizar esta acción?",
-        html: "Se eliminará el usuario permanentemente.",
+        html: "Se eliminará la sucursal permanentemente.",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#521a49",
@@ -49,18 +49,23 @@ const DeleteUsuario = (obj) => {
         width: 400,
     }).then((result) => {
         if (result.isConfirmed) {
-            ActionDeleteUsuario(obj.id);
+            ActionDeleteSucursal(obj.id);
         }
     });
 };
 
-const ActionDeleteUsuario = (id) => {
+const ActionDeleteSucursal = (id) => {
     axios
-        .delete("/usuarios/eliminar", { params: { id: id } })
+        .delete("/sucursales/eliminar", { params: { id: id } })
         .then(function ({ data }) {
             let { stats } = data;
             if (stats.status == "success") {
-                alertDefault("¡Exito!", stats.message, "success", "/usuarios");
+                alertDefault(
+                    "¡Exito!",
+                    stats.message,
+                    "success",
+                    "/sucursales"
+                );
             } else {
                 alertDefault("¡Error!", stats.message, "error");
             }
@@ -70,42 +75,67 @@ const ActionDeleteUsuario = (id) => {
         });
 };
 
-const FormCreateUsuario = async () => {
-    let validate = await validateFormUsuario();
+const FormCreateSucursal = async () => {
+    let validate = await validateFormSucursal();
     if (!validate) {
         toastr.error("Campos Obligatorios.");
         return;
     }
-    // alertLoading(true);
-    // axios
-    //     .post("/sucursales/crear", $("#FormCreateSucursal").serialize())
-    //     .then(function ({ data }) {
-    //         alertLoading(false);
-    //         let { stats } = data;
-    //         if (stats.status == "success") {
-    //             alertDefault("¡Exito!", stats.message, "success", "/sucursales");
-    //         } else {
-    //             alertDefault("¡Error!", stats.message, "error");
-    //         }
-    //     })
-    //     .catch(function (error) {
-    //         alertLoading(false);
-    //         alertDefault("¡Error!", "error del servidor", "error");
-    //     });
+    alertLoading(true);
+    axios
+        .post("/sucursales/crear", $("#FormCreateSucursal").serialize())
+        .then(function ({ data }) {
+            alertLoading(false);
+            let { stats } = data;
+            if (stats.status == "success") {
+                alertDefault("¡Exito!", stats.message, "success", "/sucursales");
+            } else {
+                alertDefault("¡Error!", stats.message, "error");
+            }
+        })
+        .catch(function (error) {
+            alertLoading(false);
+            alertDefault("¡Error!", "error del servidor", "error");
+        });
 };
 
-const validateFormUsuario = () => {
+const FormUpdateSucursal = async () => {
+    let validate = await validateFormSucursal();
+    if (!validate) {
+        toastr.error("Permisos Obligatorios.");
+        return;
+    }
+    alertLoading(true);
+    axios
+        .put("/sucursales/editar", $("#FormUpdateSucursal").serialize())
+        .then(function ({ data }) {
+            alertLoading(false);
+            let { stats, responseData } = data;
+            if (stats.status == "success") {
+                alertDefault(
+                    "¡Exito!",
+                    stats.message,
+                    "success",
+                    "/sucursales/editar/" + responseData.id
+                );
+            } else {
+                alertDefault("¡Error!", stats.message, "error");
+            }
+        })
+        .catch(function (error) {
+            alertLoading(false);
+            alertDefault("¡Error!", "error del servidor", "error");
+        });
+};
+
+const validateFormSucursal = () => {
     let bandera = true;
     let nombre = $("#nombre").val();
     let domicilio = $("#domicilio").val();
     let ciudad = $("#ciudad").val();
+    let email = $("#email").val();
     let telefono = $("#telefono").val();
     let celular = $("#celular").val();
-    let email = $("#email").val();
-    let usuario = $("#usuario").val();
-    let password = $("#password").val();
-    let passwordRepetir = $("#password-repetir").val();
-
     if (nombre == "" || nombre.length < 5) {
         $("#advertencia-nombre").html("* Obligatorio");
         $("#nombre").addClass("form-control-danger");
@@ -154,36 +184,18 @@ const validateFormUsuario = () => {
         $("#advertencia-celular").html("");
         $("#celular").removeClass("form-control-danger");
     }
-    if (usuario == "" || usuario.length < 5) {
-        $("#advertencia-usuario").html("* Obligatorio");
-        $("#usuario").addClass("form-control-danger");
-        bandera = false;
-    } else {
-        $("#advertencia-usuario").html("");
-        $("#usuario").removeClass("form-control-danger");
-    }
-    if (password == "" || password.length < 5) {
-        $("#advertencia-password").html("* Obligatorio");
-        $("#password").addClass("form-control-danger");
-        bandera = false;
-    } else {
-        $("#advertencia-password").html("");
-        $("#password").removeClass("form-control-danger");
-    }
-    if (passwordRepetir == "" || passwordRepetir.length < 5) {
-        $("#advertencia-password-repetir").html("* Obligatorio");
-        $("#password-repetir").addClass("form-control-danger");
-        bandera = false;
-    } else {
-        $("#advertencia-password-repetir").html("");
-        $("#password-repetir").removeClass("form-control-danger");
-    }
     return bandera;
 };
 
 $(function () {
-    $("#FormCreateUsuario").on("submit", function (event) {
+    $("#FormCreateSucursal").on("submit", function (event) {
         event.preventDefault();
-        FormCreateUsuario();
+        FormCreateSucursal();
     });
+
+    $("#FormUpdateSucursal").on("submit", function (event) {
+        event.preventDefault();
+        FormUpdateSucursal();
+    });
+    
 });
