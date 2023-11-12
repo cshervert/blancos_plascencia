@@ -44,8 +44,12 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('usuarios')->group(function () {
         Route::get('/', [UsuarioController::class, "index"])->name('usuarios');
         Route::get('/nuevo', [UsuarioController::class, "nuevo"])->name('nuevo_usuario');
+        Route::post('/crear', [UsuarioController::class, "crear"]);
         Route::put('/estatus/editar', [UsuarioController::class, "CambiarEstatus"]);
         Route::delete('/eliminar', [UsuarioController::class, "eliminar"]);
+        Route::get('/editar/{id?}', [UsuarioController::class, "editar"])->name('editar_usuario');
+        Route::get('/imagen/{id?}', [UsuarioController::class, "getImagen"]);
+        Route::post('/editar/general', [UsuarioController::class, "modificarGeneral"]);
     });
 
     Route::prefix('empresa')->group(function () {

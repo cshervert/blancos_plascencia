@@ -27,6 +27,39 @@
             </div>
             <div class="pd-30 card-box">
                 <form id="FormCreateUsuario">
+                    <h4 class="text-blue h5">Datos de Acceso</h4>
+                    <hr class="mt-1">
+                    <div class="row">
+                        <div class="form-group col-md-4 mb-0">
+                            <label class="form-label" for="usuario">Usuario</label>
+                            <label class="form-control-label has-danger ml-2" id="advertencia-usuario"></label>
+                            <input class="form-control" type="text" name="usuario" id="usuario" onkeyup="validateFormUsuario()">
+                        </div>
+                        <div class="form-group col-md-4 mb-0">
+                            <label class="form-label" for="password">Contraseña</label>
+                            <label class="form-control-label has-danger ml-2" id="advertencia-password"></label>
+                            <div class="input-group">
+                                <input class="form-control" type="password" name="password" id="password" onkeyup="validateFormUsuario()">
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="button" onclick="mostrarPassword()">
+                                        <span id="icon_password" class="fa fa-eye-slash"></span> 
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4 mb-0">
+                            <label class="form-label" for="password-repetir">Repetir Contraseña</label>
+                            <label class="form-control-label has-danger ml-2" id="advertencia-password-repetir"></label>
+                            <div class="input-group">
+                                <input class="form-control" type="password" name="password-repetir" id="password-repetir" onkeyup="validateFormUsuario()">
+                                <div class="input-group-append">
+                                    <button class="btn btn-secondary" type="button" onclick="mostrarPasswordRepetir()">
+                                        <span id="icon_password_repetir" class="fa fa-eye-slash"></span> 
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <h4 class="text-blue h5">Datos Generales</h4>
                     <hr class="mt-1">
                     <div class="row">
@@ -78,26 +111,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label class="form-label" for="foto">Foto</label>
-                            <input class="form-control-file" type="file" name="foto" id="foto">
-                        </div>
-                    </div>
-                    <h4 class="text-blue h5 mt-3">Datos de Acceso</h4>
-                    <hr class="mt-1">
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label class="form-label" for="usuario">Usuario</label>
-                            <label class="form-control-label has-danger ml-2" id="advertencia-usuario"></label>
-                            <input class="form-control" type="text" name="usuario" id="usuario" onkeyup="validateFormUsuario()">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label class="form-label" for="password">Contraseña</label>
-                            <label class="form-control-label has-danger ml-2" id="advertencia-password"></label>
-                            <input class="form-control" type="password" name="password" id="password" onkeyup="validateFormUsuario()">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label class="form-label" for="password-repetir">Repetir Contraseña</label>
-                            <label class="form-control-label has-danger ml-2" id="advertencia-password-repetir"></label>
-                            <input class="form-control" type="password" name="password-repetir" id="password-repetir" onkeyup="validateFormUsuario()">
+                            <input class="form-control-file" type="file" name="foto" id="foto" accept="image/*">
                         </div>
                     </div>
                     <div class="text-right mt-3">

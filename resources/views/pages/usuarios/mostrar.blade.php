@@ -50,7 +50,7 @@
                                 </label>
                             </td>
                             <td class="text-center">
-                                <a class="btn btn-info btn-circle btn-xl" href="{{ url('roles/editar/' . $item->id) }}">
+                                <a class="btn btn-info btn-circle btn-xl" href="{{ url('usuarios/editar/' . $item->id) }}">
                                     <i class="icon-copy dw dw-edit-1"></i>
                                 </a>
                                 <button type="button" class="btn btn-danger btn-circle btn-xl" id="{{ $item->id }}" onclick="DeleteUsuario(this);">

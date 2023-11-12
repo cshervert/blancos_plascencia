@@ -680,7 +680,7 @@ textarea.form-control {
     font-size: 20px;
 }
 .form-control:focus ~ .input-group-append .fa {
-    color: #521a49;
+    /* color: #521a49; */
 }
 .form-control-lg,
 .input-group-lg > .form-control,
