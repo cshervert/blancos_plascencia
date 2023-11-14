@@ -8,6 +8,7 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\SucursalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +35,9 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('roles')->group(function () {
         Route::get('/', [RolController::class, "index"])->name('roles');
         Route::get('/nuevo', [RolController::class, "nuevo"])->name('nuevo_rol');
+        Route::post('/crear', [RolController::class, "crear"]);
         Route::put('/estatus/editar', [RolController::class, "CambiarEstatus"]);
         Route::delete('/eliminar', [RolController::class, "eliminar"]);
-        Route::post('/crear', [RolController::class, "crear"]);
         Route::get('/editar/{id?}', [RolController::class, "editar"])->name('editar_rol');
         Route::put('/editar', [RolController::class, "modificar"]);
     });
@@ -44,8 +45,12 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('usuarios')->group(function () {
         Route::get('/', [UsuarioController::class, "index"])->name('usuarios');
         Route::get('/nuevo', [UsuarioController::class, "nuevo"])->name('nuevo_usuario');
+        Route::post('/crear', [UsuarioController::class, "crear"]);
         Route::put('/estatus/editar', [UsuarioController::class, "CambiarEstatus"]);
         Route::delete('/eliminar', [UsuarioController::class, "eliminar"]);
+        Route::get('/editar/{id?}', [UsuarioController::class, "editar"])->name('editar_usuario');
+        Route::get('/imagen/{id?}', [UsuarioController::class, "getImagen"]);
+        Route::post('/editar/general', [UsuarioController::class, "modificarGeneral"]);
     });
 
     Route::prefix('empresa')->group(function () {
@@ -55,6 +60,16 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/eliminarCuenta', [EmpresaController::class, "eliminarCuenta"]);
         Route::put('/editCuenta', [EmpresaController::class, "cambiarEstatusCuenta"]);
 
+    });
+
+    Route::prefix('sucursales')->group(function () {
+        Route::get('/', [SucursalController::class, "index"])->name('sucursales');
+        Route::get('/nuevo', [SucursalController::class, "nuevo"])->name('nueva_sucursal');
+        Route::post('/crear', [SucursalController::class, "crear"]);
+        Route::put('/estatus/editar', [SucursalController::class, "cambiarEstatus"]);
+        Route::delete('/eliminar', [SucursalController::class, "eliminar"]);
+        Route::get('/editar/{id?}', [SucursalController::class, "editar"])->name('editar_sucursal');
+        Route::put('/editar', [SucursalController::class, "modificar"]);
     });
 
     Route::prefix('clientes')->group(function () {

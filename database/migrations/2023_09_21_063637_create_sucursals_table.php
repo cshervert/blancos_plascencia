@@ -27,6 +27,7 @@ return new class extends Migration
             $table->char('telefono', 20);
             $table->char('celular', 20);
             $table->boolean('activo');
+            $table->boolean('eliminado');
             $table->timestamps();
         });
     }

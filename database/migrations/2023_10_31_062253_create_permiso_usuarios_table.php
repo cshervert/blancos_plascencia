@@ -23,7 +23,6 @@ return new class extends Migration
             $table->boolean('leer');
             $table->boolean('editar');
             $table->boolean('eliminar');
-            $table->boolean('activo');
         });
     }
 

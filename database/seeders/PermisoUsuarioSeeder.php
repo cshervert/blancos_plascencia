@@ -22,8 +22,7 @@ class PermisoUsuarioSeeder extends Seeder
                 'crear'      => 1,
                 'leer'       => 1,
                 'editar'     => 1,
-                'eliminar'   => 1,
-                'activo'     => 1,
+                'eliminar'   => 1
             ]
         ];
         foreach ($permission_user as $item) {

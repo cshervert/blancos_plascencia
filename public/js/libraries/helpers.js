@@ -1,7 +1,7 @@
 toastr.options = {
     closeButton: true,
     progressBar: true,
-    positionClass: "toast-bottom-right",
+    positionClass: "toast-top-center",
 };
 
 const alertLoading = (flag) => {
@@ -35,24 +35,36 @@ const alertDefault = (titulo, mensaje, icono, referencia = null) => {
     });
 };
 
-$('.data-table').DataTable({
+$(".data-table").DataTable({
     scrollCollapse: true,
     autoWidth: false,
     responsive: true,
-    columnDefs: [{
-        targets: "datatable-nosort",
-        orderable: false,
-    }],
-    "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-    "language": {
-        "sInfo": "Mostrando del _START_ al _END_ de un total de _TOTAL_ filas",
-        "sLengthMenu": "Mostrar   _MENU_  filas",
-        "sInfoEmpty": "",
-        "sEmptyTable": "No hay datos disponibles en la tabla",
-        "sSearch": "Buscar:",
+    columnDefs: [
+        {
+            targets: "datatable-nosort",
+            orderable: false,
+        },
+    ],
+    lengthMenu: [
+        [10, 25, 50, -1],
+        [10, 25, 50, "Todas"],
+    ],
+    language: {
+        sInfo: "_START_ de _END_ | filas totales _TOTAL_",
+        sLengthMenu: "Cantidad _MENU_",
+        sInfoEmpty: "",
+        sEmptyTable: "No hay datos disponibles en la tabla",
+        sSearch: "Buscar",
         paginate: {
             next: '<i class="ion-chevron-right"></i>',
-            previous: '<i class="ion-chevron-left"></i>'  
-        }
+            previous: '<i class="ion-chevron-left"></i>',
+        },
     },
 });
+
+const ValidatarEmail = (mail) => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+        return true;
+    }
+    return false;
+};

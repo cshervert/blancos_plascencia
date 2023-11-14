@@ -28,35 +28,6 @@ class RolController extends AdminController
         return view('pages/roles/crear')->with('permisos', $permisos);
     }
 
-    public function CambiarEstatus()
-    {
-        $idRol  = $this->request->get("id");
-        $activo = $this->request->get("estatus");
-        $result = Rol::where('id', $idRol)->update(["activo" => $activo]);
-        if (!$result) {
-            $this->responseError(400, "No se realizo el cambio de estatus.");
-        }
-        return response()->json($this->response);
-    }
-
-    public function eliminar()
-    {
-        $idRol = $this->request->get("id");
-        $existeUsuario = Usuario::where("id_rol", $idRol)->first();
-        if (!$existeUsuario) {
-            $eliminarPermisos = PermisoRol::where('id_rol', $idRol)->delete();
-            $eliminarRol      = Rol::where('id', $idRol)->delete();
-            if ($eliminarPermisos && $eliminarRol) {
-                $this->responseSuccess("Rol y permisos eliminados correctamente.");
-            } else {
-                $this->responseError(400, "Ocurrió un error al eliminar el rol y permisos, vuelva a intentarlo.");
-            }
-        } else {
-            $this->responseError(400, "Este Rol cuenta con usuarios, no se puede eliminar.");
-        }
-        return response()->json($this->response);
-    }
-
     public function crear()
     {
         $nombreRol = $this->request->get("rol");
@@ -91,6 +62,40 @@ class RolController extends AdminController
             }
         } else {
             $this->responseError(500, "El nombre del Rol ya existe.");
+        }
+        return response()->json($this->response);
+    }
+
+    public function CambiarEstatus()
+    {
+        $idRolActual = $this->usuario->id_rol;
+        $idRol  = $this->request->get("id");
+        $activo = $this->request->get("estatus");
+        if ($idRolActual != $idRol) {
+            $result = Rol::where('id', $idRol)->update(["activo" => $activo]);
+            if (!$result) {
+                $this->responseError(400, "No se realizo el cambio de estatus.");
+            }
+        } else {
+            $this->responseError(400, "El Rol que intentas desactivar, es el rol de tu usuario activo.");
+        }
+        return response()->json($this->response);
+    }
+
+    public function eliminar()
+    {
+        $idRol = $this->request->get("id");
+        $existeUsuario = Usuario::where("id_rol", $idRol)->first();
+        if (!$existeUsuario) {
+            $eliminarPermisos = PermisoRol::where('id_rol', $idRol)->delete();
+            $eliminarRol      = Rol::where('id', $idRol)->delete();
+            if ($eliminarPermisos && $eliminarRol) {
+                $this->responseSuccess("Rol y permisos eliminados correctamente.");
+            } else {
+                $this->responseError(400, "Ocurrió un error al eliminar el rol y permisos, vuelva a intentarlo.");
+            }
+        } else {
+            $this->responseError(400, "Este Rol cuenta con usuarios, no se puede eliminar.");
         }
         return response()->json($this->response);
     }
