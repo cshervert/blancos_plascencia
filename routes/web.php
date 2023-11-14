@@ -71,9 +71,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/editar/{id?}', [SucursalController::class, "editar"])->name('editar_sucursal');
         Route::put('/editar', [SucursalController::class, "modificar"]);
     });
-
+    
     Route::prefix('clientes')->group(function () {
         Route::get('/', [ClienteController::class, "index"])->name('clientes');
+        Route::get('/nuevo', [ClienteController::class, "nuevo"])->name('nuevo_cliente');
+        Route::delete('/eliminar', [ClienteController::class, "eliminar"]);
     });
 });
 // Route::get('/empresa', [EmpresaController::class, "index"])->middleware('auth')->name('empresa');
