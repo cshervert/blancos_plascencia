@@ -56,8 +56,6 @@
                         <li><a href="{{ route('roles') }}">Roles</a></li>
                         <li><a href="{{ route('usuarios') }}">Usuarios</a></li>
                         <li><a href="themify.html">Empleados</a></li>
-                        <li><a href="foundation.html">Perfiles</a></li>
-                        <li><a href="ionicons.html">Usuarios</a></li>
 
                     </ul>
                 </li>

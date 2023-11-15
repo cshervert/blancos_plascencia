@@ -48,9 +48,12 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/crear', [UsuarioController::class, "crear"]);
         Route::put('/estatus/editar', [UsuarioController::class, "CambiarEstatus"]);
         Route::delete('/eliminar', [UsuarioController::class, "eliminar"]);
-        Route::get('/editar/{id?}', [UsuarioController::class, "editar"])->name('editar_usuario');
+        Route::get('/editar/{id?}/{section?}', [UsuarioController::class, "editar"])->name('editar_usuario');
         Route::get('/imagen/{id?}', [UsuarioController::class, "getImagen"]);
         Route::post('/editar/general', [UsuarioController::class, "modificarGeneral"]);
+        Route::put('/editar/accesos', [UsuarioController::class, "modificarAcceso"]);
+        Route::put('/editar/sucursales', [UsuarioController::class, "modificarSucursales"]);
+        Route::put('/editar/permisos', [UsuarioController::class, "modificarPermisos"]);
     });
 
     Route::prefix('empresa')->group(function () {

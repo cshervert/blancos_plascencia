@@ -148,7 +148,7 @@ class UsuarioController extends AdminController
         }
     }
 
-    public function editar($id)
+    public function editar($id, $section = 1)
     {
         $usuario    = Usuario::find($id);
         $roles      = Rol::where("activo", 1)->get();
@@ -167,6 +167,7 @@ class UsuarioController extends AdminController
             array_push($listado_permisos, $temporal_permisos);
         }
         return view('pages/usuarios/editar')
+            ->with('section', $section)
             ->with('usuario', $usuario)
             ->with('sucursales', $sucursales)
             ->with('roles', $roles)
@@ -210,6 +211,16 @@ class UsuarioController extends AdminController
         return $permisosTemporales;
     }
 
+    public function obtenerValorDePermiso($list, $idpermiso)
+    {
+        foreach ($list as $id) {
+            if ($id == $idpermiso) {
+                return 1;
+            }
+        }
+        return 0;
+    }
+
     public function getImagen($id)
     {
         $usuario        = Usuario::find($id);
@@ -229,53 +240,141 @@ class UsuarioController extends AdminController
         $email      = $this->request->get("email");
         $sucursal   = $this->request->get("sucursal");
         $rol        = $this->request->get("rol");
-        dd($this->request->all());
-        // $idRol      = $this->request->get("id");
-        // $nombreRol  = $this->request->get("rol");
-        // $statusRol  = $this->request->get("status");
-        // $rolExiste  = Rol::where('rol', $nombreRol)->where('id', '!=', $idRol)->count();
-        // if (!$rolExiste) {
-        //     $read        = ($this->request->get("read") != null) ? $this->request->get("read") : [];
-        //     $create      = ($this->request->get("create") != null) ? $this->request->get("create") : [];
-        //     $update      = ($this->request->get("update") != null) ? $this->request->get("update") : [];
-        //     $delete      = ($this->request->get("delete") != null) ? $this->request->get("delete") : [];
-        //     $permisos    = Permiso::all();
-        //     $permisosRol = PermisoRol::where('id_rol', $idRol)->get();
-        //     foreach ($permisos as $item) {
-        //         $permisosTemporales = $this->obtenerPermisosRol($permisosRol, $item);
-        //         $p['leer']      = $this->obtenerValorDePermiso($read, $item->id);
-        //         $p['crear']     = $this->obtenerValorDePermiso($create, $item->id);
-        //         $p['editar']    = $this->obtenerValorDePermiso($update, $item->id);
-        //         $p['eliminar']  = $this->obtenerValorDePermiso($delete, $item->id);
-        //         if ($permisosTemporales['existe']) {
-        //             $rol = PermisoRol::where('id_permiso', $permisosTemporales['id'])->where('id_rol', $idRol);
-        //             if ($p['leer'] == 0 && $p['crear'] == 0 && $p['editar'] == 0 && $p['eliminar'] == 0) {
-        //                 $rol->delete();
-        //             } else {
-        //                 $rol->update([
-        //                     'leer'     => $p['leer'],
-        //                     'crear'    => $p['crear'],
-        //                     'editar'   => $p['editar'],
-        //                     'eliminar' => $p['eliminar']
-        //                 ]);
-        //             }
-        //         } else if ($p['leer'] == 1 || $p['crear'] == 1 || $p['editar'] == 1 || $p['eliminar'] == 1) {
-        //             PermisoRol::create([
-        //                 'id_permiso' => $item->id,
-        //                 'id_rol'     => $idRol,
-        //                 'leer'       => $p['leer'],
-        //                 'crear'      => $p['crear'],
-        //                 'editar'     => $p['editar'],
-        //                 'eliminar'   => $p['eliminar']
-        //             ]);
-        //         }
-        //     }
-        //     $rolExiste  = Rol::where('id', $idRol)->update(['rol' => $nombreRol, 'activo' => $statusRol]);
-        //     $data["id"] = $idRol;
-        //     $this->responseSuccess("Rol y permisos actualizados correctamente.", $data);
-        // } else {
-        //     $this->responseError(500, "El nombre del Rol ya existe.");
-        // }
-        // return response()->json($this->response);
+        $estatus    = $this->request->get("estatus");
+        $existeEmail = Usuario::where('email', $email)->where('id', '!=', $id)->count();
+        if (!$existeEmail) {
+            $UsuarioActivo  = Usuario::find($id);
+            $continue       = true;
+            if ($UsuarioActivo->id_rol != $rol) {
+                $eliminarPermisos = PermisoUsuario::where("id_usuario", $id)->delete();
+                if ($eliminarPermisos) {
+                    $this->insertarPermisosDefault($rol, $UsuarioActivo->id);
+                } else {
+                    $continue = false;
+                    $this->responseError(500, "Error al registrar el usuario, fallo en asignar permisos.");
+                }
+            }
+            if ($UsuarioActivo->id_sucursal != $sucursal) {
+                $eliminarSucursal = SucursalUsuario::where('id_sucursal', $UsuarioActivo->id_sucursal)->where('id_usuario', $id)->delete();
+                if ($eliminarSucursal) {
+                    SucursalUsuario::create(['id_sucursal' => $sucursal, 'id_usuario' => $id]);
+                } else {
+                    $continue = false;
+                    $this->responseError(500, "Error al cambiar la sucursal.");
+                }
+            }
+            if ($continue) {
+                $usuarioUpdate  = Usuario::where("id", $id)->update([
+                    'nombre'    => $nombre,
+                    'direccion' => $domicilio,
+                    'ciudad'    => $ciudad,
+                    'telefono'  => $telefono,
+                    'celular'   => $celular,
+                    'email'     => $email,
+                    'id_sucursal' => $sucursal,
+                    'id_rol'    => $rol,
+                    'activo'    => $estatus
+                ]);
+                if ($usuarioUpdate) {
+                    $imagen = $this->request->file('foto');
+                    $this->insertarImagen($imagen, $id);
+                    $data["id"] = $id;
+                    $this->responseSuccess("Usuario actualizado correctamente.", $data);
+                } else {
+                    $this->responseError(500, "Ocurrio un error al actualizar el usuario.");
+                }
+            }
+        } else {
+            $this->responseError(500, "Ya existe un registro con el email ingresado.");
+        }
+        return response()->json($this->response);
+    }
+
+    public function modificarAcceso()
+    {
+        $id       = $this->request->get("id");
+        $usuario  = $this->request->get("usuario");
+        $password = $this->request->get("password");
+        $passwordRepetir = $this->request->get("password-repetir");
+        if ($password == $passwordRepetir) {
+            $existeUsuario = Usuario::where('username', $usuario)->where('id', '!=', $id)->count();
+            if (!$existeUsuario) {
+                $usuarioActualizado = Usuario::where('id', $id)->update([
+                    'username'  => $usuario,
+                    'password'  => $password
+                ]);
+                if ($usuarioActualizado) {
+                    $data["id"] = $id;
+                    $this->responseSuccess("Usuario actualizado correctamente.", $data);
+                } else {
+                    $this->responseError(500, "Ocurrio un error al actualizado el usuario.");
+                }
+            } else {
+                $this->responseError(500, "Ya existe un registro con el nombre de usuario ingresado.");
+            }
+        } else {
+            $this->responseError(500, "Las contraseñas no coinciden.");
+        }
+        return response()->json($this->response);
+    }
+
+    public function modificarSucursales()
+    {
+        $id         = $this->request->get("id");
+        $sucursales = ($this->request->get("sucursales") != null) ? $this->request->get("sucursales") : [];
+        $usuarioActual      = Usuario::find($id);
+        $eliminarSucursales = SucursalUsuario::where('id_usuario', $id)->delete();
+        $asignarActual      = SucursalUsuario::create(['id_sucursal' => $usuarioActual->id_sucursal, 'id_usuario' => $id]);
+        if ($eliminarSucursales &&  $asignarActual) {
+            foreach ($sucursales as $id_sucursal) {
+                SucursalUsuario::create(['id_sucursal' => $id_sucursal, 'id_usuario' => $id]);
+            }
+            $this->responseSuccess("Sucursales actualizadas correctamente.");
+        } else {
+            $this->responseError(500, "Error al actualizar sucursales");
+        }
+        return response()->json($this->response);
+    }
+
+    public function modificarPermisos()
+    {
+        $id       = $this->request->get("id");
+        $read     = ($this->request->get("read") != null) ? $this->request->get("read") : [];
+        $create   = ($this->request->get("create") != null) ? $this->request->get("create") : [];
+        $update   = ($this->request->get("update") != null) ? $this->request->get("update") : [];
+        $delete   = ($this->request->get("delete") != null) ? $this->request->get("delete") : [];
+        $permisos = Permiso::all();
+        $permisos_usuario = PermisoUsuario::where("id_usuario", $id)->get();
+        foreach ($permisos as $item) {
+            $permisosTemporales = $this->obtenerPermisosUsuario($permisos_usuario, $item);
+            $p['leer']      = $this->obtenerValorDePermiso($read, $item->id);
+            $p['crear']     = $this->obtenerValorDePermiso($create, $item->id);
+            $p['editar']    = $this->obtenerValorDePermiso($update, $item->id);
+            $p['eliminar']  = $this->obtenerValorDePermiso($delete, $item->id);
+            if ($permisosTemporales['existe']) {
+                $query = PermisoUsuario::where('id_permiso', $permisosTemporales['id'])->where('id_usuario', $id);
+                if ($p['leer'] == 0 && $p['crear'] == 0 && $p['editar'] == 0 && $p['eliminar'] == 0) {
+                    $query->delete();
+                } else {
+                    $query->update([
+                        'leer'     => $p['leer'],
+                        'crear'    => $p['crear'],
+                        'editar'   => $p['editar'],
+                        'eliminar' => $p['eliminar']
+                    ]);
+                }
+            } else if ($p['leer'] == 1 || $p['crear'] == 1 || $p['editar'] == 1 || $p['eliminar'] == 1) {
+                PermisoUsuario::create([
+                    'id_permiso' => $item->id,
+                    'id_usuario'     => $id,
+                    'leer'       => $p['leer'],
+                    'crear'      => $p['crear'],
+                    'editar'     => $p['editar'],
+                    'eliminar'   => $p['eliminar']
+                ]);
+            }
+        }
+        $this->responseSuccess("Permisos actualizados correctamente.");
+        return response()->json($this->response);
     }
 }

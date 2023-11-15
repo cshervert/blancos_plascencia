@@ -321,10 +321,187 @@ const openModalFoto = async () => {
         });
     if (img) {
         $("#img-foto").attr("src", img);
-        $("#Medium-modal").modal("show");
+        $("#foto-modal").modal("show");
     } else {
         toastr.info("No existe imagen.");
     }
+};
+
+const FormUpdateAcceso = async () => {
+    let validate = await validateFormAceeso();
+    if (!validate) {
+        toastr.error("Campos Obligatorios.");
+        return;
+    }
+    alertLoading(true);
+    axios
+        .put("/usuarios/editar/accesos", $("#FormUpdateAcceso").serialize())
+        .then(function ({ data }) {
+            alertLoading(false);
+            let { stats, responseData } = data;
+            if (stats.status == "success") {
+                alertDefault(
+                    "¡Exito!",
+                    stats.message,
+                    "success",
+                    "/usuarios/editar/" + responseData.id + "/2"
+                );
+            } else {
+                alertDefault("¡Error!", stats.message, "error");
+            }
+        })
+        .catch(function (error) {
+            alertLoading(false);
+            alertDefault("¡Error!", "error del servidor", "error");
+        });
+};
+
+const validateFormAceeso = () => {
+    let bandera = true;
+    let usuario = $("#usuario").val();
+    let password = $("#password").val();
+    let passwordRepetir = $("#password-repetir").val();
+    if (usuario == "" || usuario.length < 5) {
+        $("#advertencia-usuario").html("* Obligatorio");
+        $("#usuario").addClass("form-control-danger");
+        bandera = false;
+    } else {
+        $("#advertencia-usuario").html("");
+        $("#usuario").removeClass("form-control-danger");
+    }
+    if (password == "" || password.length < 5) {
+        $("#advertencia-password").html("* Obligatorio");
+        $("#password").addClass("form-control-danger");
+        bandera = false;
+    } else {
+        $("#advertencia-password").html("");
+        $("#password").removeClass("form-control-danger");
+    }
+    if (passwordRepetir == "" || passwordRepetir.length < 5) {
+        $("#advertencia-password-repetir").html("* Obligatorio");
+        $("#password-repetir").addClass("form-control-danger");
+        bandera = false;
+    } else {
+        $("#advertencia-password-repetir").html("");
+        $("#password-repetir").removeClass("form-control-danger");
+    }
+    return bandera;
+};
+
+const eventSelectedAllSucursal = () => {
+    let $checkBox_sucursal = $('input[name="sucursales[]"]');
+    $("#btn_check_all_sucursal").on("change", function () {
+        if ($(this)[0].checked) {
+            for (let i = 0; i < $checkBox_sucursal.length; i++) {
+                $($checkBox_sucursal[i])[0].checked = true;
+            }
+        } else {
+            for (let i = 0; i < $checkBox_sucursal.length; i++) {
+                $($checkBox_sucursal[i])[0].checked = false;
+            }
+        }
+    });
+};
+
+const FormUpdateSucursales = async () => {
+    axios
+        .put(
+            "/usuarios/editar/sucursales",
+            $("#FormUpdateSucursales").serialize()
+        )
+        .then(function ({ data }) {
+            alertLoading(false);
+            let { stats } = data;
+            if (stats.status == "success") {
+                alertDefault(
+                    "¡Exito!",
+                    stats.message,
+                    "success"
+                );
+            } else {
+                alertDefault("¡Error!", stats.message, "error");
+            }
+        })
+        .catch(function (error) {
+            alertLoading(false);
+            alertDefault("¡Error!", "error del servidor", "error");
+        });
+};
+
+const eventSelectedAllPermissionUsuario = () => {
+    let $checkBox_create = $('input[name="create[]"]');
+    let $checkBox_read = $('input[name="read[]"]');
+    let $checkBox_update = $('input[name="update[]"]');
+    let $checkBox_delete = $('input[name="delete[]"]');
+    $("#btn_check_all_create").on("change", function () {
+        if ($(this)[0].checked) {
+            for (let i = 0; i < $checkBox_create.length; i++) {
+                $($checkBox_create[i])[0].checked = true;
+            }
+        } else {
+            for (let i = 0; i < $checkBox_create.length; i++) {
+                $($checkBox_create[i])[0].checked = false;
+            }
+        }
+    });
+    $("#btn_check_all_read").on("change", function () {
+        if ($(this)[0].checked) {
+            for (let i = 0; i < $checkBox_read.length; i++) {
+                $($checkBox_read[i])[0].checked = true;
+            }
+        } else {
+            for (let i = 0; i < $checkBox_read.length; i++) {
+                $($checkBox_read[i])[0].checked = false;
+            }
+        }
+    });
+    $("#btn_check_all_update").on("change", function () {
+        if ($(this)[0].checked) {
+            for (let i = 0; i < $checkBox_update.length; i++) {
+                $($checkBox_update[i])[0].checked = true;
+            }
+        } else {
+            for (let i = 0; i < $checkBox_update.length; i++) {
+                $($checkBox_update[i])[0].checked = false;
+            }
+        }
+    });
+    $("#btn_check_all_delete").on("change", function () {
+        if ($(this)[0].checked) {
+            for (let i = 0; i < $checkBox_delete.length; i++) {
+                $($checkBox_delete[i])[0].checked = true;
+            }
+        } else {
+            for (let i = 0; i < $checkBox_delete.length; i++) {
+                $($checkBox_delete[i])[0].checked = false;
+            }
+        }
+    });
+};
+
+const FormUpdatePermisosUsuario = async () => {
+    axios
+        .put(
+            "/usuarios/editar/permisos",
+            $("#FormUpdatePermisosUsuario").serialize()
+        )
+        .then(function ({ data }) {
+            alertLoading(false);
+            let { stats } = data;
+            if (stats.status == "success") {
+                alertDefault(
+                    "¡Exito!",
+                    stats.message,
+                    "success"
+                );
+            } else {
+                alertDefault("¡Error!", stats.message, "error");
+            }
+        })
+        .catch(function (error) {
+            alertLoading(false);
+            alertDefault("¡Error!", "error del servidor", "error");
+        });
 };
 
 $(function () {
@@ -337,4 +514,22 @@ $(function () {
         event.preventDefault();
         FormEditUsuarioGeneral();
     });
+
+    $("#FormUpdateAcceso").on("submit", function (event) {
+        event.preventDefault();
+        FormUpdateAcceso();
+    });
+
+    $("#FormUpdateSucursales").on("submit", function (event) {
+        event.preventDefault();
+        FormUpdateSucursales();
+    });
+
+    $("#FormUpdatePermisosUsuario").on("submit", function (event) {
+        event.preventDefault();
+        FormUpdatePermisosUsuario();
+    });
+
+    eventSelectedAllSucursal();
+    eventSelectedAllPermissionUsuario();
 });
