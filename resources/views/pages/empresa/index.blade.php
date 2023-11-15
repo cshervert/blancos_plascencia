@@ -197,10 +197,10 @@
                                         </label>
                                     </td>
                                     <td class="text-center">
-                                        <button class="btn btn-info btn-circle btn-xl" type="button" onclick="openModal({{$item}})">
+                                        <button class="btn btn-info btn-circle btn-xl" type="button" id="{{$item}}" onclick="openModal(this);">
                                             <i class="icon-copy dw dw-edit-1"></i>
                                         </button>
-                                        <button class="btn btn-danger btn-circle btn-xl" type="button" onclick="deleteCuenta({{$item->id}});">
+                                        <button class="btn btn-danger btn-circle btn-xl" type="button" id="{{$item->id}}" onclick="deleteCuenta(this);">
                                             <i class="icon-copy dw dw-delete-2"></i>
                                         </button>
                                     </td>

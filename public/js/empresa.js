@@ -37,15 +37,15 @@ $("#btnCuenta").click(function(){
 });
 
 const openModal = (obj) => {
-    let idCuenta = obj.id;
+    let data = JSON.parse(obj.id);
     
-    $("#id").val(idCuenta);
-    $("#cuenta").val(obj.cuenta);
-    $("#sucursal").val(obj.sucursal);
-    $("#clave").val(obj.clave);
-    $("#banco").val(obj.banco);
-    $("#contable").val(obj.cuenta_contable);
-    if(obj.mostrar == 1){
+    $("#id").val(data.id);
+    $("#cuenta").val(data.cuenta);
+    $("#sucursal").val(data.sucursal);
+    $("#clave").val(data.clave);
+    $("#banco").val(data.banco);
+    $("#contable").val(data.cuenta_contable);
+    if(data.mostrar == 1){
         $("#mostrar").prop('checked', true);
     }else{
         $("#mostrar").prop('checked', false);
@@ -66,7 +66,7 @@ const deleteCuenta = (obj) => {
         width: 400,
     }).then((result) => {
         if (result.isConfirmed) {
-            ActionDeleteCuenta(obj);
+            ActionDeleteCuenta(obj.id);
         }
     });
 };

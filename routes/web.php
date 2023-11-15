@@ -78,6 +78,9 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('clientes')->group(function () {
         Route::get('/', [ClienteController::class, "index"])->name('clientes');
         Route::get('/nuevo', [ClienteController::class, "nuevo"])->name('nuevo_cliente');
+        Route::post('/crear', [ClienteController::class, "crear"]);
+        Route::get('/editar/{id?}', [ClienteController::class, "editar"])->name('editarCliente');
+        Route::put('/editar', [ClienteController::class, "modificar"]);
         Route::delete('/eliminar', [ClienteController::class, "eliminar"]);
     });
 });

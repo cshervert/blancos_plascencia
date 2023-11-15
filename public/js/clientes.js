@@ -11,12 +11,57 @@ const DeleteCliente = (obj) => {
         width: 400,
     }).then((result) => {
         if (result.isConfirmed) {
-            ActionDeleteRol(obj);
+            ActionDeleteCliente(obj);
         }
     });
 };
 
-const ActionDeleteRol = (id) => {
+function copiarRFC(elemento){
+    $("#rfcfactura").val(elemento.value);
+}
+function copiarCURP(elemento){
+    $("#curpfactura").val(elemento.value);
+}
+
+$("#btnCrearCliente").click(function(){
+    var datos = $("#formCreateCliente").serialize();
+    console.log(datos);
+
+    alertLoading(true);
+    axios
+        .post("/clientes/crear", datos)
+        .then(function (res) {
+            alertLoading(false);
+            if(res['data']['code'] == '200'){
+                alertDefault("¡Exito!", res['msg'], "success", "/clientes");
+            }
+        })
+        .catch(function (error) {
+            alertLoading(false);
+            alertDefault("¡Error!", "error del servidor", "error");
+        });
+});
+
+$("#btnActualizarCliente").click(function(){
+    var datos = $("#formEditCliente").serialize();
+    console.log(datos);
+
+    alertLoading(true);
+    axios
+        .put("/clientes/editar", datos)
+        .then(function (res) {
+            alertLoading(false);
+            if(res['data']['code'] == '200'){
+                alertDefault("¡Exito!", res['msg'], "success", "/clientes");
+            }
+        })
+        .catch(function (error) {
+            alertLoading(false);
+            alertDefault("¡Error!", "error del servidor", "error");
+        });
+});
+
+const ActionDeleteCliente = (id) => {
     axios
         .delete("/clientes/eliminar", { params: { id: id } })
         .then(function (res) {

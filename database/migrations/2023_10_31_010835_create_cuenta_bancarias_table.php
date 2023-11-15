@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('cuentas_bancarias', function (Blueprint $table) {
             $table->id();
-            $table->char('cuenta', 50);
-            $table->char('sucursal', 100);
-            $table->char('clave', 50);
-            $table->char('banco', 100);
-            $table->char('cuenta_contable', 10);
+            $table->char('cuenta', 50)->nullable();
+            $table->char('sucursal', 100)->nullable();
+            $table->char('clave', 50)->nullable();
+            $table->char('banco', 100)->nullable();
+            $table->char('cuenta_contable', 10)->nullable();
             $table->boolean('mostrar');
             $table->unsignedBigInteger('id_empresa');
             $table->foreign('id_empresa')->references('id')

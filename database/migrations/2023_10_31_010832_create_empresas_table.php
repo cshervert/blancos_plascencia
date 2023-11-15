@@ -15,19 +15,19 @@ return new class extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
-            $table->char('nombre', 200);
-            $table->char('rfc', 13);
-            $table->char('curp', 18);
-            $table->char('domicilio', 200);
-            $table->char('numero_interior', 10);
-            $table->char('numero_exterior', 10);
-            $table->char('colonia', 200);
-            $table->char('cp', 20);
-            $table->char('ciudad', 100);
-            $table->char('estado', 100);
-            $table->string('email')->unique();
-            $table->char('telefono', 20);
-            $table->char('celular', 20);
+            $table->char('nombre', 200)->nullable();
+            $table->char('rfc', 13)->nullable();
+            $table->char('curp', 18)->nullable();
+            $table->char('domicilio', 200)->nullable();
+            $table->char('numero_interior', 10)->nullable();
+            $table->char('numero_exterior', 10)->nullable();
+            $table->char('colonia', 200)->nullable();
+            $table->char('cp', 20)->nullable();
+            $table->char('ciudad', 100)->nullable();
+            $table->char('estado', 100)->nullable();
+            $table->string('email')->nullable()->unique();
+            $table->char('telefono', 20)->nullable();
+            $table->char('celular', 20)->nullable();
             $table->timestamps();
         });
     }

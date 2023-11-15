@@ -15,18 +15,18 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
-            $table->integer('numero_cliente');
-            $table->char('clave', 10);
-            $table->char('representante', 200);
-            $table->char('nombre', 200);
-            $table->char('rfc', 13);
-            $table->char('curp', 18);
-            $table->char('telefono', 20);
-            $table->char('celular', 20);
-            $table->char('email', 200);
-            $table->tinyInteger('numero_precio');
-            $table->double('limite_credito', 8, 2);
-            $table->integer('dias_credito');
+            $table->integer('numero_cliente')->nullable();
+            $table->char('clave', 10)->nullable();
+            $table->char('representante', 200)->nullable();
+            $table->char('nombre', 200)->nullable();
+            $table->char('rfc', 13)->nullable();
+            $table->char('curp', 18)->nullable();
+            $table->char('telefono', 20)->nullable();
+            $table->char('celular', 20)->nullable();
+            $table->char('email', 200)->nullable();
+            $table->tinyInteger('numero_precio')->nullable();
+            $table->double('limite_credito', 8, 2)->nullable();
+            $table->integer('dias_credito')->nullable();
             $table->unsignedBigInteger('id_facturacion');
             $table->foreign('id_facturacion')->references('id')
                 ->on('datos_facturacion');

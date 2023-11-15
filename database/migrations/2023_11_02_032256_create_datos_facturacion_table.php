@@ -15,18 +15,18 @@ return new class extends Migration
     {
         Schema::create('datos_facturacion', function (Blueprint $table) {
             $table->id();
-            $table->char('razon_social', 255);
-            $table->char('rfc', 13);
-            $table->char('curp', 18);
-            $table->char('domicilio', 200);
-            $table->char('numero_exterior', 10);
-            $table->char('numero_interior', 10);
-            $table->char('colonia', 200);
-            $table->char('cp', 20);
-            $table->char('ciudad', 100);
-            $table->char('localidad', 100);
-            $table->char('estado', 100);
-            $table->char('pais', 100);
+            $table->char('razon_social', 255)->nullable();
+            $table->char('rfc', 13)->nullable();
+            $table->char('curp', 18)->nullable();
+            $table->char('domicilio', 200)->nullable();
+            $table->char('numero_exterior', 10)->nullable();
+            $table->char('numero_interior', 10)->nullable();
+            $table->char('colonia', 200)->nullable();
+            $table->char('cp', 20)->nullable();
+            $table->char('ciudad', 100)->nullable();
+            $table->char('localidad', 100)->nullable();
+            $table->char('estado', 100)->nullable();
+            $table->char('pais', 100)->nullable();
             $table->timestamps();
         });
     }
