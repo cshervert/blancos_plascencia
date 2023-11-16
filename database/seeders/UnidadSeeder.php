@@ -16,11 +16,11 @@ class UnidadSeeder extends Seeder
     public function run()
     {
         $unities = [
-            ['unidad' => 'CAJA',  'clave_sat' => '', 'activo' => 1],
-            ['unidad' => 'PZA', 'clave_sat' => '', 'activo' => 1],
-            ['unidad' => 'm', 'clave_sat' => '', 'activo' => 1],
-            ['unidad' => 'KG',  'clave_sat' => '', 'activo' => 0],
-            ['unidad' => 'Lt',  'clave_sat' => '', 'activo' => 0]
+            ['unidad' => 'CAJA',  'clave_sat' => '', 'activo' => 1, 'eliminado' => 0],
+            ['unidad' => 'PZA', 'clave_sat' => '', 'activo' => 1, 'eliminado' => 0],
+            ['unidad' => 'm', 'clave_sat' => '', 'activo' => 1, 'eliminado' => 0],
+            ['unidad' => 'KG',  'clave_sat' => '', 'activo' => 0, 'eliminado' => 0],
+            ['unidad' => 'Lt',  'clave_sat' => '', 'activo' => 0, 'eliminado' => 0]
         ];
         foreach ($unities as $item) {
             Unidad::create($item);

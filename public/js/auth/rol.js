@@ -37,8 +37,6 @@ const validChangeStatusRol = (id, estatus) => {
 };
 
 const DeleteRol = (obj) => {
-    let objeto = obj;
-    console.log(obj.id);
     Swal.fire({
         title: "¿Estás seguro de realizar esta acción?",
         html: "Se eliminará el rol con todos sus permisos.",

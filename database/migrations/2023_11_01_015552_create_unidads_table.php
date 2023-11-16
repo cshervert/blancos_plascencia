@@ -18,6 +18,7 @@ return new class extends Migration
             $table->char('unidad', 100);
             $table->char('clave_sat', 100);
             $table->boolean('activo');
+            $table->boolean('eliminado');
         });
     }
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\SucursalController;
+use App\Http\Controllers\UnidadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,15 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/eliminarCuenta', [EmpresaController::class, "eliminarCuenta"]);
         Route::put('/editCuenta', [EmpresaController::class, "cambiarEstatusCuenta"]);
 
+    });
+
+    Route::prefix('unidades')->group(function () {
+        Route::get('/', [UnidadController::class, "index"])->name('unidades');
+        Route::post('/crear', [UnidadController::class, "crear"]);
+        Route::get('/editar/{id?}', [UnidadController::class, "editar"]);
+        Route::put('/editar', [UnidadController::class, "modificar"]);
+        Route::put('/estatus/editar', [UnidadController::class, "CambiarEstatus"]);
+        Route::delete('/eliminar', [UnidadController::class, "eliminar"]);
     });
 
     Route::prefix('sucursales')->group(function () {

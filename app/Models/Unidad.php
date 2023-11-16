@@ -13,7 +13,8 @@ class Unidad extends Model
     protected $fillable = [
         'unidad',
         'clave_sat',
-        'activo'
+        'activo',
+        'eliminado'
     ];
     public $timestamps = false;
 }

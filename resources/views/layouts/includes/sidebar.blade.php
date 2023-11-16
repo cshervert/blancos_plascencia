@@ -55,7 +55,7 @@
                         <li><a href="{{ route('sucursales') }}">Sucursales</a></li>
                         <li><a href="{{ route('roles') }}">Roles</a></li>
                         <li><a href="{{ route('usuarios') }}">Usuarios</a></li>
-                        <li><a href="themify.html">Empleados</a></li>
+                        <li><a href="{{ route('unidades') }}">Unidades</a></li>
 
                     </ul>
                 </li>
