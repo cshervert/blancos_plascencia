@@ -42,7 +42,7 @@
                         <li><a href="basic-table.html">Articulos</a></li>
                         <li><a href="datatable.html">Paquetes</a></li>
                         <li><a href="{{ route('clientes') }}">Clientes</a></li>
-                        <li><a href="datatable.html">Proveedores</a></li>
+                        <li><a href="{{ route('proveedores') }}">Proveedores</a></li>
                         <li><a href="datatable.html">Inventario</a></li>
                     </ul>
                 </li>

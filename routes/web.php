@@ -10,6 +10,7 @@ use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\UnidadController;
+use App\Http\Controllers\ProveedorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,6 +93,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/editar/{id?}', [ClienteController::class, "editar"])->name('editarCliente');
         Route::put('/editar', [ClienteController::class, "modificar"]);
         Route::delete('/eliminar', [ClienteController::class, "eliminar"]);
+    });
+
+    Route::prefix('proveedores')->group(function () {
+        Route::get('/', [ProveedorController::class, "index"])->name('proveedores');
+        Route::get('/nuevo', [ProveedorController::class, "nuevo"])->name('nuevo_proveedor');
+        Route::post('/crear', [ProveedorController::class, "crear"]);
+        Route::get('/editar/{id?}', [ProveedorController::class, "editar"])->name('editarProveedor');
+        Route::put('/editar', [ProveedorController::class, "modificar"]);
+        Route::delete('/eliminar', [ProveedorController::class, "eliminar"]);
     });
 });
 // Route::get('/empresa', [EmpresaController::class, "index"])->middleware('auth')->name('empresa');

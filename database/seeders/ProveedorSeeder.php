@@ -16,7 +16,6 @@ class ProveedorSeeder extends Seeder
     public function run()
     {
         Proveedor::create([
-            'numero_proveedor' => 001,
             'representante'    => 'Juan Carlos Salvador Hervert',
             'nombre'    => 'Vianey',
             'alias'    => 'Vianey',

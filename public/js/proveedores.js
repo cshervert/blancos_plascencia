@@ -1,7 +1,7 @@
-const DeleteCliente = (obj) => {
+const DeleteProveedor = (obj) => {
     Swal.fire({
         title: "¿Estás seguro de realizar esta acción?",
-        html: "Se eliminará el cliente permanentemente.",
+        html: "Se eliminará el proveedor permanentemente.",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#521a49",
@@ -11,7 +11,7 @@ const DeleteCliente = (obj) => {
         width: 400,
     }).then((result) => {
         if (result.isConfirmed) {
-            ActionDeleteCliente(obj);
+            ActionDeleteProveedor(obj);
         }
     });
 };
@@ -23,22 +23,18 @@ function copiarCURP(elemento){
     $("#curpfactura").val(elemento.value);
 }
 
-$("#btnGrupo").click(function(){
-    var grupoN = $('#nombreGrupo').val();
-    console.log(grupoN);
-    $('#grupo').append("<option value='new' selected>"+grupoN+"</option>");
-});
-$("#btnCrearCliente").click(function(){
-    var datos = $("#formCreateCliente").serialize();
+
+$("#btnCrearProveedor").click(function(){
+    var datos = $("#formCreateProveedor").serialize();
     console.log(datos);
 
     alertLoading(true);
     axios
-        .post("/clientes/crear", datos)
+        .post("/proveedores/crear", datos)
         .then(function (res) {
             alertLoading(false);
             if(res['data']['code'] == '200'){
-                alertDefault("¡Exito!", res['msg'], "success", "/clientes");
+                alertDefault("¡Exito!", res['msg'], "success", "/proveedores");
             }
         })
         .catch(function (error) {
@@ -47,17 +43,17 @@ $("#btnCrearCliente").click(function(){
         });
 });
 
-$("#btnActualizarCliente").click(function(){
-    var datos = $("#formEditCliente").serialize();
+$("#btnActualizarProveedor").click(function(){
+    var datos = $("#formEditProveedor").serialize();
     console.log(datos);
 
     alertLoading(true);
     axios
-        .put("/clientes/editar", datos)
+        .put("/proveedores/editar", datos)
         .then(function (res) {
             alertLoading(false);
             if(res['data']['code'] == '200'){
-                alertDefault("¡Exito!", res['msg'], "success", "/clientes");
+                alertDefault("¡Exito!", res['msg'], "success", "/proveedores");
             }
         })
         .catch(function (error) {
@@ -66,12 +62,12 @@ $("#btnActualizarCliente").click(function(){
         });
 });
 
-const ActionDeleteCliente = (id) => {
+const ActionDeleteProveedor = (id) => {
     axios
-        .delete("/clientes/eliminar", { params: { id: id } })
+        .delete("/proveedores/eliminar", { params: { id: id } })
         .then(function (res) {
             if(res['data']['code'] == '200'){
-                alertDefault("¡Exito!", res['msg'], "success", "/clientes");
+                alertDefault("¡Exito!", res['msg'], "success", "/proveedores");
             } else {
                 alertDefault("¡Error!", res['msg'], "error");
             }

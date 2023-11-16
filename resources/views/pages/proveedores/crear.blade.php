@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Crear Cliente')
+@section('title', 'Crear Proveedor')
 @section('content')
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
@@ -7,40 +7,26 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <div class="title">
-                        <h4>Clientes</h4>
+                        <h4>Proveedores</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Inicio</a></li>
-                            <li class="breadcrumb-item" aria-current="page"><a href="{{ route('clientes') }}">Clientes</a>
+                            <li class="breadcrumb-item" aria-current="page"><a href="{{ route('proveedores') }}">Proveedores</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Crear</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="col-md-6 col-sm-12 text-right">
-                    <a class="btn btn-secondary" href="{{ route('clientes') }}">
+                    <a class="btn btn-secondary" href="{{ route('proveedores') }}">
                         REGRESAR <i class="icon-copy dw dw-return-1"></i>
                     </a>
                 </div>
             </div>
             <div class="pd-30 card-box">
-                <form id="formCreateCliente" class="row">
+                <form id="formCreateProveedor" class="row">
                     @csrf
-                    <div class="form-group col-sm-12 col-md-4">
-                        <label class="weight-600 " for="rol" style="font-size: 16px">
-                            No. Cliente
-                        </label>
-                        <label class="form-control-label has-danger ml-2" id="msg-nocliente"></label>
-                        <input class="form-control" type="text" name="nocliente" id="nocliente">
-                    </div>
-                    <div class="form-group col-sm-12 col-md-8">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
-                            Clave
-                        </label>
-                        <label class="form-control-label has-danger ml-2" id="msg-clave"></label>
-                        <input class="form-control" type="text" name="clave" id="clave">
-                    </div>
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="weight-600 " for="rol" style="font-size: 16px">
                             Representante
@@ -54,6 +40,13 @@
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-nombre"></label>
                         <input class="form-control" type="text" name="nombre" id="nombre">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-12">
+                        <label class="weight-600" for="rol" style="font-size: 16px">
+                            Alias
+                        </label>
+                        <label class="form-control-label has-danger ml-2" id="msg-alias"></label>
+                        <input class="form-control" type="text" name="alias" id="alias">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -90,18 +83,12 @@
                         <label class="form-control-label has-danger ml-2" id="msg-email"></label>
                         <input class="form-control" type="text" name="email" id="email">
                     </div>
-                    <div class="form-group col-sm-12 col-md-4">
+                    <div class="form-group col-sm-12 col-md-12">
                         <label class="weight-600" for="rol" style="font-size: 16px">
-                            No. de Precio
+                            Comentario
                         </label>
-                        <label class="form-control-label has-danger ml-2" id="msg-noprecio"></label>
-                        <!-- <input class="form-control" type="text" name="noprecio" id="noprecio"> -->
-                        <select class="form-control" name="noprecio" id="noprecio" >
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                        </select>
+                        <label class="form-control-label has-danger ml-2" id="msg-comentario"></label>
+                        <input class="form-control" type="text" name="comentario" id="comentario">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -117,23 +104,6 @@
                         <label class="form-control-label has-danger ml-2" id="msg-dias"></label>
                         <input class="form-control" type="text" name="dias" id="dias">
                     </div>
-                    <div class="form-group col-sm-12 col-md-4">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
-                            Grupo
-                        </label>
-                        <label class="form-control-label has-danger ml-2" id="msg-grupo"></label>
-                        <!-- <input class="form-control" type="text" name="grupo" id="grupo"> -->
-                        <select class="form-control" name="grupo" id="grupo">
-
-                        </select>
-                    </div>   
-                    <div class="form-group col-sm-12 col-md-4">       
-                        <div class="form-group row mt-4 pl-3">
-                            <button class="btn btn-success mt-2" data-toggle="modal" data-target="#grupo-modal" type="button">
-                                Nuevo Grupo <i class="icon-copy dw dw-add"></i>
-                            </button>
-                        </div>                                   
-                    </div>   
                     <div class="form-group col-sm-12 col-md-12">
                         <hr class="mt-1 mb-2">
                         <label class="weight-800" for="rol" style="font-size: 20px">
@@ -225,30 +195,10 @@
                         <input class="form-control" type="text" name="pais" id="pais">
                     </div>
                     <div class="col-12 text-right">
-                        <button type="button" id="btnCrearCliente" class="btn btn-success">
-                            CREAR CLIENTE <i class="icon-copy dw dw-checked"></i>
+                        <button type="button" id="btnCrearProveedor" class="btn btn-success">
+                            CREAR PROVEEDOR <i class="icon-copy dw dw-checked"></i>
                         </button>
-                    </div>
-                    <div class="modal" id="grupo-modal" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="login-box bg-white">
-                                    <div class="login-title">
-                                        <h2 class="text-center text-primary">Agregar Nuevo Grupo</h2>
-                                    </div>
-                                    <form id="formCuenta">
-                                        <div class="input-group custom">
-                                            <input type="text" name="nombreGrupo" id="nombreGrupo" class="form-control form-control-lg" placeholder="Nombre">
-                                        </div>                                                                         
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Cerrar</button> 
-                                            <button type="button" id="btnGrupo" class="btn btn-success">Agregar</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>     
+                    </div> 
                 </form>
             </div>
         </div>
@@ -256,5 +206,5 @@
 </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('js/clientes.js') }}"></script>
+<script src="{{ asset('js/proveedores.js') }}"></script>
 @endsection
