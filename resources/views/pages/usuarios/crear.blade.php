@@ -7,13 +7,13 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <div class="title">
-                        <h4>Usuarios</h4>
+                    <h4 class="text-blue">Crear Usuario</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Inicio</a></li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a href="{{ route('usuarios') }}">Mostrar</a>
+                                <a href="{{ route('usuarios') }}">Usuarios</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Crear</li>
                         </ol>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="text-right mt-3">
                         <button type="submit" class="btn btn-success">
-                            CREAR USUARIO <i class="icon-copy dw dw-checked ml-1"></i>
+                            GUARDAR <i class="icon-copy dw dw-checked ml-1"></i>
                         </button>
                     </div>
                 </form>

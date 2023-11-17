@@ -1,21 +1,17 @@
-const openModalCrearUnidad = () => {
-    $("#crear-unidad-modal").modal("show");
-};
-
-const FormCreateUnidad = async () => {
-    let validate = await validateFormUnidad();
+const FormCreateImpuesto = async () => {
+    let validate = await validateFormImpuesto();
     if (!validate) {
-        toastr.error("Campo Obligatorio.");
+        toastr.error("Campos Obligatorios.");
         return;
     }
     alertLoading(true);
     axios
-        .post("/unidades/crear", $("#FormCreateUnidad").serialize())
+        .post("/impuestos/crear", $("#FormCreateImpuesto").serialize())
         .then(function ({ data }) {
             alertLoading(false);
             let { stats } = data;
             if (stats.status == "success") {
-                alertDefault("¡Exito!", stats.message, "success", "/unidades");
+                alertDefault("¡Exito!", stats.message, "success", "/impuestos");
             } else {
                 alertDefault("¡Error!", stats.message, "error");
             }
@@ -26,60 +22,54 @@ const FormCreateUnidad = async () => {
         });
 };
 
-const validateFormUnidad = () => {
+const validateFormImpuesto = () => {
     let bandera = true;
     let nombre = $("#nombre").val();
-    if (nombre == "" || nombre.length < 1) {
-        $("#advertencia-nombre").html("* Obligatorio (minimo 1 digito)");
+    let impuesto = $("#impuesto").val();
+    let orden = $("#orden").val();
+
+    if (nombre == "") {
+        $("#advertencia-nombre").html("* Obligatorio");
         $("#nombre").addClass("form-control-danger");
         bandera = false;
     } else {
         $("#advertencia-nombre").html("");
         $("#nombre").removeClass("form-control-danger");
     }
+
+    if (impuesto == "") {
+        $("#advertencia-impuesto").html("* Obligatorio (numero)");
+        $("#impuesto").addClass("form-control-danger");
+        bandera = false;
+    } else {
+        $("#advertencia-impuesto").html("");
+        $("#impuesto").removeClass("form-control-danger");
+    }
+    if (orden == "") {
+        $("#advertencia-ciudad").html("* Obligatorio");
+        $("#ciudad").addClass("form-control-danger");
+        bandera = false;
+    } else {
+        $("#advertencia-ciudad").html("");
+        $("#ciudad").removeClass("form-control-danger");
+    }
     return bandera;
 };
 
-const openModalEditarUnidad = async (obj) => {
-    let idUnidad = obj.id;
-    let response = await axios("/unidades/editar/" + idUnidad)
-        .then(function ({ data }) {
-            let { stats, responseData } = data;
-            if (stats.status == "success") {
-                return responseData;
-            } else {
-                return null;
-            }
-        })
-        .catch(function (error) {
-            return null;
-        });
-    if (response) {
-        console.log(response);
-        $("#idEditar").val(response.id);
-        $("#nombreEditar").val(response.unidad);
-        $("#claveEditar").val(response.clave_sat);
-        $("#activoEditar").select2().val(response.activo).trigger("change");
-        $("#editar-unidad-modal").modal("show");
-    } else {
-        toastr.error("Ocurrio un error.");
-    }
-};
-
-const FormEditUnidad = async () => {
-    let validate = await validateFormEditUnidad();
+const FormEditImpuesto = async () => {
+    let validate = await validateFormImpuesto();
     if (!validate) {
         toastr.error("Campo Obligatorio.");
         return;
     }
     alertLoading(true);
     axios
-        .put("/unidades/editar", $("#FormEditUnidad").serialize())
+        .put("/impuestos/editar", $("#FormEditImpuesto").serialize())
         .then(function ({ data }) {
             alertLoading(false);
             let { stats } = data;
             if (stats.status == "success") {
-                alertDefault("¡Exito!", stats.message, "success", "/unidades");
+                alertDefault("¡Exito!", stats.message, "success");
             } else {
                 alertDefault("¡Error!", stats.message, "error");
             }
@@ -90,23 +80,9 @@ const FormEditUnidad = async () => {
         });
 };
 
-const validateFormEditUnidad = () => {
-    let bandera = true;
-    let nombre = $("#nombreEditar").val();
-    if (nombre == "" || nombre.length < 1) {
-        $("#advertencia-nombreEditar").html("* Obligatorio");
-        $("#nombreEditar").addClass("form-control-danger");
-        bandera = false;
-    } else {
-        $("#advertencia-nombreEditar").html("");
-        $("#nombreEditar").removeClass("form-control-danger");
-    }
-    return bandera;
-};
-
-const ChangeStatusUnidad = (obj) => {
-    let idUnidad = obj.id;
-    let estatus = $(`#${idUnidad}`).prop("checked") ? 1 : 0;
+const ChangeStatusImpuesto = (obj) => {
+    let idImpuesto = obj.id;
+    let estatus = $(`#${idImpuesto}`).prop("checked") ? 1 : 0;
     Swal.fire({
         icon: "question",
         text: "¿Estás seguro de cambiar el estatus?",
@@ -118,16 +94,16 @@ const ChangeStatusUnidad = (obj) => {
         width: 400,
     }).then((result) => {
         if (result.isConfirmed) {
-            validChangeStatusUnidad(idUnidad, estatus);
+            validChangeStatusImpuesto(idImpuesto, estatus);
         } else {
-            $(`#${idUnidad}`).prop("checked", !estatus);
+            $(`#${idImpuesto}`).prop("checked", !estatus);
         }
     });
 };
 
-const validChangeStatusUnidad = (id, estatus) => {
+const validChangeStatusImpuesto = (id, estatus) => {
     axios
-        .put("/unidades/estatus/editar", { id: id, estatus: estatus })
+        .put("/impuestos/estatus/editar", { id: id, estatus: estatus })
         .then(function ({ data }) {
             let { stats } = data;
             if (stats.status == "success") {
@@ -138,15 +114,14 @@ const validChangeStatusUnidad = (id, estatus) => {
             }
         })
         .catch(function (e) {
-            $(`#${id}`).prop("checked", !estatus);
             toastr.error("Error del servidor.");
         });
 };
 
-const DeleteUnidad = (obj) => {
+const DeleteImpuesto = (obj) => {
     Swal.fire({
         title: "¿Estás seguro de realizar esta acción?",
-        html: "Se eliminará la unidad permanentemente.",
+        html: "Solo se eliminará el impuesto, si no se incluye en algún artículo.",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#00a676",
@@ -156,18 +131,18 @@ const DeleteUnidad = (obj) => {
         width: 400,
     }).then((result) => {
         if (result.isConfirmed) {
-            ActionDeleteUnidad(obj.id);
+            ActionDeleteImpuesto(obj.id);
         }
     });
 };
 
-const ActionDeleteUnidad = (id) => {
+const ActionDeleteImpuesto = (id) => {
     axios
-        .delete("/unidades/eliminar", { params: { id: id } })
+        .delete("/impuestos/eliminar", { params: { id: id } })
         .then(function ({ data }) {
             let { stats } = data;
             if (stats.status == "success") {
-                alertDefault("¡Exito!", stats.message, "success", "/unidades");
+                alertDefault("¡Exito!", stats.message, "success", "/impuestos");
             } else {
                 alertDefault("¡Error!", stats.message, "error");
             }
@@ -178,13 +153,13 @@ const ActionDeleteUnidad = (id) => {
 };
 
 $(function () {
-    $("#FormCreateUnidad").on("submit", function (event) {
+    $("#FormCreateImpuesto").on("submit", function (event) {
         event.preventDefault();
-        FormCreateUnidad();
+        FormCreateImpuesto();
     });
 
-    $("#FormEditUnidad").on("submit", function (event) {
+    $("#FormEditImpuesto").on("submit", function (event) {
         event.preventDefault();
-        FormEditUnidad();
+        FormEditImpuesto();
     });
 });

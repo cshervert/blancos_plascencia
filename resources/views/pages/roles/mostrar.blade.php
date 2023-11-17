@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Roles</h4>
+                        <h4 class="text-blue">Sucursales</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -41,7 +41,8 @@
                             <td class="text-center">{{ date_format($item->updated_at,"d-M-Y H:i") }}</td>
                             <td class="text-center">
                                 <label class="cl-switch cl-switch-large cl-switch-green">
-                                    <input type="checkbox" id="{{ $item->id }}" onchange="ChangeStatusRol(this)" @if($item->activo) checked @endif>
+                                    <input type="checkbox" id="{{ $item->id }}" onchange="ChangeStatusRol(this)"
+                                        @if($item->activo) checked @endif>
                                     <span class="switcher"></span>
                                 </label>
                             </td>
@@ -49,7 +50,8 @@
                                 <a class="btn btn-info btn-circle btn-xl" href="{{ url('roles/editar/' . $item->id) }}">
                                     <i class="icon-copy dw dw-edit-1"></i>
                                 </a>
-                                <button type="button" class="btn btn-danger btn-circle btn-xl" id="{{ $item->id }}" onclick="DeleteRol(this);">
+                                <button type="button" class="btn btn-danger btn-circle btn-xl" id="{{ $item->id }}"
+                                    onclick="DeleteRol(this);">
                                     <i class="icon-copy dw dw-delete-2"></i>
                                 </button>
                             </td>

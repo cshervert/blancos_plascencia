@@ -16,17 +16,19 @@
         </div>
     </div>
     <div class="header-right">
+        <div class="user-notification">
+            {{ $usuario['sucursal']->nombre }}
+        </div>
         <div class="user-info-dropdown">
             <div class="dropdown">
-                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                <a class="dropdown-toggle head-username" href="#" role="button" data-toggle="dropdown">
                     <span class="user-icon">
-                        <img src="{{ asset('assets/vendors/images/user.png') }}" alt="" width="30px">
+                        <img src="{{ asset('assets/vendors/images/user.png') }}" alt="foto">
                     </span>
                     <span class="user-name">{{ $usuario['username'] }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                     <a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Perfil</a>
-                    <a class="dropdown-item" href="profile.html"><i class="dw dw-settings2"></i> Configuración</a>
                     <a class="dropdown-item" href="faq.html"><i class="dw dw-help"></i> Ayuda</a>
                     <a class="dropdown-item" href="/logout"><i class="dw dw-logout"></i> Salir</a>
                 </div>

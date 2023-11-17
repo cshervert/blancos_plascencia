@@ -1,6 +1,6 @@
 <div class="left-side-bar">
     <div class="brand-logo">
-        <a href="index.html">
+        <a href="{{ route('dashboard') }}">
             <img src="{{ asset('assets/vendors/images/logo.png') }}" class="light-logo">
         </a>
         <div class="close-sidebar" data-toggle="left-sidebar-close">
@@ -8,13 +8,8 @@
         </div>
     </div>
     <div class="menu-block customscroll">
-        <div class="sidebar-menu icon-list-style-3">
+        <div class="sidebar-menu icon-list-style-3 mt-3">
             <ul id="accordion-menu">
-                <li>
-                    <div class="sidebar-small-cap mt-3 text-center">
-                        {{ $usuario['sucursal']->nombre }}</>
-                    </div>
-                </li>
                 <li>
                     <a href="{{ route('dashboard') }}" class="dropdown-toggle no-arrow">
                         <span class="micon dw dw-house-1"></span><span class="mtext">Inicio</span>
@@ -39,6 +34,8 @@
                         <span class="micon dw dw-folder1"></span><span class="mtext">Catálogos</span>
                     </a>
                     <ul class="submenu">
+                        <li><a href="{{ route('unidades') }}">Unidades</a></li>
+                        <li><a href="{{ route('impuestos') }}">Impuestos</a></li>
                         <li><a href="basic-table.html">Articulos</a></li>
                         <li><a href="datatable.html">Paquetes</a></li>
                         <li><a href="{{ route('clientes') }}">Clientes</a></li>
@@ -55,8 +52,6 @@
                         <li><a href="{{ route('sucursales') }}">Sucursales</a></li>
                         <li><a href="{{ route('roles') }}">Roles</a></li>
                         <li><a href="{{ route('usuarios') }}">Usuarios</a></li>
-                        <li><a href="{{ route('unidades') }}">Unidades</a></li>
-
                     </ul>
                 </li>
                 <li class="dropdown">

@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <div class="title">
-                        <h4>Usuarios</h4>
+                        <h4 class="text-blue">Editar Usuario</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -143,7 +143,7 @@
                             <div class="text-right mt-3">
 
                                 <button type="submit" class="btn btn-info">
-                                    EDITAR DATOS GENERALES <i class="icon-copy dw dw-checked ml-1"></i>
+                                    ACTUALIZAR DATOS GENERALES <i class="icon-copy dw dw-edit-2 ml-1"></i>
                                 </button>
                             </div>
                         </form>
@@ -192,7 +192,7 @@
                             </div>
                             <div class="text-right mt-3">
                                 <button type="submit" class="btn btn-info">
-                                    EDITAR ACCESOS <i class="icon-copy dw dw-checked ml-1"></i>
+                                    ACTUALIZAR ACCESOS <i class="icon-copy dw dw-edit-2 ml-1"></i>
                                 </button>
                             </div>
                         </form>
@@ -235,7 +235,7 @@
                             @endforeach
                             <div class="text-right mt-3">
                                 <button type="submit" class="btn btn-info">
-                                    EDITAR SUCURSALES <i class="icon-copy dw dw-checked ml-1"></i>
+                                    ACTUALIZAR SUCURSALES <i class="icon-copy dw dw-edit-2 ml-1"></i>
                                 </button>
                             </div>
                         </form>
@@ -318,7 +318,7 @@
                             @endforeach
                             <div class="text-right mt-3">
                                 <button type="submit" class="btn btn-info">
-                                    EDITAR PERMISOS <i class="icon-copy dw dw-checked ml-1"></i>
+                                    ACTUALIZAR PERMISOS <i class="icon-copy dw dw-edit-2 ml-1"></i>
                                 </button>
                             </div>
                         </form>

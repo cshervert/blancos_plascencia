@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <div class="title">
-                        <h4>Roles</h4>
+                        <h4 class="text-blue">Crear Rol</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -106,7 +106,7 @@
                     </div>
                     <div class="col-12 text-right">
                         <button type="submit" class="btn btn-success">
-                            CREAR ROL <i class="icon-copy dw dw-checked"></i>
+                            GUARDAR <i class="icon-copy dw dw-checked"></i>
                         </button>
                     </div>
                 </form>

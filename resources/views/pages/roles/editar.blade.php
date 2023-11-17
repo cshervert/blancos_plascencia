@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <div class="title">
-                        <h4>Roles</h4>
+                        <h4 class="text-blue">Editar Rol</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -125,8 +125,8 @@
                         @endforeach
                     </div>
                     <div class="col-12 text-right">
-                        <button type="submit" class="btn btn-success">
-                            EDITAR ROL <i class="icon-copy dw dw-edit-1"></i>
+                        <button type="submit" class="btn btn-info">
+                            ACTUALIZAR <i class="icon-copy dw dw-edit-2"></i>
                         </button>
                     </div>
                 </form>

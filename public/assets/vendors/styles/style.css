@@ -455,7 +455,7 @@ p {
     color: #ecc72f;
 }
 .text-green {
-    color: #46be8a;
+    color: #00a676;
 }
 .text-orange-50 {
     color: #f2a654;
@@ -1323,6 +1323,9 @@ table.dataTable.dtr-inline.collapsed
     margin-left: 5px;
     color: #131e22;
     font-family: "Inter", sans-serif;
+}
+.head-username {
+    min-width: 120px;
 }
 .user-info-dropdown .dropdown-menu {
     min-width: 185px;

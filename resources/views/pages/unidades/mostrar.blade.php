@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <div class="title">
-                        <h4>Unidades</h4>
+                        <h4 class="text-blue">Unidades</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -27,10 +27,10 @@
                     <thead>
                         <tr>
                             <th class="col-1">ID</th>
-                            <th class="col-3">Nombre</th>
-                            <th class="col-2 text-center">Clave SAT</th>
-                            <th class="col-3 text-center">Estatus</th>
-                            <th class="col-3 text-center">Acciones</th>
+                            <th class="col-4">Nombre</th>
+                            <th class="col-4 text-center">Clave SAT</th>
+                            <th class="col-1 text-center">Estatus</th>
+                            <th class="col-2 text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>

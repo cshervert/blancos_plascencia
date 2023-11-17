@@ -5,8 +5,8 @@ const ChangeStatusUsuario = (obj) => {
         icon: "question",
         text: "¿Estás seguro de cambiar el estatus?",
         showCancelButton: true,
-        confirmButtonColor: "#521a49",
-        cancelButtonColor: "#dc3545",
+        confirmButtonColor: "#00a676",
+        cancelButtonColor: "#E73F69",
         confirmButtonText: "Si, Continuar",
         cancelButtonText: "Cancelar",
         width: 400,
@@ -42,8 +42,8 @@ const DeleteUsuario = (obj) => {
         html: "Se eliminará el usuario permanentemente.",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#521a49",
-        cancelButtonColor: "#dc3545",
+        confirmButtonColor: "#00a676",
+        cancelButtonColor: "#E73F69",
         confirmButtonText: "Si, Continuar",
         cancelButtonText: "Cancelar",
         width: 400,
@@ -115,7 +115,7 @@ const validateFormUsuario = () => {
     let passwordRepetir = $("#password-repetir").val();
 
     if (nombre == "" || nombre.length < 5) {
-        $("#advertencia-nombre").html("* Obligatorio");
+        $("#advertencia-nombre").html("* Obligatorio (min 5 dígitos)");
         $("#nombre").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -123,7 +123,7 @@ const validateFormUsuario = () => {
         $("#nombre").removeClass("form-control-danger");
     }
     if (domicilio == "" || domicilio.length < 5) {
-        $("#advertencia-domicilio").html("* Obligatorio");
+        $("#advertencia-domicilio").html("* Obligatorio (min 5 dígitos)");
         $("#domicilio").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -131,7 +131,7 @@ const validateFormUsuario = () => {
         $("#domicilio").removeClass("form-control-danger");
     }
     if (ciudad == "" || ciudad.length < 5) {
-        $("#advertencia-ciudad").html("* Obligatorio");
+        $("#advertencia-ciudad").html("* Obligatorio (5 dígitos)");
         $("#ciudad").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -147,7 +147,7 @@ const validateFormUsuario = () => {
         $("#email").removeClass("form-control-danger");
     }
     if (telefono == "" || telefono.length < 8) {
-        $("#advertencia-telefono").html("* Obligatorio");
+        $("#advertencia-telefono").html("* Obligatorio (min 8 dígitos)");
         $("#telefono").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -155,7 +155,7 @@ const validateFormUsuario = () => {
         $("#telefono").removeClass("form-control-danger");
     }
     if (celular == "" || celular.length < 10) {
-        $("#advertencia-celular").html("* Obligatorio");
+        $("#advertencia-celular").html("* Obligatorio (min 10 dígitos)");
         $("#celular").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -163,7 +163,7 @@ const validateFormUsuario = () => {
         $("#celular").removeClass("form-control-danger");
     }
     if (usuario == "" || usuario.length < 5) {
-        $("#advertencia-usuario").html("* Obligatorio");
+        $("#advertencia-usuario").html("* Obligatorio (min 5 dígitos)");
         $("#usuario").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -171,7 +171,7 @@ const validateFormUsuario = () => {
         $("#usuario").removeClass("form-control-danger");
     }
     if (password == "" || password.length < 5) {
-        $("#advertencia-password").html("* Obligatorio");
+        $("#advertencia-password").html("* Obligatorio (5 dígitos)");
         $("#password").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -179,7 +179,7 @@ const validateFormUsuario = () => {
         $("#password").removeClass("form-control-danger");
     }
     if (passwordRepetir == "" || passwordRepetir.length < 5) {
-        $("#advertencia-password-repetir").html("* Obligatorio");
+        $("#advertencia-password-repetir").html("* Obligatorio (5 dígitos)");
         $("#password-repetir").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -259,7 +259,7 @@ const validateFormEditUsuarioGeneral = () => {
     let celular = $("#celular").val();
     let email = $("#email").val();
     if (nombre == "" || nombre.length < 5) {
-        $("#advertencia-nombre").html("* Obligatorio");
+        $("#advertencia-nombre").html("* Obligatorio (min 5 dígitos)");
         $("#nombre").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -267,7 +267,7 @@ const validateFormEditUsuarioGeneral = () => {
         $("#nombre").removeClass("form-control-danger");
     }
     if (domicilio == "" || domicilio.length < 5) {
-        $("#advertencia-domicilio").html("* Obligatorio");
+        $("#advertencia-domicilio").html("* Obligatorio (min 5 dígitos)");
         $("#domicilio").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -275,7 +275,7 @@ const validateFormEditUsuarioGeneral = () => {
         $("#domicilio").removeClass("form-control-danger");
     }
     if (ciudad == "" || ciudad.length < 5) {
-        $("#advertencia-ciudad").html("* Obligatorio");
+        $("#advertencia-ciudad").html("* Obligatorio (5 dígitos)");
         $("#ciudad").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -291,7 +291,7 @@ const validateFormEditUsuarioGeneral = () => {
         $("#email").removeClass("form-control-danger");
     }
     if (telefono == "" || telefono.length < 8) {
-        $("#advertencia-telefono").html("* Obligatorio");
+        $("#advertencia-telefono").html("* Obligatorio (min 8 dígitos)");
         $("#telefono").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -299,7 +299,7 @@ const validateFormEditUsuarioGeneral = () => {
         $("#telefono").removeClass("form-control-danger");
     }
     if (celular == "" || celular.length < 10) {
-        $("#advertencia-celular").html("* Obligatorio");
+        $("#advertencia-celular").html("* Obligatori (min 10 dígitos)");
         $("#celular").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -362,7 +362,7 @@ const validateFormAceeso = () => {
     let password = $("#password").val();
     let passwordRepetir = $("#password-repetir").val();
     if (usuario == "" || usuario.length < 5) {
-        $("#advertencia-usuario").html("* Obligatorio");
+        $("#advertencia-usuario").html("* Obligatorio (min 5)");
         $("#usuario").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -370,7 +370,7 @@ const validateFormAceeso = () => {
         $("#usuario").removeClass("form-control-danger");
     }
     if (password == "" || password.length < 5) {
-        $("#advertencia-password").html("* Obligatorio");
+        $("#advertencia-password").html("* Obligatorio (min 5)");
         $("#password").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -378,7 +378,7 @@ const validateFormAceeso = () => {
         $("#password").removeClass("form-control-danger");
     }
     if (passwordRepetir == "" || passwordRepetir.length < 5) {
-        $("#advertencia-password-repetir").html("* Obligatorio");
+        $("#advertencia-password-repetir").html("* Obligatorio (min 5)");
         $("#password-repetir").addClass("form-control-danger");
         bandera = false;
     } else {

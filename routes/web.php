@@ -11,6 +11,7 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\UnidadController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\ImpuestoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,7 +65,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/guardarCuenta', [EmpresaController::class, "guardarCuenta"])->name('guardarCuenta');
         Route::delete('/eliminarCuenta', [EmpresaController::class, "eliminarCuenta"]);
         Route::put('/editCuenta', [EmpresaController::class, "cambiarEstatusCuenta"]);
-
     });
 
     Route::prefix('unidades')->group(function () {
@@ -85,7 +85,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/editar/{id?}', [SucursalController::class, "editar"])->name('editar_sucursal');
         Route::put('/editar', [SucursalController::class, "modificar"]);
     });
-    
+
     Route::prefix('clientes')->group(function () {
         Route::get('/', [ClienteController::class, "index"])->name('clientes');
         Route::get('/nuevo', [ClienteController::class, "nuevo"])->name('nuevo_cliente');
@@ -102,6 +102,16 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/editar/{id?}', [ProveedorController::class, "editar"])->name('editarProveedor');
         Route::put('/editar', [ProveedorController::class, "modificar"]);
         Route::delete('/eliminar', [ProveedorController::class, "eliminar"]);
+    });
+
+    Route::prefix('impuestos')->group(function () {
+        Route::get('/', [ImpuestoController::class, "index"])->name('impuestos');
+        Route::get('/nuevo', [ImpuestoController::class, "nuevo"])->name('nuevo_impuesto');
+        Route::post('/crear', [ImpuestoController::class, "crear"]);
+        Route::get('/editar/{id?}', [ImpuestoController::class, "editar"])->name('editar_impuesto');
+        Route::put('/editar', [ImpuestoController::class, "modificar"]);
+        Route::put('/estatus/editar', [ImpuestoController::class, "CambiarEstatus"]);
+        Route::delete('/eliminar', [ImpuestoController::class, "eliminar"]);
     });
 });
 // Route::get('/empresa', [EmpresaController::class, "index"])->middleware('auth')->name('empresa');

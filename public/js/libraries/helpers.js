@@ -22,10 +22,12 @@ const alertLoading = (flag) => {
 
 const alertDefault = (titulo, mensaje, icono, referencia = null) => {
     console.log(mensaje);
+    let color = elegirColor(icono);
     Swal.fire({
         title: titulo,
         text: mensaje,
         icon: icono,
+        confirmButtonColor: color,
         confirmButtonText: "Aceptar",
         width: 400,
     }).then((result) => {
@@ -33,6 +35,31 @@ const alertDefault = (titulo, mensaje, icono, referencia = null) => {
             location.href = referencia;
         }
     });
+};
+
+const elegirColor = (icono) => {
+    let color;
+    switch (icono) {
+        case "success":
+            color = "#00a676";
+            break;
+        case "error":
+            color = "#E73F69";
+            break;
+        case "info":
+            color = "#09ADB2";
+            break;
+        case "warning":
+            color = "#ffc107";
+            break;
+        case "question":
+            color = "#00a676";
+            break;
+        default:
+            color = "#00a676";
+            break;
+    }
+    return color;
 };
 
 $(".data-table").DataTable({

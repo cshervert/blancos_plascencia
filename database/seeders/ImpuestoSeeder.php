@@ -25,7 +25,8 @@ class ImpuestoSeeder extends Seeder
             'id_tipo_impuesto' => 1,
             'orden'            => 0,
             'aplicar_iva'      => 0,
-            'cuenta_clave'     => 'NA'
+            'cuenta_clave'     => 'NA',
+            'eliminado'    => 0
         ]);
     }
 }

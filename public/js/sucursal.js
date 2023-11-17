@@ -5,8 +5,8 @@ const ChangeStatusSucursal = (obj) => {
         icon: "question",
         text: "¿Estás seguro de cambiar el estatus?",
         showCancelButton: true,
-        confirmButtonColor: "#521a49",
-        cancelButtonColor: "#dc3545",
+        confirmButtonColor: "#00a676",
+        cancelButtonColor: "#E73F69",
         confirmButtonText: "Si, Continuar",
         cancelButtonText: "Cancelar",
         width: 400,
@@ -42,8 +42,8 @@ const DeleteSucursal = (obj) => {
         html: "Se eliminará la sucursal permanentemente.",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#521a49",
-        cancelButtonColor: "#dc3545",
+        confirmButtonColor: "#00a676",
+        cancelButtonColor: "#E73F69",
         confirmButtonText: "Si, Continuar",
         cancelButtonText: "Cancelar",
         width: 400,
@@ -137,7 +137,7 @@ const validateFormSucursal = () => {
     let telefono = $("#telefono").val();
     let celular = $("#celular").val();
     if (nombre == "" || nombre.length < 5) {
-        $("#advertencia-nombre").html("* Obligatorio");
+        $("#advertencia-nombre").html("* Obligatorio (mínimo 5 dígitos)");
         $("#nombre").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -145,7 +145,7 @@ const validateFormSucursal = () => {
         $("#nombre").removeClass("form-control-danger");
     }
     if (domicilio == "" || domicilio.length < 5) {
-        $("#advertencia-domicilio").html("* Obligatorio");
+        $("#advertencia-domicilio").html("* Obligatorio (mínimo 5 dígitos)");
         $("#domicilio").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -153,7 +153,7 @@ const validateFormSucursal = () => {
         $("#domicilio").removeClass("form-control-danger");
     }
     if (ciudad == "" || ciudad.length < 5) {
-        $("#advertencia-ciudad").html("* Obligatorio");
+        $("#advertencia-ciudad").html("* Obligatorio  (min 3 dig)");
         $("#ciudad").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -161,7 +161,7 @@ const validateFormSucursal = () => {
         $("#ciudad").removeClass("form-control-danger");
     }
     if (!ValidatarEmail(email)) {
-        $("#advertencia-email").html("* Email no valido");
+        $("#advertencia-email").html("* Obligatorio (email no valido)");
         $("#email").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -169,7 +169,7 @@ const validateFormSucursal = () => {
         $("#email").removeClass("form-control-danger");
     }
     if (telefono == "" || telefono.length < 8) {
-        $("#advertencia-telefono").html("* Obligatorio");
+        $("#advertencia-telefono").html("* Obligatorio (mínimo 8 dígitos)");
         $("#telefono").addClass("form-control-danger");
         bandera = false;
     } else {
@@ -177,7 +177,7 @@ const validateFormSucursal = () => {
         $("#telefono").removeClass("form-control-danger");
     }
     if (celular == "" || celular.length < 10) {
-        $("#advertencia-celular").html("* Obligatorio");
+        $("#advertencia-celular").html("* Obligatorio (mínimo 10 dígitos)");
         $("#celular").addClass("form-control-danger");
         bandera = false;
     } else {

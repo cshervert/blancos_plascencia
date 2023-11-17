@@ -115,9 +115,9 @@
   .cl-switch.cl-switch-red .switcher:active:before {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 0 0 10px rgba(255, 104, 104, 0.3); }
   .cl-switch.cl-switch-green input[type="checkbox"]:checked + .switcher {
-    background-color: rgb(118, 219, 153); }
+    background-color: #90e1ca; }
     .cl-switch.cl-switch-green input[type="checkbox"]:checked + .switcher:before {
-      background-color: #28a745; }
+      background-color: #00a676; }
   .cl-switch.cl-switch-green .switcher:active:before {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 0 0 10px rgba(41, 204, 151, 0.3); }
   .cl-switch.cl-switch-orange input[type="checkbox"]:checked + .switcher {

@@ -20,6 +20,17 @@ class Impuesto extends Model
         'id_tipo_impuesto',
         'orden',
         'aplicar_iva',
-        'cuenta_clave'
+        'cuenta_clave',
+        'eliminado'
     ];
+
+    public function desglose()
+    {
+        return $this->hasOne(DesgloseImpuesto::class, 'id', 'id_desglose_impuesto');
+    }
+
+    public function tipo()
+    {
+        return $this->hasOne(TipoImpuesto::class, 'id', 'id_tipo_impuesto');
+    }
 }

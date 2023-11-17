@@ -29,6 +29,7 @@ return new class extends Migration
             $table->integer('orden');
             $table->boolean('aplicar_iva');
             $table->string('cuenta_clave');
+            $table->boolean('eliminado');
             $table->timestamps();
         });
     }
