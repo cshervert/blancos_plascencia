@@ -19,17 +19,26 @@ class CajaSeeder extends Seeder
             [
                 'nombre'        => "Caja 1",
                 'id_sucursal'   => 1,
-                'activo'        => 1
+                'enviar'        => 0,
+                'destinatarios' => null,
+                'activo'        => 1,
+                'eliminado'     => 0
             ],
             [
                 'nombre'        => "Caja 2",
                 'id_sucursal'   => 1,
-                'activo'        => 1
+                'enviar'        => 0,
+                'destinatarios' => null,
+                'activo'        => 1,
+                'eliminado'     => 0
             ],
             [
                 'nombre'        => "Caja 3",
                 'id_sucursal'   => 1,
-                'activo'        => 1
+                'enviar'        => 0,
+                'destinatarios' => null,
+                'activo'        => 1,
+                'eliminado'     => 0
             ]
         ];
         foreach ($boxs as $item) {

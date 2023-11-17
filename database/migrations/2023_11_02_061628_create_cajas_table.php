@@ -18,7 +18,10 @@ return new class extends Migration
             $table->char('nombre', 200);
             $table->unsignedBigInteger('id_sucursal');
             $table->foreign('id_sucursal')->references('id')->on('sucursales');
+            $table->boolean('enviar');
+            $table->char('destinatarios', 200)->nullable();
             $table->boolean('activo');
+            $table->boolean('eliminado');
             $table->timestamps();
         });
     }

@@ -12,6 +12,7 @@ use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\UnidadController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ImpuestoController;
+use App\Http\Controllers\CajaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +113,15 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/editar', [ImpuestoController::class, "modificar"]);
         Route::put('/estatus/editar', [ImpuestoController::class, "CambiarEstatus"]);
         Route::delete('/eliminar', [ImpuestoController::class, "eliminar"]);
+    });
+
+    Route::prefix('cajas')->group(function () {
+        Route::get('/', [CajaController::class, "index"])->name('cajas');
+        Route::post('/crear', [CajaController::class, "crear"]);
+        Route::get('/editar/{id?}', [CajaController::class, "editar"]);
+        Route::put('/editar', [CajaController::class, "modificar"]);
+        Route::put('/estatus/editar', [CajaController::class, "CambiarEstatus"]);
+        Route::delete('/eliminar', [CajaController::class, "eliminar"]);
     });
 });
 // Route::get('/empresa', [EmpresaController::class, "index"])->middleware('auth')->name('empresa');

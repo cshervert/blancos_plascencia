@@ -13,6 +13,14 @@ class Caja extends Model
     protected $fillable = [
         'nombre',
         'id_sucursal',
-        'activo'
+        'enviar',
+        'destinatarios',
+        'activo',
+        'eliminado'
     ];
+
+    public function sucursal()
+    {
+        return $this->hasOne(Sucursal::class, 'id', 'id_sucursal');
+    }
 }

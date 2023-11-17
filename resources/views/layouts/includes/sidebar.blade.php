@@ -34,13 +34,12 @@
                         <span class="micon dw dw-folder1"></span><span class="mtext">Catálogos</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ route('unidades') }}">Unidades</a></li>
-                        <li><a href="{{ route('impuestos') }}">Impuestos</a></li>
-                        <li><a href="basic-table.html">Articulos</a></li>
-                        <li><a href="datatable.html">Paquetes</a></li>
+                        <li><a href="{{ route('impuestos') }}">Empleados</a></li>
                         <li><a href="{{ route('clientes') }}">Clientes</a></li>
                         <li><a href="{{ route('proveedores') }}">Proveedores</a></li>
-                        <li><a href="datatable.html">Inventario</a></li>
+                        <li><a href="{{ route('unidades') }}">Unidades</a></li>
+                        <li><a href="{{ route('impuestos') }}">Impuestos</a></li>
+                        <li><a href="{{ route('cajas') }}">Caja</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
