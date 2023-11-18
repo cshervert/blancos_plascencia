@@ -34,7 +34,7 @@
                         <span class="micon dw dw-folder1"></span><span class="mtext">Catálogos</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="{{ route('impuestos') }}">Empleados</a></li>
+                        <li><a href="{{ route('empleados') }}">Empleados</a></li>
                         <li><a href="{{ route('clientes') }}">Clientes</a></li>
                         <li><a href="{{ route('proveedores') }}">Proveedores</a></li>
                         <li><a href="{{ route('unidades') }}">Unidades</a></li>
@@ -51,17 +51,6 @@
                         <li><a href="{{ route('sucursales') }}">Sucursales</a></li>
                         <li><a href="{{ route('roles') }}">Roles</a></li>
                         <li><a href="{{ route('usuarios') }}">Usuarios</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="javascript:;" class="dropdown-toggle">
-                        <span class="micon dw dw-slideshow"></span><span class="mtext">Articulos</span>
-                    </a>
-                    <ul class="submenu">
-                        <li><a href="font-awesome.html">Impuestos</a></li>
-                        <li><a href="foundation.html">Unidades</a></li>
-                        <li><a href="ionicons.html">Tags</a></li>
-                        <li><a href="themify.html">Cajas</a></li>
                     </ul>
                 </li>
             </ul>

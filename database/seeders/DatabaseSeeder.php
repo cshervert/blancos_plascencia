@@ -19,15 +19,14 @@ class DatabaseSeeder extends Seeder
         $this->call(MonedaSeeder::class);
         $this->call(DepartamentoSeeder::class);
         $this->call(CategoriaSeeder::class);
-        $this->call(DepartamentoTrabajoSeeder::class);
         $this->call(PuestoTrabajoSeeder::class);
-        $this->call(EmpleadoSeeder::class);
         $this->call(GrupoSeeder::class);
         $this->call(DatosFacturacionSeeder::class);
         $this->call(ClienteSeeder::class);
         $this->call(GrupoClienteSeeder::class);
         $this->call(ProveedorSeeder::class);
         $this->call(SucursalSeeder::class);
+        $this->call(EmpleadoSeeder::class);
 
         Usuario::factory()->create([
             'nombre'    => 'Juan Carlos Salvador Hervert',

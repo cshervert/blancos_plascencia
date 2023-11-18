@@ -12,7 +12,6 @@ class PuestoTrabajo extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'puesto',
-        'id_departamento',
         'activo'
     ];
     public $timestamps = false;

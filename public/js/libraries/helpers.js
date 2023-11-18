@@ -37,6 +37,19 @@ const alertDefault = (titulo, mensaje, icono, referencia = null) => {
     });
 };
 
+const alertErrorServer = (e) => {
+    alertLoading(false);
+    alertDefault(
+        "¡Server Error!",
+        `${
+            e.response.data.message === undefined
+                ? e.message
+                : e.response.data.message
+        }`,
+        "error"
+    );
+};
+
 const elegirColor = (icono) => {
     let color;
     switch (icono) {
@@ -77,11 +90,11 @@ $(".data-table").DataTable({
         [10, 25, 50, "Todas"],
     ],
     language: {
-        sInfo: "_START_ de _END_ | filas totales _TOTAL_",
-        sLengthMenu: "Cantidad _MENU_",
+        sInfo: "_START_ de _END_ Registros | Total Registros _TOTAL_",
+        sLengthMenu: "Registros  _MENU_",
         sInfoEmpty: "",
         sEmptyTable: "No hay datos disponibles en la tabla",
-        sSearch: "Buscar",
+        sSearch: '<i class="icon-copy dw dw-search2"></i>',
         paginate: {
             next: '<i class="ion-chevron-right"></i>',
             previous: '<i class="ion-chevron-left"></i>',

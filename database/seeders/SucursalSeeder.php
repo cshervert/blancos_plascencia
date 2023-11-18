@@ -73,6 +73,21 @@ class SucursalSeeder extends Seeder
                 'celular'   => '523321767732',
                 'activo'    => 1,
                 'eliminado' => 0
+            ],
+            [
+                'nombre'    => 'BP Nuevo Mexico',
+                'domicilio' => 'Test',
+                'numero_interior' => '',
+                'numero_exterior' => '7050',
+                'colonia'   => 'Jardines de la fuente',
+                'cp'        => '45200',
+                'ciudad'    => 'Zapopán',
+                'estado'    => 'Jalisco',
+                'email'     => 'vianneytesis5@gmail.com',
+                'telefono'  => '523321767732',
+                'celular'   => '523321767732',
+                'activo'    => 1,
+                'eliminado' => 0
             ]
         ];
         foreach ($branch_offices as $item) {

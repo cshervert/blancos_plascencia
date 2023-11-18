@@ -16,10 +16,7 @@ return new class extends Migration
         Schema::create('puestos_trabajo', function (Blueprint $table) {
             $table->id();
             $table->char('puesto', 100);
-            $table->unsignedBigInteger('id_departamento');
-            $table->foreign('id_departamento')->references('id')->on('departamentos_trabajo');
             $table->boolean('activo');
-            $table->timestamps();
         });
     }
 

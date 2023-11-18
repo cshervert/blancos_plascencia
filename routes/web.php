@@ -13,6 +13,7 @@ use App\Http\Controllers\UnidadController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ImpuestoController;
 use App\Http\Controllers\CajaController;
+use App\Http\Controllers\EmpleadoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +123,16 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/editar', [CajaController::class, "modificar"]);
         Route::put('/estatus/editar', [CajaController::class, "CambiarEstatus"]);
         Route::delete('/eliminar', [CajaController::class, "eliminar"]);
+    });
+
+    Route::prefix('empleados')->group(function () {
+        Route::get('/', [EmpleadoController::class, "index"])->name('empleados');
+        Route::get('/nuevo', [EmpleadoController::class, "nuevo"])->name('nuevo_empleado');
+        Route::post('/crear', [EmpleadoController::class, "crear"]);
+        Route::get('/editar/{id?}', [EmpleadoController::class, "editar"])->name('editar_empleado');
+        Route::put('/editar', [EmpleadoController::class, "modificar"]);
+        Route::put('/estatus/editar', [EmpleadoController::class, "CambiarEstatus"]);
+        Route::delete('/eliminar', [EmpleadoController::class, "eliminar"]);
     });
 });
 // Route::get('/empresa', [EmpresaController::class, "index"])->middleware('auth')->name('empresa');

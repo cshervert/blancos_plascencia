@@ -5,6 +5,7 @@
 <script src="{{ asset('assets/src/plugins/sweetalert2/sweetalert2.all.js') }}"></script>
 <script src="{{ asset('assets/src/plugins/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('assets/src/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js') }}"></script>
+<script src="{{ asset('assets/src/plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js') }}"></script>
 <!-- Template Main JS File -->
 <script src="{{ asset('assets/src/plugins/datatables/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/src/plugins/datatables/js/dataTables.bootstrap4.min.js') }}"></script>

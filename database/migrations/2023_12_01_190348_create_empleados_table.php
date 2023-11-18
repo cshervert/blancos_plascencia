@@ -17,18 +17,21 @@ return new class extends Migration
             $table->id();
             $table->string('alias');
             $table->string('nombre');
-            $table->string('direccion');
-            $table->string('nss');
-            $table->string('curp');
+            $table->string('direccion')->nullable();
+            $table->string('nss')->nullable();
+            $table->string('curp')->nullable();
             $table->string('ciudad');
-            $table->string('telefono');
+            $table->string('telefono')->nullable();
             $table->string('celular');
             $table->string('email');
             $table->float('comision');
-            $table->date('fecha_nac');
+            $table->date('fecha_nacimiento')->nullable();
             $table->unsignedBigInteger('id_puesto');
             $table->foreign('id_puesto')->references('id')->on('puestos_trabajo');
+            $table->unsignedBigInteger('id_sucursal');
+            $table->foreign('id_sucursal')->references('id')->on('sucursales');
             $table->boolean('activo');
+            $table->boolean('eliminado');
             $table->timestamps();
         });
     }

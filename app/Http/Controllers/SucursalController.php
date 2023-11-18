@@ -130,26 +130,31 @@ class SucursalController extends AdminController
         $telefono   = $this->request->get("telefono");
         $celular    = $this->request->get("celular");
         $activo     = $this->request->get("activo");
-        $data       = [
-            'nombre'    => $nombre,
-            'domicilio' => $domicilio,
-            'numero_exterior' => $numero_exterior,
-            'numero_interior' => $numero_interior,
-            'colonia'   => $colonia,
-            'cp'        => $cp,
-            'ciudad'    => $ciudad,
-            'estado'    => $estado,
-            'email'     => $email,
-            'telefono'  => $telefono,
-            'celular'   => $celular,
-            'activo'    => $activo
-        ];
-        $updateSucursal = Sucursal::where('id', $id)->update($data);
-        $data["id"]     = $id;
-        if ($updateSucursal) {
-            $this->responseSuccess("Sucursal actualizada correctamente.", $data);
+        $existeSucursal = Sucursal::where("nombre", $nombre)->where("id", '!=', $id)->where("eliminado", 0)->first();
+        if (!$existeSucursal) {
+            $data = [
+                'nombre'    => $nombre,
+                'domicilio' => $domicilio,
+                'numero_exterior' => $numero_exterior,
+                'numero_interior' => $numero_interior,
+                'colonia'   => $colonia,
+                'cp'        => $cp,
+                'ciudad'    => $ciudad,
+                'estado'    => $estado,
+                'email'     => $email,
+                'telefono'  => $telefono,
+                'celular'   => $celular,
+                'activo'    => $activo
+            ];
+            $updateSucursal = Sucursal::where('id', $id)->update($data);
+            $data["id"]     = $id;
+            if ($updateSucursal) {
+                $this->responseSuccess("Sucursal actualizada correctamente.", $data);
+            } else {
+                $this->responseError(500, "No se realizo la actualización de la sucursal.");
+            }
         } else {
-            $this->responseError(500, "No se realizo la actualización de la sucursal.");
+            $this->responseError(500, "El nombre de la sucursal que intenta modificar, ya existe.");
         }
         return response()->json($this->response);
     }

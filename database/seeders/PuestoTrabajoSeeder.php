@@ -17,13 +17,27 @@ class PuestoTrabajoSeeder extends Seeder
     {
         $puesto = [
             [
+                'puesto' => 'Director Comercial',
+                'activo' => 1,
+            ],
+            [
+                'puesto' => 'Gerente Tienda',
+                'activo' => 1,
+            ],
+            [
+                'puesto' => 'SubGerente Tienda',
+                'activo' => 1,
+            ],
+            [
                 'puesto' => 'Vendedor(a)',
-                'id_departamento' => 1,
                 'activo' => 1,
             ],
             [
                 'puesto' => 'Almacenista',
-                'id_departamento' => 2,
+                'activo' => 1,
+            ],
+            [
+                'puesto' => 'Comprador(a)',
                 'activo' => 1,
             ],
         ];
