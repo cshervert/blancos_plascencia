@@ -20,6 +20,9 @@
                     </nav>
                 </div>
                 <div class="col-md-6 col-sm-12 text-right">
+                    <button class="btn btn-dark mb-3" onclick="">
+                        CREAR NUEVO PUESTO <i class="icon-copy dw dw-add ml-1"></i>
+                    </button>
                     <a class="btn btn-secondary mb-3" href="{{ route('empleados') }}">
                         REGRESAR <i class="icon-copy dw dw-curved-arrow1 ml-1"></i>
                     </a>

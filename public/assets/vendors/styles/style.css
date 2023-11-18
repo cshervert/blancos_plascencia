@@ -642,7 +642,7 @@ textarea.form-control {
     height: auto;
 }
 .input-group {
-    margin-bottom: 0px;
+    margin-bottom: 25px;
 }
 .input-group.custom > .custom-select,
 .input-group.custom > .form-control {
