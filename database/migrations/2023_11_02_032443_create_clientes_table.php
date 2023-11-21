@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('clientes', function (Blueprint $table) {
             $table->id();
-            $table->integer('numero_cliente')->nullable();
             $table->char('clave', 10)->nullable();
             $table->char('representante', 200)->nullable();
             $table->char('nombre', 200)->nullable();

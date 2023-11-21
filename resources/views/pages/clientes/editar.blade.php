@@ -27,14 +27,7 @@
             <div class="pd-30 card-box">
                 <form id="formEditCliente" class="row">
                     @csrf
-                    <div class="form-group col-sm-12 col-md-4">
-                        <label class="weight-600 " for="rol" style="font-size: 16px">
-                            No. Cliente
-                        </label>
-                        <label class="form-control-label has-danger ml-2" id="msg-nocliente"></label>
-                        <input class="form-control" type="hidden" name="id" id="id" placeholder="" value="{{$cliente->id}}">
-                        <input class="form-control" value="{{ $cliente->numero_cliente ? $cliente->numero_cliente : ''}}" type="text" name="nocliente" id="nocliente">
-                    </div>
+                    <input class="form-control" type="hidden" name="id" id="id" placeholder="" value="{{$cliente->id}}">
                     <div class="form-group col-sm-12 col-md-8">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Clave
@@ -47,21 +40,21 @@
                             Representante
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-representante"></label>
-                        <input class="form-control" type="text" name="representante" id="representante" value="{{ $cliente->representante ? $cliente->representante : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="representante" id="representante" value="{{ $cliente->representante ? $cliente->representante : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Nombre
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-nombre"></label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" value="{{ $cliente->nombre ? $cliente->nombre : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="nombre" id="nombre" value="{{ $cliente->nombre ? $cliente->nombre : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             RFC
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-rfc"></label>
-                        <input class="form-control" maxlength="13" onkeyup="copiarRFC(this)" type="text" name="rfc" id="rfc" value="{{ $cliente->rfc ? $cliente->rfc : ''}}">
+                        <input class="form-control" maxlength="13" onkeyup="validateFormCliente()" onkeyup="copiarRFC(this)" type="text" name="rfc" id="rfc" value="{{ $cliente->rfc ? $cliente->rfc : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -75,21 +68,21 @@
                             Telefono
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-telefono"></label>
-                        <input class="form-control" type="text" name="telefono" id="telefono" value="{{ $cliente->telefono ? $cliente->telefono : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="telefono" id="telefono" value="{{ $cliente->telefono ? $cliente->telefono : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Celular
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-celular"></label>
-                        <input class="form-control" type="text" name="celular" id="celular" value="{{ $cliente->celular ? $cliente->celular : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="celular" id="celular" value="{{ $cliente->celular ? $cliente->celular : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Email
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-email"></label>
-                        <input class="form-control" type="text" name="email" id="email" value="{{ $cliente->email ? $cliente->email : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="email" id="email" value="{{ $cliente->email ? $cliente->email : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -97,7 +90,7 @@
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-noprecio"></label>
                         <!-- <input class="form-control" type="text" name="noprecio" id="noprecio"> -->
-                        <select class="selectpicker form-control" name="noprecio" id="noprecio" style="width: 100%; height: 38px;">
+                        <select class="selectpicker form-control" name="noprecio" onchange="validateFormCliente()" id="noprecio" style="width: 100%; height: 38px;">
                                 <option value="1" {{ $cliente->numero_precio == 1 ? 'selected' : ''}}>1</option>
                                 <option value="2" {{ $cliente->numero_precio == 2 ? 'selected' : ''}}>2</option>
                                 <option value="3" {{ $cliente->numero_precio == 3 ? 'selected' : ''}}>3</option>
@@ -118,6 +111,26 @@
                         <label class="form-control-label has-danger ml-2" id="msg-dias"></label>
                         <input class="form-control" type="text" name="dias" id="dias" value="{{ $cliente->dias_credito ? $cliente->dias_credito : ''}}">
                     </div>
+                    <div class="form-group col-sm-12 col-md-4">
+                        <label class="weight-600" for="rol" style="font-size: 16px">
+                            Grupo
+                        </label>
+                        <label class="form-control-label has-danger ml-2" id="msg-grupo"></label>
+                        <!-- <input class="form-control" type="hidden" value="0" name="grupoBand" id="grupoBand"> -->
+                        <select class="form-control" name="grupo" id="grupo">
+                            <option value="0">Seleccionar grupo</option>
+                            @foreach ($grupos as $item)
+                                <option value="{{$item->id}}" {{($grupo->id_grupo == $item->id) ? 'selected' : ''}}>{{$item->nombre}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-12 col-md-4">       
+                        <div class="form-group row mt-4 pl-3">
+                            <button class="btn btn-success mt-2" data-toggle="modal" data-target="#grupo-modal" type="button">
+                                Nuevo Grupo <i class="icon-copy dw dw-add"></i>
+                            </button>
+                        </div>                                   
+                    </div> 
                     <div class="form-group col-sm-12 col-md-12">
                         <hr class="mt-1 mb-2">
                         <label class="weight-800" for="rol" style="font-size: 20px">
@@ -130,14 +143,14 @@
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-razon"></label>
                         <input class="form-control" type="hidden" name="id_factura" id="id_factura" placeholder="" value="{{$factura->id}}">
-                        <input class="form-control" type="text" name="razon" id="razon" value="{{ $factura->razon_social ? $factura->razon_social : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="razon" id="razon" value="{{ $factura->razon_social ? $factura->razon_social : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             RFC
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-rfcfactura"></label>
-                        <input class="form-control" type="text" name="rfcfactura" maxlength="13" id="rfcfactura" value="{{ $factura->rfc ? $factura->rfc : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="rfcfactura" maxlength="13" id="rfcfactura" value="{{ $factura->rfc ? $factura->rfc : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -151,7 +164,14 @@
                             Domicilio
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-domicilio"></label>
-                        <input class="form-control" type="text" name="domicilio" id="domicilio" value="{{ $factura->domicilio ? $factura->domicilio : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="domicilio" id="domicilio" value="{{ $factura->domicilio ? $factura->domicilio : ''}}">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="weight-600" for="rol" style="font-size: 16px">
+                            No. Exterior
+                        </label>
+                        <label class="form-control-label has-danger ml-2" id="msg-exterior"></label>
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="exterior" id="exterior" value="{{ $factura->numero_exterior ? $factura->numero_exterior : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-3">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -160,26 +180,19 @@
                         <label class="form-control-label has-danger ml-2" id="msg-interior"></label>
                         <input class="form-control" type="text" name="interior" id="interior" value="{{ $factura->numero_interior ? $factura->numero_interior : ''}}">
                     </div>
-                    <div class="form-group col-sm-12 col-md-3">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
-                            No. Exterior
-                        </label>
-                        <label class="form-control-label has-danger ml-2" id="msg-exterior"></label>
-                        <input class="form-control" type="text" name="exterior" id="exterior" value="{{ $factura->numero_exterior ? $factura->numero_exterior : ''}}">
-                    </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Colonia
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-colonia"></label>
-                        <input class="form-control" type="text" name="colonia" id="colonia" value="{{ $factura->colonia ? $factura->colonia : ''}}">
+                        <input class="form-control" type="text" name="colonia" onkeyup="validateFormCliente()" id="colonia" value="{{ $factura->colonia ? $factura->colonia : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-2">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             C.P.
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-cp"></label>
-                        <input class="form-control" type="text" name="cp" id="cp" value="{{ $factura->cp ? $factura->cp : ''}}">
+                        <input class="form-control" type="text" name="cp" onkeyup="validateFormCliente()" id="cp" value="{{ $factura->cp ? $factura->cp : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -214,6 +227,26 @@
                             ACTUALIZAR CLIENTE <i class="icon-copy dw dw-checked"></i>
                         </button>
                     </div>
+                    <div class="modal" id="grupo-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="login-box bg-white">
+                                    <div class="login-title">
+                                        <h2 class="text-center text-primary">Agregar Nuevo Grupo</h2>
+                                    </div>
+                                    <form id="formCuenta">
+                                        <div class="input-group custom">
+                                            <input type="text" name="nombreGrupo" id="nombreGrupo" class="form-control form-control-lg" placeholder="Nombre">
+                                        </div>                                                                         
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Cerrar</button> 
+                                            <button type="button" id="btnGrupo" class="btn btn-success">Agregar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
                 </form>
             </div>
         </div>

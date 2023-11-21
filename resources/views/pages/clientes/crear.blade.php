@@ -27,13 +27,6 @@
             <div class="pd-30 card-box">
                 <form id="formCreateCliente" class="row">
                     @csrf
-                    <div class="form-group col-sm-12 col-md-4">
-                        <label class="weight-600 " for="rol" style="font-size: 16px">
-                            No. Cliente
-                        </label>
-                        <label class="form-control-label has-danger ml-2" id="msg-nocliente"></label>
-                        <input class="form-control" type="text" name="nocliente" id="nocliente">
-                    </div>
                     <div class="form-group col-sm-12 col-md-8">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Clave
@@ -46,21 +39,21 @@
                             Representante
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-representante"></label>
-                        <input class="form-control" type="text" name="representante" id="representante">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="representante" id="representante">
                     </div>
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Nombre
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-nombre"></label>
-                        <input class="form-control" type="text" name="nombre" id="nombre">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="nombre" id="nombre">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             RFC
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-rfc"></label>
-                        <input class="form-control" maxlength="13" onkeyup="copiarRFC(this)" type="text" name="rfc" id="rfc">
+                        <input class="form-control" maxlength="13" onkeyup="validateFormCliente()" onkeyup="copiarRFC(this)" type="text" name="rfc" id="rfc">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -74,21 +67,21 @@
                             Telefono
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-telefono"></label>
-                        <input class="form-control" type="text" name="telefono" id="telefono">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="telefono" id="telefono">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Celular
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-celular"></label>
-                        <input class="form-control" type="text" name="celular" id="celular">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="celular" id="celular">
                     </div>
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Email
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-email"></label>
-                        <input class="form-control" type="text" name="email" id="email">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="email" id="email">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -96,7 +89,8 @@
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-noprecio"></label>
                         <!-- <input class="form-control" type="text" name="noprecio" id="noprecio"> -->
-                        <select class="form-control" name="noprecio" id="noprecio" >
+                        <select class="form-control" onchange="validateFormCliente()" name="noprecio" id="noprecio" >
+                                <option value="0">Seleccionar precio</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -122,9 +116,12 @@
                             Grupo
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-grupo"></label>
-                        <!-- <input class="form-control" type="text" name="grupo" id="grupo"> -->
+                        <!-- <input class="form-control" type="hidden" value="0" name="grupoBand" id="grupoBand"> -->
                         <select class="form-control" name="grupo" id="grupo">
-
+                            <option value="0">Seleccionar grupo</option>
+                            @foreach ($grupos as $item)
+                                <option value="{{$item->id}}">{{$item->nombre}}</option>
+                            @endforeach
                         </select>
                     </div>   
                     <div class="form-group col-sm-12 col-md-4">       
@@ -145,14 +142,14 @@
                             Razon Social
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-razon"></label>
-                        <input class="form-control" type="text" name="razon" id="razon">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="razon" id="razon">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             RFC
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-rfcfactura"></label>
-                        <input class="form-control" maxlength="13" type="text" name="rfcfactura" id="rfcfactura">
+                        <input class="form-control" maxlength="13" onkeyup="validateFormCliente()" type="text" name="rfcfactura" id="rfcfactura">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -166,7 +163,14 @@
                             Domicilio
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-domicilio"></label>
-                        <input class="form-control" type="text" name="domicilio" id="domicilio">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="domicilio" id="domicilio">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="weight-600" for="rol" style="font-size: 16px">
+                            No. Exterior
+                        </label>
+                        <label class="form-control-label has-danger ml-2" id="msg-exterior"></label>
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="exterior" id="exterior">
                     </div>
                     <div class="form-group col-sm-12 col-md-3">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -175,26 +179,19 @@
                         <label class="form-control-label has-danger ml-2" id="msg-interior"></label>
                         <input class="form-control" type="text" name="interior" id="interior">
                     </div>
-                    <div class="form-group col-sm-12 col-md-3">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
-                            No. Exterior
-                        </label>
-                        <label class="form-control-label has-danger ml-2" id="msg-exterior"></label>
-                        <input class="form-control" type="text" name="exterior" id="exterior">
-                    </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Colonia
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-colonia"></label>
-                        <input class="form-control" type="text" name="colonia" id="colonia">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="colonia" id="colonia">
                     </div>
                     <div class="form-group col-sm-12 col-md-2">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             C.P.
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-cp"></label>
-                        <input class="form-control" type="text" name="cp" id="cp">
+                        <input class="form-control" type="text" onkeyup="validateFormCliente()" name="cp" id="cp">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <label class="weight-600" for="rol" style="font-size: 16px">

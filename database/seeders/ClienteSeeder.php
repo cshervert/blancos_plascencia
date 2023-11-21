@@ -16,7 +16,6 @@ class ClienteSeeder extends Seeder
     public function run()
     {
         Cliente::create([
-            'numero_cliente'    => 001,
             'clave'    => 'JCSH001',
             'representante'    => 'Juan Carlos Salvador Hervert',
             'nombre'    => 'Juan Carlos Salvador Hervert',

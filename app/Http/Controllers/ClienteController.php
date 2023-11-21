@@ -6,6 +6,7 @@ use App\Models\Cliente;
 use App\Models\DatosFacturacion;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClienteController extends AdminController
 {
@@ -17,19 +18,23 @@ class ClienteController extends AdminController
     public function index()
     {
         $clientes = Cliente::all();
-        return view('pages/clientes/index', ['clientes' => $clientes]);
+        $grupos = DB::table('grupos')->get();
+        return view('pages/clientes/index', ['clientes' => $clientes, 'grupos' => $grupos]);
     }
-
+    
     public function nuevo()
     {
-        return view('pages/clientes/crear');
+        $grupos = DB::table('grupos')->get();
+        return view('pages/clientes/crear', ['grupos' => $grupos]);
     }
     
     public function editar($id)
     {
         $cliente = Cliente::where('id', $id)->first();
         $factura = DatosFacturacion::where('id', $cliente->id_facturacion)->first();
-        return view('pages/clientes/editar', ['cliente' => $cliente, 'factura' => $factura]);
+        $grupos = DB::table('grupos')->get();
+        $grupo = DB::table('grupos_clientes')->where('id_cliente', $id)->first();
+        return view('pages/clientes/editar', ['cliente' => $cliente, 'factura' => $factura, 'grupos' => $grupos, 'grupo' => $grupo ]);
     }
 
     public function eliminar()
@@ -38,11 +43,12 @@ class ClienteController extends AdminController
         $data['msg'] = "Error";
         
         $id = $this->request->get("id");
-        $cuenta = Cliente::where("id", $id)->first();
-        if ($cuenta) {
+        $cliente = Cliente::where("id", $id)->first();
+        if ($cliente) {
+            DB::table('grupos_clientes')->where('id_cliente', $id)->delete();
             $response = Cliente::where('id', $id)->delete();
             if($response){
-                $response = DatosFacturacion::where('id', $cuenta->id_facturacion)->delete();
+                $response = DatosFacturacion::where('id', $cliente->id_facturacion)->delete();
                 if($response){
                     $data['code'] = 200;
                     $data['msg'] = "Eliminado correctamente";
@@ -68,6 +74,8 @@ class ClienteController extends AdminController
         // var_dump($data);
         $mostrar = empty($data['mostrar']) ? 0 : 1;
 
+        
+
         $facturacion = DatosFacturacion::create([
             'razon_social' => empty($data['razon']) ? null : $data['razon'],
             'rfc' => empty($data['rfcfactura']) ? null : $data['rfcfactura'],
@@ -86,7 +94,6 @@ class ClienteController extends AdminController
         if($facturacion){
 
             $response = Cliente::create([
-                'numero_cliente' => empty($data['nocliente']) ? null : $data['nocliente'],
                 'clave' => empty($data['clave']) ? null : $data['clave'],
                 'representante' => empty($data['representante']) ? null : $data['representante'],
                 'nombre' => empty($data['nombre']) ? null : $data['nombre'],
@@ -101,6 +108,18 @@ class ClienteController extends AdminController
                 'id_facturacion' => $facturacion->id,
             ]); 
             if($response){
+                if($data['grupo'] == 'new'){
+                    $grupo = DB::table('grupos')->insertGetId([
+                        'nombre' => $data['nombreGrupo']
+                    ]);
+                }
+                
+                if($data['grupo'] != 0 )
+                    $grupo = ($data['grupo'] != 'new') ? $data['grupo'] : $grupo;
+                    $grupo_cliente = DB::table('grupos_clientes')->insert([
+                        'id_grupo' => $grupo,
+                        'id_cliente' => $response->id,
+                ]);
                 $data['code'] = 200;
                 $data['msg'] = "Usuario creado correctamente";
             }else{
@@ -143,7 +162,6 @@ class ClienteController extends AdminController
         if($facturacion){
 
             $response = Cliente::where('id', $data['id'])->update([
-                'numero_cliente' => empty($data['nocliente']) ? null : $data['nocliente'],
                 'clave' => empty($data['clave']) ? null : $data['clave'],
                 'representante' => empty($data['representante']) ? null : $data['representante'],
                 'nombre' => empty($data['nombre']) ? null : $data['nombre'],
@@ -157,6 +175,22 @@ class ClienteController extends AdminController
                 'dias_credito' => empty($data['dias']) ? null : $data['dias'],
             ]); 
             if($response){
+
+                DB::table('grupos_clientes')->where('id_cliente', $data['id'])->delete();
+
+                if($data['grupo'] == 'new'){
+                    $grupo = DB::table('grupos')->insertGetId([
+                        'nombre' => $data['nombreGrupo']
+                    ]);
+                }
+                
+                if($data['grupo'] != 0 )
+                    $grupo = ($data['grupo'] != 'new') ? $data['grupo'] : $grupo;
+                    $grupo_cliente = DB::table('grupos_clientes')->insert([
+                        'id_grupo' => $grupo,
+                        'id_cliente' => $data['id'],
+                ]);
+
                 $data['code'] = 200;
                 $data['msg'] = "Usuario modificado con exito";
             }else{
