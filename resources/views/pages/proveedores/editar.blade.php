@@ -33,14 +33,14 @@
                             Representante
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-representante"></label>
-                        <input class="form-control" type="text" name="representante" id="representante" value="{{ $proveedor->representante ? $proveedor->representante : ''}}">
+                        <input class="form-control" type="text" name="representante" onkeyup="validateFormProveedor()" id="representante" value="{{ $proveedor->representante ? $proveedor->representante : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Nombre
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-nombre"></label>
-                        <input class="form-control" type="text" name="nombre" id="nombre" value="{{ $proveedor->nombre ? $proveedor->nombre : ''}}">
+                        <input class="form-control" type="text" name="nombre" id="nombre" onkeyup="validateFormProveedor()" value="{{ $proveedor->nombre ? $proveedor->nombre : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -54,7 +54,7 @@
                             RFC
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-rfc"></label>
-                        <input class="form-control" maxlength="13" onkeyup="copiarRFC(this)" type="text" name="rfc" id="rfc" value="{{ $proveedor->rfc ? $proveedor->rfc : ''}}">
+                        <input class="form-control" maxlength="13" onkeyup="validateFormProveedor()" onkeyup="copiarRFC(this)" type="text" name="rfc" id="rfc" value="{{ $proveedor->rfc ? $proveedor->rfc : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -68,21 +68,21 @@
                             Telefono
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-telefono"></label>
-                        <input class="form-control" type="text" name="telefono" id="telefono" value="{{ $proveedor->telefono ? $proveedor->telefono : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="telefono" id="telefono" value="{{ $proveedor->telefono ? $proveedor->telefono : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Celular
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-celular"></label>
-                        <input class="form-control" type="text" name="celular" id="celular" value="{{ $proveedor->celular ? $proveedor->celular : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="celular" id="celular" value="{{ $proveedor->celular ? $proveedor->celular : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Email
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-email"></label>
-                        <input class="form-control" type="text" name="email" id="email" value="{{ $proveedor->email ? $proveedor->email : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="email" id="email" value="{{ $proveedor->email ? $proveedor->email : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -117,14 +117,14 @@
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-razon"></label>
                         <input class="form-control" type="hidden" name="id_factura" id="id_factura" placeholder="" value="{{$factura->id}}">
-                        <input class="form-control" type="text" name="razon" id="razon" value="{{ $factura->razon_social ? $factura->razon_social : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="razon" id="razon" value="{{ $factura->razon_social ? $factura->razon_social : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             RFC
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-rfcfactura"></label>
-                        <input class="form-control" type="text" name="rfcfactura" maxlength="13" id="rfcfactura" value="{{ $factura->rfc ? $factura->rfc : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="rfcfactura" maxlength="13" id="rfcfactura" value="{{ $factura->rfc ? $factura->rfc : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -138,7 +138,14 @@
                             Domicilio
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-domicilio"></label>
-                        <input class="form-control" type="text" name="domicilio" id="domicilio" value="{{ $factura->domicilio ? $factura->domicilio : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="domicilio" id="domicilio" value="{{ $factura->domicilio ? $factura->domicilio : ''}}">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="weight-600" for="rol" style="font-size: 16px">
+                            No. Exterior
+                        </label>
+                        <label class="form-control-label has-danger ml-2" id="msg-exterior"></label>
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="exterior" id="exterior" value="{{ $factura->numero_exterior ? $factura->numero_exterior : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-3">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -147,26 +154,19 @@
                         <label class="form-control-label has-danger ml-2" id="msg-interior"></label>
                         <input class="form-control" type="text" name="interior" id="interior" value="{{ $factura->numero_interior ? $factura->numero_interior : ''}}">
                     </div>
-                    <div class="form-group col-sm-12 col-md-3">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
-                            No. Exterior
-                        </label>
-                        <label class="form-control-label has-danger ml-2" id="msg-exterior"></label>
-                        <input class="form-control" type="text" name="exterior" id="exterior" value="{{ $factura->numero_exterior ? $factura->numero_exterior : ''}}">
-                    </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Colonia
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-colonia"></label>
-                        <input class="form-control" type="text" name="colonia" id="colonia" value="{{ $factura->colonia ? $factura->colonia : ''}}">
+                        <input class="form-control" type="text" name="colonia" onkeyup="validateFormProveedor()" id="colonia" value="{{ $factura->colonia ? $factura->colonia : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-2">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             C.P.
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-cp"></label>
-                        <input class="form-control" type="text" name="cp" id="cp" value="{{ $factura->cp ? $factura->cp : ''}}">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="cp" id="cp" value="{{ $factura->cp ? $factura->cp : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <label class="weight-600" for="rol" style="font-size: 16px">

@@ -32,14 +32,14 @@
                             Representante
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-representante"></label>
-                        <input class="form-control" type="text" name="representante" id="representante">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="representante" id="representante">
                     </div>
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Nombre
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-nombre"></label>
-                        <input class="form-control" type="text" name="nombre" id="nombre">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="nombre" id="nombre">
                     </div>
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -53,7 +53,7 @@
                             RFC
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-rfc"></label>
-                        <input class="form-control" maxlength="13" onkeyup="copiarRFC(this)" type="text" name="rfc" id="rfc">
+                        <input class="form-control" maxlength="13" onkeyup="validateFormProveedor()" onkeyup="copiarRFC(this)" type="text" name="rfc" id="rfc">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -67,21 +67,21 @@
                             Telefono
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-telefono"></label>
-                        <input class="form-control" type="text" name="telefono" id="telefono">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="telefono" id="telefono">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Celular
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-celular"></label>
-                        <input class="form-control" type="text" name="celular" id="celular">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="celular" id="celular">
                     </div>
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Email
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-email"></label>
-                        <input class="form-control" type="text" name="email" id="email">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="email" id="email">
                     </div>
                     <div class="form-group col-sm-12 col-md-12">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -115,14 +115,14 @@
                             Razon Social
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-razon"></label>
-                        <input class="form-control" type="text" name="razon" id="razon">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="razon" id="razon">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             RFC
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-rfcfactura"></label>
-                        <input class="form-control" maxlength="13" type="text" name="rfcfactura" id="rfcfactura">
+                        <input class="form-control" maxlength="13" onkeyup="validateFormProveedor()" type="text" name="rfcfactura" id="rfcfactura">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -136,7 +136,14 @@
                             Domicilio
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-domicilio"></label>
-                        <input class="form-control" type="text" name="domicilio" id="domicilio">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="domicilio" id="domicilio">
+                    </div>
+                    <div class="form-group col-sm-12 col-md-3">
+                        <label class="weight-600" for="rol" style="font-size: 16px">
+                            No. Exterior
+                        </label>
+                        <label class="form-control-label has-danger ml-2" id="msg-exterior"></label>
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="exterior" id="exterior">
                     </div>
                     <div class="form-group col-sm-12 col-md-3">
                         <label class="weight-600" for="rol" style="font-size: 16px">
@@ -145,26 +152,19 @@
                         <label class="form-control-label has-danger ml-2" id="msg-interior"></label>
                         <input class="form-control" type="text" name="interior" id="interior">
                     </div>
-                    <div class="form-group col-sm-12 col-md-3">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
-                            No. Exterior
-                        </label>
-                        <label class="form-control-label has-danger ml-2" id="msg-exterior"></label>
-                        <input class="form-control" type="text" name="exterior" id="exterior">
-                    </div>
                     <div class="form-group col-sm-12 col-md-6">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             Colonia
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-colonia"></label>
-                        <input class="form-control" type="text" name="colonia" id="colonia">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="colonia" id="colonia">
                     </div>
                     <div class="form-group col-sm-12 col-md-2">
                         <label class="weight-600" for="rol" style="font-size: 16px">
                             C.P.
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-cp"></label>
-                        <input class="form-control" type="text" name="cp" id="cp">
+                        <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="cp" id="cp">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
                         <label class="weight-600" for="rol" style="font-size: 16px">

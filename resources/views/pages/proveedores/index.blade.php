@@ -29,7 +29,7 @@
                         <th class="col-1 text-center" >ID</th>
                         <th class="col-3 text-center">Nombre</th>
                         <th class="col-3 text-center">Telefono</th>
-                        <th class="col-2 text-center">No. Precio</th>
+                        <th class="col-2 text-center">Email</th>
                         <th class="col-3 text-center">Acciones</th>
                     </tr>
                 </thead>
@@ -39,7 +39,7 @@
                         <td class="text-center">{{ $item->id }}</td>
                         <td class="text-center">{{ $item->nombre }}</td>
                         <td class="text-center">{{ $item->telefono }}</td>
-                        <td class="text-center">{{ $item->numero_precio }}</td>
+                        <td class="text-center">{{ $item->email }}</td>
                         <td class="text-center">
                             <a class="btn btn-info btn-circle btn-xl" href="{{ url('proveedores/editar/' . $item->id) }}">
                                 <i class="icon-copy dw dw-edit-1"></i>
