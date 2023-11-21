@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div> -->
-        <div class="card text-center">
+        <div class="card ">
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
@@ -45,78 +45,74 @@
             <div class="tab-content" id="pills-tabContent">
                 <div class="card-body tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <form id="formEmpresa">
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Nombre</label>
-                        <div class="col-sm-12 col-md-10">
+                    <div class="row">
+                        <div class="form-group col-md-12 mb-0">
+                            <label class="form-label">Nombre</label>
+                            <label class="form-control-label has-danger " id="msg-nombre"></label>
                             <input class="form-control" type="hidden" name="id" placeholder="" value="{{ $empresa->id ? $empresa->id : ''}}">
-                            <input class="form-control" type="text" name="nombre" placeholder="" value="{{ $empresa->nombre ? $empresa->nombre : ''}}">
+                            <input class="form-control" type="text" onkeyup="validateFormEmpresa()" id="nombre" name="nombre" placeholder="" value="{{ $empresa->nombre ? $empresa->nombre : ''}}">
+
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">R.F.C</label>
-                        <div class="col-sm-12 col-md-4">
-                            <input class="form-control" maxlength="13" type="text" name="rfc" placeholder="" value="{{ $empresa->rfc ? $empresa->rfc : ''}}">
+                        <div class="form-group col-md-6 mb-0">
+                            <label class="form-label">R.F.C</label>
+                            <label class="form-control-label has-danger " id="msg-rfc"></label>
+                            <input class="form-control" maxlength="13" type="text" onkeyup="validateFormEmpresa()" id="rfc" name="rfc" placeholder="" value="{{ $empresa->rfc ? $empresa->rfc : ''}}">
                         </div>
-                        <label class="col-sm-12 col-md-2 col-form-label">CURP</label>
-                        <div class="col-sm-12 col-md-4">
-                            <input class="form-control" maxlength="18" type="text" name="curp" placeholder="" value="{{ $empresa->curp ? $empresa->curp : ''}}" >
+                        <div class="form-group col-md-6 mb-0">
+                            <label class="form-label">CURP</label>
+                            <input class="form-control" maxlength="18" type="text" onkeyup="validateFormEmpresa()" id="curp" name="curp" placeholder="" value="{{ $empresa->curp ? $empresa->curp : ''}}" >
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Domicilio</label>
-                        <div class="col-sm-12 col-md-5">
-                        <input class="form-control" type="text" placeholder="" name="domicilio" value="{{ $empresa->domicilio ? $empresa->domicilio : ''}}">
+                        <div class="form-group col-md-6 mb-0">
+                            <label class="form-label">Domicilio</label>
+                            <label class="form-control-label has-danger ml-2" id="msg-domicilio"></label>
+                            <input class="form-control" type="text" onkeyup="validateFormEmpresa()" id="domicilio" placeholder="" name="domicilio" value="{{ $empresa->domicilio ? $empresa->domicilio : ''}}">
                         </div>
-                        <label class="col-sm-12 col-md-1 col-form-label">No. Int.</label>
-                        <div class="col-sm-12 col-md-1">
-                            <input class="form-control" type="text" placeholder="" name="no_int" value="{{ $empresa->numero_interior ? $empresa->numero_interior : ''}}" >
+                        <div class="form-group col-md-3 mb-0">
+                            <label class="form-label">No. Ext.</label>
+                            <label class="form-control-label has-danger ml-2" id="msg-noext"></label>
+                            <input class="form-control" type="text" onkeyup="validateFormEmpresa()" id="no_ext" placeholder="" name="no_ext" value="{{ $empresa->numero_exterior ? $empresa->numero_exterior : ''}}" >
                         </div>
-                        <label class="col-sm-12 col-md-1 col-form-label">No. Ext.</label>
-                        <div class="col-sm-12 col-md-1">
-                            <input class="form-control" type="text" placeholder="" name="no_ext" value="{{ $empresa->numero_exterior ? $empresa->numero_exterior : ''}}" >
+                        <div class="form-group col-md-3 mb-0">
+                            <label class="form-label">No. Int.</label>
+                            <input class="form-control" type="text" onkeyup="validateFormEmpresa()" id="no_int" placeholder="" name="no_int" value="{{ $empresa->numero_interior ? $empresa->numero_interior : ''}}" >
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Colonia</label>
-                        <div class="col-sm-12 col-md-6">
-                        <input class="form-control" type="text" placeholder="" name="colonia" value="{{ $empresa->colonia ? $empresa->colonia : ''}}">
+                        <div class="form-group col-md-8 mb-0">
+                            <label class="form-label">Colonia</label>
+                            <input class="form-control" type="text" onkeyup="validateFormEmpresa()" id="colonia" placeholder="" name="colonia" value="{{ $empresa->colonia ? $empresa->colonia : ''}}">
                         </div>
-                        <label class="col-sm-12 col-md-2 col-form-label">C.P.</label>
-                        <div class="col-sm-12 col-md-2">
-                            <input class="form-control" type="text" placeholder="" name="cp" value="{{ $empresa->cp ? $empresa->cp : ''}}" >
+                        <div class="form-group col-md-4 mb-0">
+                            <label class="form-label">C.P.</label>
+                            <input class="form-control" type="text" onkeyup="validateFormEmpresa()" id="cp" placeholder="" name="cp" value="{{ $empresa->cp ? $empresa->cp : ''}}" >
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Ciudad</label>
-                        <div class="col-sm-12 col-md-5">
-                            <input class="form-control" type="text" placeholder="" name="ciudad" value="{{ $empresa->ciudad ? $empresa->ciudad : ''}}">
+                        <div class="form-group col-md-6 mb-0">
+                            <label class="form-label">Ciudad</label>
+                            <input class="form-control" type="text" onkeyup="validateFormEmpresa()" id="ciudad" placeholder="" name="ciudad" value="{{ $empresa->ciudad ? $empresa->ciudad : ''}}">
                         </div>
-                        <label class="col-sm-12 col-md-2 col-form-label">Estado</label>
-                        <div class="col-sm-12 col-md-3">
-                            <input class="form-control" type="text" placeholder="" name="estado" value="{{ $empresa->estado ? $empresa->estado : ''}}" >
+                        <div class="form-group col-md-6 mb-0">
+                            <label class="form-label">Estado</label>
+                            <input class="form-control" type="text" onkeyup="validateFormEmpresa()" id="estado" placeholder="" name="estado" value="{{ $empresa->estado ? $empresa->estado : ''}}" >
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Telefo</label>
-                        <div class="col-sm-12 col-md-4">
-                            <input class="form-control" type="text" placeholder="" name="telefono" value="{{ $empresa->telefono ? $empresa->telefono : ''}}">
+                        <div class="form-group col-md-6 mb-0">
+                            <label class="form-label">Telefo</label>
+                            <label class="form-control-label has-danger ml-2" id="msg-telefono"></label>
+                            <input class="form-control" type="text" onkeyup="validateFormEmpresa()" id="telefono" placeholder="" name="telefono" value="{{ $empresa->telefono ? $empresa->telefono : ''}}">
                         </div>
-                        <label class="col-sm-12 col-md-2 col-form-label">Celular</label>
-                        <div class="col-sm-12 col-md-4">
-                            <input class="form-control" type="text" placeholder="" name="celular" value="{{ $empresa->celular ? $empresa->celular : ''}}" >
+                        <div class="form-group col-md-6 mb-0">
+                            <label class="form-label">Celular</label>
+                            <label class="form-control-label has-danger ml-2" id="msg-celular"></label>
+                            <input class="form-control" type="text" onkeyup="validateFormEmpresa()" id="celular" placeholder="" name="celular" value="{{ $empresa->celular ? $empresa->celular : ''}}" >
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label">Email</label>
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" type="text" placeholder="" name="email" value="{{ $empresa->email ? $empresa->email : ''}}">
+                        <div class="form-group col-md-12 mb-0">
+                            <label class="form-label">Email</label>
+                            <label class="form-control-label has-danger ml-2" id="msg-email"></label>                    
+                            <input class="form-control" type="text" onkeyup="validateFormEmpresa()" id="email" placeholder="" name="email" value="{{ $empresa->email ? $empresa->email : ''}}">                        
                         </div>
-                    </div>
-                    <div class="form-group row text-right px-4 float-right">
+                        <div class="form-group col-md-12 mb-0 text-right px-4 mt-3 float-right">
                             <button id="btnEmpresa" class="btn btn-success" type="button">
                                 Actualizar <i class="icon-copy dw dw-add"></i>
                             </button>
                         </div>
+                    </div>
                 </form>
                 </div>
                 <div class="container card-body tab-pane" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">                    
@@ -126,38 +122,41 @@
                         </button>
                     </div>
                     <div class="modal" id="cuenta-modal" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-dialog modal-dialog-centered ">
                             <div class="modal-content">
                                 <div class="login-box bg-white">
                                     <div class="login-title">
                                         <h2 class="text-center text-primary">Agregar Cuenta Bancaria</h2>
                                     </div>
-                                    <form id="formCuenta">
-                                        <input class="form-control" type="hidden" name="id" id="id" placeholder="" value="">
-                                        <input class="form-control" type="hidden" name="id_empresa" placeholder="" value="{{ $empresa->id ? $empresa->id : ''}}">
-                                        <div class="input-group custom">
-                                            <input type="text" name="cuenta" id="cuenta" class="form-control form-control-lg" placeholder="Cuenta">
-                                        </div>
-                                        <div class="input-group custom">
-                                            <input type="text" name="sucursal" id="sucursal" class="form-control form-control-lg" placeholder="Sucursal">
-                                        </div>
-                                        <div class="input-group custom">
-                                            <input type="text" name="clave" id="clave" class="form-control form-control-lg" placeholder="Clave">
-                                        </div>
-                                        <div class="input-group custom">
-                                            <input type="text" name="banco" id="banco" class="form-control form-control-lg" placeholder="Banco">
-                                        </div>
-                                        <div class="input-group custom">
-                                            <input type="text" name="contable" id="contable" class="form-control form-control-lg" placeholder="Cuenta contable">
-                                        </div>
-                                        <div class="row pb-30">
-                                            <div class="col-12">
+                                    <form id="formCuenta" class="">
+                                        <div class="row">
+                                            <div class="form-group col-md-12 mb-0">
+                                                <input class="form-control" type="hidden" name="id" id="id" placeholder="" value="">
+                                                <input class="form-control" type="hidden" name="id_empresa" placeholder="" value="{{ $empresa->id ? $empresa->id : ''}}">
+                                                <input type="text" name="cuenta" id="cuenta" class="form-control " placeholder="Cuenta" onkeyup="validateFormCuenta()">
+                                                <label class="form-control-feedback has-danger " id="msg-cuenta"></label>                                                
+                                            </div>
+                                            <div class="form-group col-md-12 mb-4">
+                                                <input type="text" name="sucursal" id="sucursal" class="form-control form-control-lg" placeholder="Sucursal">
+                                            </div>
+                                            <div class="form-group col-md-12 mb-1">
+                                                <input type="text" name="clave" id="clave" class="form-control " placeholder="Clave" onkeyup="validateFormCuenta()">
+                                                <label class="form-control-feedback has-danger" id="msg-clave"></label>
+                                            </div>
+                                            <div class="form-group col-md-12 mb-1">
+                                                <input type="text" name="banco" id="banco" class="form-control " placeholder="Banco" onkeyup="validateFormCuenta()">
+                                                <label class="form-control-feedback has-danger" id="msg-banco"></label>
+                                            </div>
+                                            <div class="form-group col-md-12 mb-2">
+                                                <input type="text" name="contable" id="contable" class="form-control form-control-lg" placeholder="Cuenta contable">
+                                            </div>
+                                            <div class="col-md-12 mb-2 mt-2 text-center">
                                                 <div class="custom-control custom-checkbox">
                                                     <input type="checkbox" class="custom-control-input" id="mostrar" name="mostrar">
                                                     <label class="custom-control-label" for="mostrar">Mostrar</label>
                                                 </div>
                                             </div>
-                                        </div>                                                                            
+                                        </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Cerrar</button> 
                                             <button type="button" id="btnCuenta" class="btn btn-success">Agregar</button>

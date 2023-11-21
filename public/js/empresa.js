@@ -1,4 +1,14 @@
-$("#btnEmpresa").click(function(){
+$("#btnEmpresa").click(function (){
+    createEmpresa();
+});
+
+const createEmpresa = async () => {
+    let validate = await validateFormEmpresa();
+    if (!validate) {
+        toastr.error("Campos Obligatorios.");
+        return;
+    }
+
     var datos = $("#formEmpresa").serialize();
     alertLoading(true);
     axios
@@ -13,10 +23,114 @@ $("#btnEmpresa").click(function(){
             alertLoading(false);
             alertDefault("¡Error!", "error del servidor", "error");
         });
-    // console.log(datos);
-});
+};
+
+const validateFormEmpresa= () => {
+    let bandera = true;
+    let nombre = $("#nombre").val();
+    let rfc = $("#rfc").val();
+    let domicilio = $("#domicilio").val();
+    console.log(domicilio);
+    let telefono = $("#telefono").val();
+    let celular = $("#celular").val();
+    let email = $("#email").val();
+
+    if (nombre == "" || nombre == undefined) {
+        $("#msg-nombre").html("* Obligatorio");
+        $("#nombre").addClass("form-control-danger");
+        bandera = false;
+    } else {
+        $("#msg-nombre").html("");
+        $("#nombre").removeClass("form-control-danger");
+    }
+    if (domicilio == "" || domicilio == undefined || domicilio.length < 5) {
+        $("#msg-domicilio").html("* Obligatorio (min 5 dígitos)");
+        $("#domicilio").addClass("form-control-danger");
+        bandera = false;
+    } else {
+        $("#msg-domicilio").html("");
+        $("#domicilio").removeClass("form-control-danger");
+    }
+    if (rfc == "" || rfc == undefined || rfc.length < 12) {
+        $("#msg-rfc").html("* Obligatorio (12 dígitos minimo)");
+        $("#rfc").addClass("form-control-danger");
+        bandera = false;
+    } else {
+        $("#msg-rfc").html("");
+        $("#rfc").removeClass("form-control-danger");
+    }
+    if (!ValidatarEmail(email)) {
+        $("#msg-email").html("* Email no valido");
+        $("#email").addClass("form-control-danger");
+        bandera = false;
+    } else {
+        $("#msg-email").html("");
+        $("#email").removeClass("form-control-danger");
+    }
+    if (telefono == "" || telefono == undefined || telefono.length < 8) {
+        $("#msg-telefono").html("* Obligatorio (min 8 dígitos)");
+        $("#telefono").addClass("form-control-danger");
+        bandera = false;
+    } else {
+        $("#msg-telefono").html("");
+        $("#telefono").removeClass("form-control-danger");
+    }
+    if (celular == "" || celular == undefined || celular.length < 10) {
+        $("#msg-celular").html("* Obligatorio (min 10 dígitos)");
+        $("#celular").addClass("form-control-danger");
+        bandera = false;
+    } else {
+        $("#msg-celular").html("");
+        $("#celular").removeClass("form-control-danger");
+    }
+    return bandera;
+};
+
+const validateFormCuenta= () => {
+    let bandera = true;
+    let cuenta = $("#cuenta").val();
+    let clave = $("#clave").val();
+    let banco = $("#banco").val();
+
+    if (cuenta == "" || cuenta == undefined) {
+        $("#msg-cuenta").html("* Obligatorio");
+        $("#cuenta").addClass("form-control-danger");
+        bandera = false;
+    } else {
+        $("#msg-cuenta").html("");
+        $("#cuenta").removeClass("form-control-danger");
+    }
+    if (clave == "" || clave == undefined || clave.length < 12) {
+        $("#msg-clave").html("* Obligatorio");
+        $("#clave").addClass("form-control-danger");
+        bandera = false;
+    } else {
+        $("#msg-clave").html("");
+        $("#clave").removeClass("form-control-danger");
+    }
+    if (banco == "" || banco == undefined) {
+        $("#msg-banco").html("* Obligatorio");
+        $("#banco").addClass("form-control-danger");
+        bandera = false;
+    } else {
+        $("#msg-banco").html("");
+        $("#banco").removeClass("form-control-danger");
+    }
+
+    return bandera;
+};
 
 $("#btnCuenta").click(function(){
+    createCuenta();
+});
+
+const createCuenta = async() =>{
+    let validate = await validateFormCuenta();
+    if (!validate) {
+        toastr.error("Campos Obligatorios.");
+        return;
+    }
+
     var datos = $("#formCuenta").serialize();
     var a = $("#mostrar").val();
     console.log(datos);
@@ -34,7 +148,7 @@ $("#btnCuenta").click(function(){
             alertLoading(false);
             alertDefault("¡Error!", "error del servidor", "error");
         });
-});
+}
 
 const openModal = (obj) => {
     let data = JSON.parse(obj.id);
