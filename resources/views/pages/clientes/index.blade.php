@@ -32,12 +32,12 @@
             <table class="data-table table hover nowrap mb-0">
                 <thead>
                     <tr>
-                        <th class="col-1 text-center">ID</th>
-                        <th class="col-2 text-center">Clave</th>
-                        <th class="col-3">Nombre</th>
-                        <th class="col-3">Telefono</th>
-                        <th class="col-1">Email</th>
-                        <th class="col-2 text-center">Acciones</th>
+                        <th class="col-1 text-uppercase text-center">ID</th>
+                        <th class="col-2 text-uppercase text-center">Clave</th>
+                        <th class="col-3 text-uppercase">Nombre</th>
+                        <th class="col-3 text-uppercase">Telefono</th>
+                        <th class="col-1 text-uppercase">Email</th>
+                        <th class="col-2 text-uppercase text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>

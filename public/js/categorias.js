@@ -1,21 +1,26 @@
-const openModalCrearUnidad = () => {
-    $("#crear-unidad-modal").modal("show");
+const openModalCrearCategoria = () => {
+    $("#crear-categoria-modal").modal("show");
 };
 
-const FormCreateUnidad = async () => {
-    let validate = await validateFormUnidad();
+const FormCreateCategoria = async () => {
+    let validate = await validateFormCreateCategoria();
     if (!validate) {
         toastr.error("Campo Obligatorio.");
         return;
     }
     alertLoading(true);
     axios
-        .post("/unidades/crear", $("#FormCreateUnidad").serialize())
+        .post("/categorias/crear", $("#FormCreateCategoria").serialize())
         .then(function ({ data }) {
             alertLoading(false);
             let { stats } = data;
             if (stats.status == "success") {
-                alertDefault("¡Exito!", stats.message, "success", "/unidades");
+                alertDefault(
+                    "¡Exito!",
+                    stats.message,
+                    "success",
+                    "/categorias"
+                );
             } else {
                 alertDefault("¡Error!", stats.message, "error");
             }
@@ -25,23 +30,25 @@ const FormCreateUnidad = async () => {
         });
 };
 
-const validateFormUnidad = () => {
+const validateFormCreateCategoria = () => {
     let bandera = true;
-    let nombre = $("#nombre").val();
-    if (nombre == "" || nombre.length < 1) {
-        $("#advertencia-nombre").html("* Obligatorio (minimo 1 digito)");
-        $("#nombre").addClass("form-control-danger");
+    let nombre = $("#nombre-categoria").val();
+    if (nombre == "" || nombre.length < 4) {
+        $("#advertencia-nombre-categoria").html(
+            "* Obligatorio (minimo 4 digitos)"
+        );
+        $("#nombre-categoria").addClass("form-control-danger");
         bandera = false;
     } else {
-        $("#advertencia-nombre").html("");
-        $("#nombre").removeClass("form-control-danger");
+        $("#advertencia-nombre-categoria").html("");
+        $("#nombre-categoria").removeClass("form-control-danger");
     }
     return bandera;
 };
 
-const openModalEditarUnidad = async (obj) => {
-    let idUnidad = obj.id;
-    let response = await axios("/unidades/editar/" + idUnidad)
+const openModalEditarCategoria = async (obj) => {
+    let id = obj.id;
+    let response = await axios("/categorias/editar/" + id)
         .then(function ({ data }) {
             let { stats, responseData } = data;
             if (stats.status == "success") {
@@ -54,30 +61,35 @@ const openModalEditarUnidad = async (obj) => {
             return null;
         });
     if (response) {
-        $("#idEditar").val(response.id);
-        $("#nombreEditar").val(response.unidad);
-        $("#claveEditar").val(response.clave_sat);
-        $("#activoEditar").select2().val(response.activo).trigger("change");
-        $("#editar-unidad-modal").modal("show");
+        $("#id-categoria").val(response.id);
+        $("#nombre-categoria-editar").val(response.categoria);
+        $("#id-departamento-categoria-editar").select2().val(response.id_departamento).trigger("change");
+        $("#activo-categoria").select2().val(response.activo).trigger("change");
+        $("#editar-categoria-modal").modal("show");
     } else {
         toastr.error("Ocurrio un error.");
     }
 };
 
-const FormEditUnidad = async () => {
-    let validate = await validateFormEditUnidad();
+const FormEditCategoria = async () => {
+    let validate = await validateFormEditCategoria();
     if (!validate) {
         toastr.error("Campo Obligatorio.");
         return;
     }
     alertLoading(true);
     axios
-        .put("/unidades/editar", $("#FormEditUnidad").serialize())
+        .put("/categorias/editar", $("#FormEditCategoria").serialize())
         .then(function ({ data }) {
             alertLoading(false);
             let { stats } = data;
             if (stats.status == "success") {
-                alertDefault("¡Exito!", stats.message, "success", "/unidades");
+                alertDefault(
+                    "¡Exito!",
+                    stats.message,
+                    "success",
+                    "/categorias"
+                );
             } else {
                 alertDefault("¡Error!", stats.message, "error");
             }
@@ -87,23 +99,25 @@ const FormEditUnidad = async () => {
         });
 };
 
-const validateFormEditUnidad = () => {
+const validateFormEditCategoria = () => {
     let bandera = true;
-    let nombre = $("#nombreEditar").val();
-    if (nombre == "" || nombre.length < 1) {
-        $("#advertencia-nombreEditar").html("* Obligatorio");
-        $("#nombreEditar").addClass("form-control-danger");
+    let nombre = $("#nombre-categoria-editar").val();
+    if (nombre == "" || nombre.length < 4) {
+        $("#advertencia-nombre-categoria-editar").html(
+            "* Obligatorio (minimo 4 digitos)"
+        );
+        $("#nombre-categoria-editar").addClass("form-control-danger");
         bandera = false;
     } else {
-        $("#advertencia-nombreEditar").html("");
-        $("#nombreEditar").removeClass("form-control-danger");
+        $("#advertencia-nombre-categoria-editar").html("");
+        $("#nombre-categoria-editar").removeClass("form-control-danger");
     }
     return bandera;
 };
 
-const ChangeStatusUnidad = (obj) => {
-    let idUnidad = obj.id;
-    let estatus = $(`#${idUnidad}`).prop("checked") ? 1 : 0;
+const ChangeStatusCategoria = (obj) => {
+    let idCategoria = obj.id;
+    let estatus = $(`#${idCategoria}`).prop("checked") ? 1 : 0;
     Swal.fire({
         icon: "question",
         text: "¿Estás seguro de cambiar el estatus?",
@@ -115,16 +129,16 @@ const ChangeStatusUnidad = (obj) => {
         width: 400,
     }).then((result) => {
         if (result.isConfirmed) {
-            validChangeStatusUnidad(idUnidad, estatus);
+            validChangeStatusCategoria(idCategoria, estatus);
         } else {
-            $(`#${idUnidad}`).prop("checked", !estatus);
+            $(`#${idCategoria}`).prop("checked", !estatus);
         }
     });
 };
 
-const validChangeStatusUnidad = (id, estatus) => {
+const validChangeStatusCategoria = (id, estatus) => {
     axios
-        .put("/unidades/estatus/editar", { id: id, estatus: estatus })
+        .put("/categorias/estatus/editar", { id: id, estatus: estatus })
         .then(function ({ data }) {
             let { stats } = data;
             if (stats.status == "success") {
@@ -140,10 +154,10 @@ const validChangeStatusUnidad = (id, estatus) => {
         });
 };
 
-const DeleteUnidad = (obj) => {
+const DeleteCategoria = (obj) => {
     Swal.fire({
         title: "¿Estás seguro de realizar esta acción?",
-        html: "Se eliminará la unidad permanentemente.",
+        html: "Se eliminará la categoría permanentemente.",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#00a676",
@@ -153,18 +167,18 @@ const DeleteUnidad = (obj) => {
         width: 400,
     }).then((result) => {
         if (result.isConfirmed) {
-            ActionDeleteUnidad(obj.id);
+            ActionDeleteCategoria(obj.id);
         }
     });
 };
 
-const ActionDeleteUnidad = (id) => {
+const ActionDeleteCategoria = (id) => {
     axios
-        .delete("/unidades/eliminar", { params: { id: id } })
+        .delete("/categorias/eliminar", { params: { id: id } })
         .then(function ({ data }) {
             let { stats } = data;
             if (stats.status == "success") {
-                alertDefault("¡Exito!", stats.message, "success", "/unidades");
+                alertDefault("¡Exito!", stats.message, "success", "/categorias");
             } else {
                 alertDefault("¡Error!", stats.message, "error");
             }
@@ -175,13 +189,13 @@ const ActionDeleteUnidad = (id) => {
 };
 
 $(function () {
-    $("#FormCreateUnidad").on("submit", function (event) {
+    $("#FormCreateCategoria").on("submit", function (event) {
         event.preventDefault();
-        FormCreateUnidad();
+        FormCreateCategoria();
     });
 
-    $("#FormEditUnidad").on("submit", function (event) {
+    $("#FormEditCategoria").on("submit", function (event) {
         event.preventDefault();
-        FormEditUnidad();
+        FormEditCategoria();
     });
 });

@@ -13,7 +13,7 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Inicio</a></li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <a href="{{ route('empleados') }}">Artículos</a>
+                                <a href="{{ route('articulos') }}">Artículos</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Crear</li>
                         </ol>
@@ -23,7 +23,7 @@
                     <button class="btn btn-dark mb-3" onclick="GenerarClave();">
                         GENERAR CLAVE <i class="icon-copy dw dw-key1 ml-1"></i>
                     </button>
-                    <a class="btn btn-secondary mb-3" href="{{ route('empleados') }}">
+                    <a class="btn btn-secondary mb-3" href="{{ route('articulos') }}">
                         REGRESAR <i class="icon-copy dw dw-curved-arrow1 ml-1"></i>
                     </a>
                 </div>

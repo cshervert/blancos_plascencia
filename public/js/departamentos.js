@@ -1,21 +1,26 @@
-const openModalCrearUnidad = () => {
-    $("#crear-unidad-modal").modal("show");
+const openModalCrearDepartamento = () => {
+    $("#crear-departamento-modal").modal("show");
 };
 
-const FormCreateUnidad = async () => {
-    let validate = await validateFormUnidad();
+const FormCreateDepartamento = async () => {
+    let validate = await validateFormDepartamento();
     if (!validate) {
         toastr.error("Campo Obligatorio.");
         return;
     }
     alertLoading(true);
     axios
-        .post("/unidades/crear", $("#FormCreateUnidad").serialize())
+        .post("/departamentos/crear", $("#FormCreateDepartamento").serialize())
         .then(function ({ data }) {
             alertLoading(false);
             let { stats } = data;
             if (stats.status == "success") {
-                alertDefault("¡Exito!", stats.message, "success", "/unidades");
+                alertDefault(
+                    "¡Exito!",
+                    stats.message,
+                    "success",
+                    "/departamentos"
+                );
             } else {
                 alertDefault("¡Error!", stats.message, "error");
             }
@@ -25,23 +30,25 @@ const FormCreateUnidad = async () => {
         });
 };
 
-const validateFormUnidad = () => {
+const validateFormDepartamento = () => {
     let bandera = true;
-    let nombre = $("#nombre").val();
-    if (nombre == "" || nombre.length < 1) {
-        $("#advertencia-nombre").html("* Obligatorio (minimo 1 digito)");
-        $("#nombre").addClass("form-control-danger");
+    let nombre = $("#nombre-departamento").val();
+    if (nombre == "" || nombre.length < 4) {
+        $("#advertencia-nombre-departamento").html(
+            "* Obligatorio (minimo 4 digitos)"
+        );
+        $("#nombre-departamento").addClass("form-control-danger");
         bandera = false;
     } else {
-        $("#advertencia-nombre").html("");
-        $("#nombre").removeClass("form-control-danger");
+        $("#advertencia-nombre-departamento").html("");
+        $("#nombre-departamento").removeClass("form-control-danger");
     }
     return bandera;
 };
 
-const openModalEditarUnidad = async (obj) => {
-    let idUnidad = obj.id;
-    let response = await axios("/unidades/editar/" + idUnidad)
+const openModalEditarDepartamento = async (obj) => {
+    let id = obj.id;
+    let response = await axios("/departamentos/editar/" + id)
         .then(function ({ data }) {
             let { stats, responseData } = data;
             if (stats.status == "success") {
@@ -54,30 +61,37 @@ const openModalEditarUnidad = async (obj) => {
             return null;
         });
     if (response) {
-        $("#idEditar").val(response.id);
-        $("#nombreEditar").val(response.unidad);
-        $("#claveEditar").val(response.clave_sat);
-        $("#activoEditar").select2().val(response.activo).trigger("change");
-        $("#editar-unidad-modal").modal("show");
+        $("#id-departamento").val(response.id);
+        $("#nombre-departamento-editar").val(response.departamento);
+        $("#activo-departamento")
+            .select2()
+            .val(response.activo)
+            .trigger("change");
+        $("#editar-departamento-modal").modal("show");
     } else {
         toastr.error("Ocurrio un error.");
     }
 };
 
-const FormEditUnidad = async () => {
-    let validate = await validateFormEditUnidad();
+const FormUpdateDepartamento = async () => {
+    let validate = await validateFormDepartamentoEditar();
     if (!validate) {
         toastr.error("Campo Obligatorio.");
         return;
     }
     alertLoading(true);
     axios
-        .put("/unidades/editar", $("#FormEditUnidad").serialize())
+        .put("/departamentos/editar", $("#FormUpdateDepartamento").serialize())
         .then(function ({ data }) {
             alertLoading(false);
             let { stats } = data;
             if (stats.status == "success") {
-                alertDefault("¡Exito!", stats.message, "success", "/unidades");
+                alertDefault(
+                    "¡Exito!",
+                    stats.message,
+                    "success",
+                    "/departamentos"
+                );
             } else {
                 alertDefault("¡Error!", stats.message, "error");
             }
@@ -87,23 +101,25 @@ const FormEditUnidad = async () => {
         });
 };
 
-const validateFormEditUnidad = () => {
+const validateFormDepartamentoEditar = () => {
     let bandera = true;
-    let nombre = $("#nombreEditar").val();
-    if (nombre == "" || nombre.length < 1) {
-        $("#advertencia-nombreEditar").html("* Obligatorio");
-        $("#nombreEditar").addClass("form-control-danger");
+    let nombre = $("#nombre-departamento-editar").val();
+    if (nombre == "" || nombre.length < 4) {
+        $("#advertencia-nombre-departamento-editar").html(
+            "* Obligatorio (minimo 4 digitos)"
+        );
+        $("#nombre-departamento-editar").addClass("form-control-danger");
         bandera = false;
     } else {
-        $("#advertencia-nombreEditar").html("");
-        $("#nombreEditar").removeClass("form-control-danger");
+        $("#advertencia-nombre-departamento-editar").html("");
+        $("#nombre-departamento-editar").removeClass("form-control-danger");
     }
     return bandera;
 };
 
-const ChangeStatusUnidad = (obj) => {
-    let idUnidad = obj.id;
-    let estatus = $(`#${idUnidad}`).prop("checked") ? 1 : 0;
+const ChangeStatusDepartamento = (obj) => {
+    let idDepartamento = obj.id;
+    let estatus = $(`#${idDepartamento}`).prop("checked") ? 1 : 0;
     Swal.fire({
         icon: "question",
         text: "¿Estás seguro de cambiar el estatus?",
@@ -115,16 +131,16 @@ const ChangeStatusUnidad = (obj) => {
         width: 400,
     }).then((result) => {
         if (result.isConfirmed) {
-            validChangeStatusUnidad(idUnidad, estatus);
+            validChangeStatusDepartamento(idDepartamento, estatus);
         } else {
-            $(`#${idUnidad}`).prop("checked", !estatus);
+            $(`#${idDepartamento}`).prop("checked", !estatus);
         }
     });
 };
 
-const validChangeStatusUnidad = (id, estatus) => {
+const validChangeStatusDepartamento = (id, estatus) => {
     axios
-        .put("/unidades/estatus/editar", { id: id, estatus: estatus })
+        .put("/departamentos/estatus/editar", { id: id, estatus: estatus })
         .then(function ({ data }) {
             let { stats } = data;
             if (stats.status == "success") {
@@ -140,10 +156,10 @@ const validChangeStatusUnidad = (id, estatus) => {
         });
 };
 
-const DeleteUnidad = (obj) => {
+const DeleteDepartamento = (obj) => {
     Swal.fire({
         title: "¿Estás seguro de realizar esta acción?",
-        html: "Se eliminará la unidad permanentemente.",
+        html: "Se eliminará el departamento permanentemente.",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#00a676",
@@ -153,18 +169,18 @@ const DeleteUnidad = (obj) => {
         width: 400,
     }).then((result) => {
         if (result.isConfirmed) {
-            ActionDeleteUnidad(obj.id);
+            ActionDeleteDepartamento(obj.id);
         }
     });
 };
 
-const ActionDeleteUnidad = (id) => {
+const ActionDeleteDepartamento = (id) => {
     axios
-        .delete("/unidades/eliminar", { params: { id: id } })
+        .delete("/departamentos/eliminar", { params: { id: id } })
         .then(function ({ data }) {
             let { stats } = data;
             if (stats.status == "success") {
-                alertDefault("¡Exito!", stats.message, "success", "/unidades");
+                alertDefault("¡Exito!", stats.message, "success", "/departamentos");
             } else {
                 alertDefault("¡Error!", stats.message, "error");
             }
@@ -175,13 +191,13 @@ const ActionDeleteUnidad = (id) => {
 };
 
 $(function () {
-    $("#FormCreateUnidad").on("submit", function (event) {
+    $("#FormCreateDepartamento").on("submit", function (event) {
         event.preventDefault();
-        FormCreateUnidad();
+        FormCreateDepartamento();
     });
 
-    $("#FormEditUnidad").on("submit", function (event) {
+    $("#FormUpdateDepartamento").on("submit", function (event) {
         event.preventDefault();
-        FormEditUnidad();
+        FormUpdateDepartamento();
     });
 });

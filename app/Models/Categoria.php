@@ -13,7 +13,8 @@ class Categoria extends Model
     protected $fillable = [
         'categoria',
         'id_departamento',
-        'activo'
+        'activo',
+        'eliminado'
     ];
     public $timestamps = false;
 

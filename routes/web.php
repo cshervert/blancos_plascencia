@@ -15,6 +15,8 @@ use App\Http\Controllers\ImpuestoController;
 use App\Http\Controllers\CajaController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ArticuloController;
+use App\Http\Controllers\DepartamentoController;
+use App\Http\Controllers\CategoriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -141,6 +143,24 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/nuevo', [ArticuloController::class, "nuevo"])->name('nuevo_articulo');
         Route::get('/generar/clave', [ArticuloController::class, "generarClave"]);
         Route::get('/categoria/{id?}', [ArticuloController::class, "obtenerCategoria"]);
+    });
+
+    Route::prefix('departamentos')->group(function () {
+        Route::get('/', [DepartamentoController::class, "index"])->name('departamentos');
+        Route::post('/crear', [DepartamentoController::class, "crear"]);
+        Route::get('/editar/{id?}', [DepartamentoController::class, "editar"]);
+        Route::put('/editar', [DepartamentoController::class, "modificar"]);
+        Route::put('/estatus/editar', [DepartamentoController::class, "CambiarEstatus"]);
+        Route::delete('/eliminar', [DepartamentoController::class, "eliminar"]);
+    });
+
+    Route::prefix('categorias')->group(function () {
+        Route::get('/', [CategoriaController::class, "index"])->name('categorias');
+        Route::post('/crear', [CategoriaController::class, "crear"]);
+        Route::get('/editar/{id?}', [CategoriaController::class, "editar"]);
+        Route::put('/editar', [CategoriaController::class, "modificar"]);
+        Route::put('/estatus/editar', [CategoriaController::class, "CambiarEstatus"]);
+        Route::delete('/eliminar', [CategoriaController::class, "eliminar"]);
     });
 });
 // Route::get('/empresa', [EmpresaController::class, "index"])->middleware('auth')->name('empresa');

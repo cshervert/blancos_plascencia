@@ -19,22 +19,27 @@ class DepartamentoSeeder extends Seeder
             [
                 'departamento' => 'Recamara',
                 'activo' => 1,
+                'eliminado' => 0,
             ],
             [
                 'departamento' => 'Baño',
                 'activo' => 1,
+                'eliminado' => 0,
             ],
             [
                 'departamento' => 'Sala',
                 'activo' => 1,
+                'eliminado' => 0,
             ],
             [
                 'departamento' => 'Cocina',
                 'activo' => 1,
+                'eliminado' => 0,
             ],
             [
                 'departamento' => 'Mascotas',
                 'activo' => 1,
+                'eliminado' => 0,
             ],
         ];
         foreach ($departamento as $item) {

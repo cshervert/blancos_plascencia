@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_departamento');
             $table->foreign('id_departamento')->references('id')->on('departamentos');
             $table->boolean('activo');
-            // $table->timestamps();
+            $table->boolean('eliminado');
         });
     }
 

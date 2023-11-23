@@ -13,6 +13,7 @@ class Departamento extends Model
     protected $fillable = [
         'departamento',
         'activo',
+        'eliminado',
     ];
     public $timestamps = false;
 }

@@ -16,21 +16,21 @@ class CategoriaSeeder extends Seeder
     public function run()
     {
         $categoria = [
-            ['categoria' => 'Almohadas', 'id_departamento' => 1, 'activo' => true],
-            ['categoria' => 'Protectores ', 'id_departamento' => 1, 'activo' => true],
-            ['categoria' => 'Sabanas ', 'id_departamento' => 1, 'activo' => true],
-            ['categoria' => 'Colchas', 'id_departamento' => 1, 'activo' => true],
-            ['categoria' => 'Cortinas', 'id_departamento' => 1, 'activo' => true],
-            ['categoria' => 'Colchonetas ', 'id_departamento' => 1, 'activo' => true],
-            ['categoria' => 'Toallas ', 'id_departamento' => 2, 'activo' => true],
-            ['categoria' => 'Batas de Baño', 'id_departamento' => 2, 'activo' => true],
-            ['categoria' => 'Juegos de Baño ', 'id_departamento' => 2, 'activo' => true],
-            ['categoria' => 'Cortinas de Baño', 'id_departamento' => 2, 'activo' => true],
-            ['categoria' => 'Tapetes ', 'id_departamento' => 2, 'activo' => true],
-            ['categoria' => 'Cubresalas ', 'id_departamento' => 3, 'activo' => true],
-            ['categoria' => 'Manteles y caminos demesa', 'id_departamento' => 3, 'activo' => true],
-            ['categoria' => 'Cortinas cocina', 'id_departamento' => 4, 'activo' => true],
-            ['categoria' => 'Camas mascota', 'id_departamento' => 5, 'activo' => true]
+            ['categoria' => 'Almohadas', 'id_departamento' => 1, 'activo' => true, 'eliminado' => false,],
+            ['categoria' => 'Protectores ', 'id_departamento' => 1, 'activo' => true, 'eliminado' => false,],
+            ['categoria' => 'Sabanas ', 'id_departamento' => 1, 'activo' => true, 'eliminado' => false,],
+            ['categoria' => 'Colchas', 'id_departamento' => 1, 'activo' => true, 'eliminado' => false,],
+            ['categoria' => 'Cortinas', 'id_departamento' => 1, 'activo' => true, 'eliminado' => false],
+            ['categoria' => 'Colchonetas ', 'id_departamento' => 1, 'activo' => true, 'eliminado' => false],
+            ['categoria' => 'Toallas ', 'id_departamento' => 2, 'activo' => true, 'eliminado' => false],
+            ['categoria' => 'Batas de Baño', 'id_departamento' => 2, 'activo' => true, 'eliminado' => false],
+            ['categoria' => 'Juegos de Baño ', 'id_departamento' => 2, 'activo' => true, 'eliminado' => false],
+            ['categoria' => 'Cortinas de Baño', 'id_departamento' => 2, 'activo' => true, 'eliminado' => false],
+            ['categoria' => 'Tapetes ', 'id_departamento' => 2, 'activo' => true, 'eliminado' => false],
+            ['categoria' => 'Cubresalas ', 'id_departamento' => 3, 'activo' => true, 'eliminado' => false],
+            ['categoria' => 'Manteles y caminos demesa', 'id_departamento' => 3, 'activo' => true, 'eliminado' => false],
+            ['categoria' => 'Cortinas cocina', 'id_departamento' => 4, 'activo' => true, 'eliminado' => false],
+            ['categoria' => 'Camas mascota', 'id_departamento' => 5, 'activo' => true, 'eliminado' => false]
         ];
         foreach ($categoria as $item) {
             Categoria::create($item);

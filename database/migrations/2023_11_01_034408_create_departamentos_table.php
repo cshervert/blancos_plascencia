@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->char('departamento', 100);
             $table->boolean('activo');
-            // $table->timestamps();
+            $table->boolean('eliminado');
         });
     }
 

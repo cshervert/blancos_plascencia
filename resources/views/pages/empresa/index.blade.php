@@ -160,13 +160,13 @@
                         <table class="table hover nowrap">
                             <thead>
                                 <tr>
-                                    <th class="col-1">ID</th>
-                                    <th class="col-1">Cuenta</th>
-                                    <th class="col-3">Sucursal</th>
-                                    <th class="col-2">Clave</th>
-                                    <th class="col-2">Banco</th>
-                                    <th class="col-1  text-center">Mostrar</th>
-                                    <th class="col-2 text-center">Acciones</th>
+                                    <th class="col-1 text-uppercase">ID</th>
+                                    <th class="col-1 text-uppercase">Cuenta</th>
+                                    <th class="col-3 text-uppercase">Sucursal</th>
+                                    <th class="col-2 text-uppercase">Clave</th>
+                                    <th class="col-2 text-uppercase">Banco</th>
+                                    <th class="col-1 text-uppercase text-center">Mostrar</th>
+                                    <th class="col-2 text-uppercase text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>

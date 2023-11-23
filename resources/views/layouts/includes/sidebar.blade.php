@@ -43,6 +43,8 @@
                         <li><a href="{{ route('unidades') }}">Unidades</a></li>
                         <li><a href="{{ route('impuestos') }}">Impuestos</a></li>
                         <li><a href="{{ route('cajas') }}">Caja</a></li>
+                        <li><a href="{{ route('departamentos') }}">Departamentos</a></li>
+                        <li><a href="{{ route('categorias') }}">Categorías</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
