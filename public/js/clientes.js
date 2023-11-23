@@ -4,14 +4,14 @@ const DeleteCliente = (obj) => {
         html: "Se eliminará el cliente permanentemente.",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#521a49",
-        cancelButtonColor: "#dc3545",
+        confirmButtonColor: "#00a676",
+        cancelButtonColor: "#E73F69",
         confirmButtonText: "Si, Continuar",
         cancelButtonText: "Cancelar",
         width: 400,
     }).then((result) => {
         if (result.isConfirmed) {
-            ActionDeleteCliente(obj);
+            ActionDeleteCliente(obj.id);
         }
     });
 };

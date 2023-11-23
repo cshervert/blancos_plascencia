@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>PROVEEDORES</h4>
+                    <h4 class="text-blue">Proveedores</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
@@ -16,7 +16,13 @@
                 </nav>
             </div>
             <div class="col-md-6 col-sm-12 text-right">
-                <a class="btn btn-success" href="{{ route('nuevo_proveedor') }}">
+                <button class="btn btn-dark mb-3">
+                    EXPORTAR <i class="icon-copy dw dw-download1 ml-1"></i>
+                </button>
+                <button class="btn btn-warning mb-3">
+                    IMPORTAR <i class="icon-copy dw dw-upload1 ml-1"></i>
+                </button>
+                <a class="btn btn-success mb-3" href="{{ route('nuevo_proveedor') }}">
                     CREAR PROVEEDOR <i class="icon-copy dw dw-add"></i>
                 </a>
             </div>
@@ -26,7 +32,7 @@
             <table class="data-table table hover nowrap mb-0">
                 <thead>
                     <tr>
-                        <th class="col-1 text-center" >ID</th>
+                        <th class="col-1 text-center">ID</th>
                         <th class="col-3 text-center">Nombre</th>
                         <th class="col-3 text-center">Telefono</th>
                         <th class="col-2 text-center">Email</th>
@@ -44,7 +50,7 @@
                             <a class="btn btn-info btn-circle btn-xl" href="{{ url('proveedores/editar/' . $item->id) }}">
                                 <i class="icon-copy dw dw-edit-1"></i>
                             </a>
-                            <button type="button" class="btn btn-danger btn-circle btn-xl" id="{{ $item->id }}" onclick="DeleteProveedor({{$item->id}});">
+                            <button type="button" class="btn btn-danger btn-circle btn-xl" id="{{ $item->id }}" onclick="DeleteProveedor(this);">
                                 <i class="icon-copy dw dw-delete-2"></i>
                             </button>
                         </td>

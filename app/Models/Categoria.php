@@ -16,4 +16,9 @@ class Categoria extends Model
         'activo'
     ];
     public $timestamps = false;
+
+    public function departamento()
+    {
+        return $this->hasOne(Departamento::class, 'id', 'id_departamento');
+    }
 }

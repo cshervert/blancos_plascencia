@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-6 col-sm-6">
                     <div class="title">
-                        <h4>Editar Proveedor</h4>
+                        <h4 class="text-blue">Editar Proveedor</h4>
                     </div>
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -25,81 +25,83 @@
                 </div>
             </div>
             <div class="pd-30 card-box">
+                <h6 class="text-blue mb-2 text-uppercase">Datos Generales</h6>
+                <hr>
                 <form id="formEditProveedor" class="row">
                     @csrf
                     <input class="form-control" type="hidden" name="id" id="id" placeholder="" value="{{$proveedor->id}}">
-                    <div class="form-group col-sm-12 col-md-12">
-                        <label class="weight-600 " for="rol" style="font-size: 16px">
+                    <div class="form-group col-sm-12 col-md-12 col-lg-6">
+                        <label class="weight-600 " for="rol">
                             Representante
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-representante"></label>
                         <input class="form-control" type="text" name="representante" onkeyup="validateFormProveedor()" id="representante" value="{{ $proveedor->representante ? $proveedor->representante : ''}}">
                     </div>
-                    <div class="form-group col-sm-12 col-md-12">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                    <div class="form-group col-sm-12 col-md-12 col-lg-6">
+                        <label class="weight-600" for="rol">
                             Nombre
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-nombre"></label>
                         <input class="form-control" type="text" name="nombre" id="nombre" onkeyup="validateFormProveedor()" value="{{ $proveedor->nombre ? $proveedor->nombre : ''}}">
                     </div>
-                    <div class="form-group col-sm-12 col-md-12">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                    <div class="form-group col-sm-12 col-md-12 col-lg-6">
+                        <label class="weight-600" for="rol">
                             Alias
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-alias"></label>
                         <input class="form-control" type="text" value="{{ $proveedor->alias ? $proveedor->alias : ''}}" name="alias" id="alias">
                     </div>
-                    <div class="form-group col-sm-12 col-md-6">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <label class="weight-600" for="rol">
                             RFC
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-rfc"></label>
                         <input class="form-control" maxlength="13" onkeyup="validateFormProveedor()" onkeyup="copiarRFC(this)" type="text" name="rfc" id="rfc" value="{{ $proveedor->rfc ? $proveedor->rfc : ''}}">
                     </div>
-                    <div class="form-group col-sm-12 col-md-6">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <label class="weight-600" for="rol">
                             CURP
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-curp"></label>
                         <input class="form-control" maxlength="18" onkeyup="copiarCURP(this)" type="text" name="curp" id="curp" value="{{ $proveedor->curp ? $proveedor->curp : ''}}">
                     </div>
-                    <div class="form-group col-sm-12 col-md-6">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <label class="weight-600" for="rol">
                             Telefono
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-telefono"></label>
                         <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="telefono" id="telefono" value="{{ $proveedor->telefono ? $proveedor->telefono : ''}}">
                     </div>
-                    <div class="form-group col-sm-12 col-md-6">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <label class="weight-600" for="rol">
                             Celular
                         </label>
-                        <label class="form-control-label has-danger ml-2" id="msg-celular"></label>
+                        <label class="form-control-label has-danger ml-6" id="msg-celular"></label>
                         <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="celular" id="celular" value="{{ $proveedor->celular ? $proveedor->celular : ''}}">
                     </div>
-                    <div class="form-group col-sm-12 col-md-12">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                    <div class="form-group col-sm-12 col-md-12 col-lg-6">
+                        <label class="weight-600" for="rol">
                             Email
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-email"></label>
                         <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="email" id="email" value="{{ $proveedor->email ? $proveedor->email : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-12">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                        <label class="weight-600" for="rol">
                             Comentario
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-comentario"></label>
                         <input class="form-control" type="text" name="comentario" id="comentario" value="{{ $proveedor->comentario ? $proveedor->comentario : ''}}">
                     </div>
-                    <div class="form-group col-sm-12 col-md-4">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <label class="weight-600" for="rol">
                             Limite de Credito
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-limite"></label>
                         <input class="form-control" type="text" name="limite" id="limite" value="{{ $proveedor->limite_credito ? $proveedor->limite_credito : ''}}">
                     </div>
-                    <div class="form-group col-sm-12 col-md-4">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                    <div class="form-group col-sm-12 col-md-6 col-lg-6">
+                        <label class="weight-600" for="rol">
                             Dias de Credito
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-dias"></label>
@@ -109,10 +111,10 @@
                         <hr class="mt-1 mb-2">
                         <label class="weight-800" for="rol" style="font-size: 20px">
                             Datos de facturación
-                        </label>                    
+                        </label>
                     </div>
                     <div class="form-group col-sm-12 col-md-12">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                        <label class="weight-600" for="rol">
                             Razon Social
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-razon"></label>
@@ -120,85 +122,85 @@
                         <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="razon" id="razon" value="{{ $factura->razon_social ? $factura->razon_social : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                        <label class="weight-600" for="rol">
                             RFC
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-rfcfactura"></label>
                         <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="rfcfactura" maxlength="13" id="rfcfactura" value="{{ $factura->rfc ? $factura->rfc : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                        <label class="weight-600" for="rol">
                             CURP
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-curpfactura"></label>
                         <input class="form-control" type="text" maxlength="18" name="curpfactura" id="curpfactura" value="{{ $factura->curp ? $factura->curp : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                        <label class="weight-600" for="rol">
                             Domicilio
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-domicilio"></label>
                         <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="domicilio" id="domicilio" value="{{ $factura->domicilio ? $factura->domicilio : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-3">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                        <label class="weight-600" for="rol">
                             No. Exterior
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-exterior"></label>
                         <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="exterior" id="exterior" value="{{ $factura->numero_exterior ? $factura->numero_exterior : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-3">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                        <label class="weight-600" for="rol">
                             No. Interior
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-interior"></label>
                         <input class="form-control" type="text" name="interior" id="interior" value="{{ $factura->numero_interior ? $factura->numero_interior : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-6">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                        <label class="weight-600" for="rol">
                             Colonia
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-colonia"></label>
                         <input class="form-control" type="text" name="colonia" onkeyup="validateFormProveedor()" id="colonia" value="{{ $factura->colonia ? $factura->colonia : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-2">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                        <label class="weight-600" for="rol">
                             C.P.
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-cp"></label>
                         <input class="form-control" type="text" onkeyup="validateFormProveedor()" name="cp" id="cp" value="{{ $factura->cp ? $factura->cp : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                        <label class="weight-600" for="rol">
                             Ciudad
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-ciudad"></label>
                         <input class="form-control" type="text" name="ciudad" id="ciudad" value="{{ $factura->ciudad ? $factura->ciudad : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                        <label class="weight-600" for="rol">
                             Localidad
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-localidad"></label>
                         <input class="form-control" type="text" name="localidad" id="localidad" value="{{ $factura->localidad ? $factura->localidad : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                        <label class="weight-600" for="rol">
                             Estado
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-estado"></label>
                         <input class="form-control" type="text" name="estado" id="estado" value="{{ $factura->estado ? $factura->estado : ''}}">
                     </div>
                     <div class="form-group col-sm-12 col-md-4">
-                        <label class="weight-600" for="rol" style="font-size: 16px">
+                        <label class="weight-600" for="rol">
                             Pais
                         </label>
                         <label class="form-control-label has-danger ml-2" id="msg-pais"></label>
                         <input class="form-control" type="text" name="pais" id="pais" value="{{ $factura->pais ? $factura->pais : ''}}">
                     </div>
                     <div class="col-12 text-right">
-                        <button type="button" id="btnActualizarProveedor" class="btn btn-success">
-                            ACTUALIZAR PROVEEDOR <i class="icon-copy dw dw-checked"></i>
+                        <button type="button" id="btnActualizarProveedor" class="btn btn-info">
+                        ACTUALIZAR <i class="icon-copy dw dw-edit-2 ml-1"></i>
                         </button>
                     </div>
                 </form>

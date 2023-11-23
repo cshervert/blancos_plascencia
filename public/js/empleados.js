@@ -195,6 +195,10 @@ const ActionDeleteEmpleado = (id) => {
         });
 };
 
+const openModalCrearPuesto = () => {
+    $("#crear-puesto-modal").modal("show");
+};
+
 $(function () {
     $("#FormCreateEmpleado").on("submit", function (event) {
         event.preventDefault();

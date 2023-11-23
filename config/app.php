@@ -167,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Milon\Barcode\BarcodeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -192,6 +193,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // ...
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
     ])->toArray(),
 
 ];

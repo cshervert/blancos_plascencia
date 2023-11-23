@@ -33,5 +33,11 @@ class Articulo extends Model
         'caracteristicas',
         'etiquetas',
         'activo',
+        'eliminado',
     ];
+
+    public function categoria()
+    {
+        return $this->hasOne(Categoria::class, 'id', 'id_categoria');
+    }
 }

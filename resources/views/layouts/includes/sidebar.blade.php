@@ -20,13 +20,16 @@
                         <span class="micon dw dw-deal"></span><span class="mtext">Operaciones</span>
                     </a>
                     <ul class="submenu">
-                        <li><a href="form-basic.html">Ventas</a></li>
-                        <li><a href="advanced-components.html">Devoluciones</a></li>
-                        <li><a href="form-wizard.html">Transpasos</a></li>
-                        <li><a href="html5-editor.html">Compras</a></li>
+                        <li><a href="{{ route('articulos') }}">Artículos</a></li>
+                        <li><a href="{{ route('articulos') }}">Paquetes</a></li>
+                        <li><a href="form-basic.html">Inventarios</a></li>
+                        <li><a href="advanced-components.html">Compras</a></li>
                         <li><a href="form-pickers.html">Pedidos</a></li>
-                        <li><a href="image-dropzone.html">Cotización</a></li>
+                        <li><a href="form-pickers.html">Ventas</a></li>
                         <li><a href="image-cropper.html">Corte de Caja</a></li>
+                        <li><a href="image-dropzone.html">Cotización</a></li>
+                        <li><a href="form-wizard.html">Devolucion</a></li>
+                        <li><a href="html5-editor.html">Traspasos</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -40,6 +43,18 @@
                         <li><a href="{{ route('unidades') }}">Unidades</a></li>
                         <li><a href="{{ route('impuestos') }}">Impuestos</a></li>
                         <li><a href="{{ route('cajas') }}">Caja</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle">
+                        <span class="micon dw dw-file-210"></span><span class="mtext">Reportes</span>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="{{ route('empleados') }}">Reporte Global</a></li>
+                        <li><a href="{{ route('clientes') }}">Reporte Ventas</a></li>
+                        <li><a href="{{ route('proveedores') }}">Reporte Compras</a></li>
+                        <li><a href="{{ route('unidades') }}">Reporte Promociones</a></li>
+                        <li><a href="{{ route('impuestos') }}">Reporte Inventario</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

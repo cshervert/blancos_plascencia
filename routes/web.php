@@ -14,6 +14,7 @@ use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ImpuestoController;
 use App\Http\Controllers\CajaController;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\ArticuloController;
 
 /*
 |--------------------------------------------------------------------------
@@ -133,6 +134,13 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/editar', [EmpleadoController::class, "modificar"]);
         Route::put('/estatus/editar', [EmpleadoController::class, "CambiarEstatus"]);
         Route::delete('/eliminar', [EmpleadoController::class, "eliminar"]);
+    });
+
+    Route::prefix('articulos')->group(function () {
+        Route::get('/', [ArticuloController::class, "index"])->name('articulos');
+        Route::get('/nuevo', [ArticuloController::class, "nuevo"])->name('nuevo_articulo');
+        Route::get('/generar/clave', [ArticuloController::class, "generarClave"]);
+        Route::get('/categoria/{id?}', [ArticuloController::class, "obtenerCategoria"]);
     });
 });
 // Route::get('/empresa', [EmpresaController::class, "index"])->middleware('auth')->name('empresa');

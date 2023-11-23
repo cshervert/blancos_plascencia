@@ -79,7 +79,7 @@
                             <input class="form-control" type="text" name="email" id="email"
                                 value="{{ $empleado->email }}" onkeyup="validateFormEmpleado()">
                         </div>
-                        <div class="form-group col-md-6 col-lg-3">
+                        <div class="form-group col-md-6 col-lg-3 mb-0">
                             <label class="form-label" for="comision">Comisión</label>
                             <label class="form-control-label has-danger ml-2" id="advertencia-comision"></label>
                             <input class="form-control text-center" type="text" name="comision" id="comision"

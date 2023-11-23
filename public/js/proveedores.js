@@ -4,8 +4,8 @@ const DeleteProveedor = (obj) => {
         html: "Se eliminará el proveedor permanentemente.",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#521a49",
-        cancelButtonColor: "#dc3545",
+        confirmButtonColor: "#00a676",
+        cancelButtonColor: "#E73F69",
         confirmButtonText: "Si, Continuar",
         cancelButtonText: "Cancelar",
         width: 400,
@@ -187,9 +187,9 @@ $("#btnActualizarProveedor").click(function(){
         });
 });
 
-const ActionDeleteProveedor = (id) => {
+const ActionDeleteProveedor = (obj) => {
     axios
-        .delete("/proveedores/eliminar", { params: { id: id } })
+        .delete("/proveedores/eliminar", { params: { id: obj.id } })
         .then(function (res) {
             if(res['data']['code'] == '200'){
                 alertDefault("¡Exito!", res['msg'], "success", "/proveedores");

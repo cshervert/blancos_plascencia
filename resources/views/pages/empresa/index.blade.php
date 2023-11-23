@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>DATOS DE LA EMPRESA</h4>
+                    <h4 class="text-blue">Datos de Empresa</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
@@ -15,22 +15,7 @@
                     </ol>
                 </nav>
             </div>
-            <!-- <div class="col-md-6 col-sm-12 text-right">
-                <button class="btn btn-success" type="button">
-                    AGREGAR <i class="icon-copy dw dw-add"></i>
-                </button>
-            </div> -->
         </div>
-        <!-- <div class="card-box pd-20 height-100-p mb-30">
-            <div class="row align-items-center">
-                <div class="col-md-8">
-                    <h4 class="font-10 weight-500 mb-10 text-capitalize">
-                        <div class="weight-600 font-10 text-default">DATOS DE LA EMPRESA</div>
-                    </h4>
-
-                </div>
-            </div>
-        </div> -->
         <div class="card ">
             <div class="card-header">
                 <ul class="nav nav-tabs card-header-tabs">
@@ -43,7 +28,7 @@
                 </ul>
             </div>
             <div class="tab-content" id="pills-tabContent">
-                <div class="card-body tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="card-body tab-pane fade show active pd-30" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <form id="formEmpresa">
                     <div class="row">
                         <div class="form-group col-md-12 mb-0">
@@ -115,20 +100,23 @@
                     </div>
                 </form>
                 </div>
-                <div class="container card-body tab-pane" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">                    
+                <div class="card-body tab-pane pd-30" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">                    
                     <div class="form-group row text-right px-4 float-right">
                         <button class="btn btn-success" data-toggle="modal" data-target="#cuenta-modal" type="button">
                             AGREGAR <i class="icon-copy dw dw-add"></i>
                         </button>
                     </div>
-                    <div class="modal" id="cuenta-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal fade" id="cuenta-modal" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered ">
                             <div class="modal-content">
-                                <div class="login-box bg-white">
-                                    <div class="login-title">
-                                        <h2 class="text-center text-primary">Agregar Cuenta Bancaria</h2>
-                                    </div>
-                                    <form id="formCuenta" class="">
+                                <div class="modal-header">
+                                    <h4 class="modal-title text-blue" id="my-crear-unidad-modal">Crear Cuenta Bancaria</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        <i class="icon-copy fa fa-close" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <form id="formCuenta" class="">
+                                    <div class="modal-body">
                                         <div class="row">
                                             <div class="form-group col-md-12 mb-0">
                                                 <input class="form-control" type="hidden" name="id" id="id" placeholder="" value="">
@@ -157,12 +145,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary text-right" data-dismiss="modal">Cerrar</button> 
-                                            <button type="button" id="btnCuenta" class="btn btn-success">Agregar</button>
-										</div>
-                                    </form>
-                                </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">SALIR</button> 
+                                        <button type="button" id="btnCuenta" class="btn btn-success">
+                                            GUARDAR <i class="icon-copy dw dw-checked ml-1"></i>
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -170,12 +160,12 @@
                         <table class="table hover nowrap">
                             <thead>
                                 <tr>
-                                    <th class="">ID</th>
+                                    <th class="col-1">ID</th>
                                     <th class="col-1">Cuenta</th>
                                     <th class="col-3">Sucursal</th>
-                                    <th class="col-1">Clave</th>
-                                    <th class="col-1">Banco</th>
-                                    <th class="col-1">Mostrar</th>
+                                    <th class="col-2">Clave</th>
+                                    <th class="col-2">Banco</th>
+                                    <th class="col-1  text-center">Mostrar</th>
                                     <th class="col-2 text-center">Acciones</th>
                                 </tr>
                             </thead>
@@ -187,7 +177,7 @@
                                     <td>{{ $item->sucursal }}</td>
                                     <td>{{ $item->clave }}</td>
                                     <td>{{ $item->banco }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         <!-- <input type="checkbox" class="switch-btn" data-color="#28a745" @if ($item->mostrar)
                                         checked @endif> -->
                                         <label class="cl-switch cl-switch-large cl-switch-green">

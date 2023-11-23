@@ -43,6 +43,7 @@ return new class extends Migration
             $table->text('caracteristicas');
             $table->json('etiquetas');
             $table->boolean('activo');
+            $table->boolean('eliminado');
             $table->timestamps();
         });
     }
