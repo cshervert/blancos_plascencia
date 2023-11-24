@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\AdminController;
 use App\Models\Empleado;
 use App\Models\Sucursal;
 use App\Models\PuestoTrabajo;
+use App\Exports\EmpleadosExport;
+use App\Exports\PuestoTrabajoExport;
+use App\Imports\EmpleadosImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class EmpleadoController extends AdminController
 {
@@ -156,6 +160,37 @@ class EmpleadoController extends AdminController
         } else {
             $this->responseError(400, "Ocurrió un error al eliminar al empleado, vuelva a intentarlo.");
         }
+        return response()->json($this->response);
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new EmpleadosExport, 'empleados.xlsx');
+    }
+    public function exportarPuesto()
+    {
+        return Excel::download(new PuestoTrabajoExport, 'puestos.xlsx');
+    }
+    public function importar()
+    {
+        try{
+            Excel::import(new EmpleadosImport, $this->request->file('fileEmpleado'));
+            $this->responseSuccess("Empleados cargados con exito");
+
+        }catch(\Maatwebsite\Excel\Validators\ValidationException $e){
+            $failures = $e->failures();
+            foreach($failures as $failure){
+                $failure->row();
+                $failure->attribute();
+                $failure->errors();
+                $failure->values();
+            }
+            $this->responseError(400, $failures);
+        }catch(\Exception $e){
+            // var_dump($e->getMessage());
+            $this->responseError(500, $e->getMessage());
+        }
+       
         return response()->json($this->response);
     }
 }

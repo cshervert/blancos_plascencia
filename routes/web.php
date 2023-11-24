@@ -89,6 +89,8 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/eliminar', [SucursalController::class, "eliminar"]);
         Route::get('/editar/{id?}', [SucursalController::class, "editar"])->name('editar_sucursal');
         Route::put('/editar', [SucursalController::class, "modificar"]);
+        Route::post('/importar', [SucursalController::class, "importar"])->name('importarSucursal');
+        Route::get('/exportar', [SucursalController::class, "exportar"])->name('exportarSucursal');
     });
 
     Route::prefix('clientes')->group(function () {
@@ -130,6 +132,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::prefix('empleados')->group(function () {
         Route::get('/', [EmpleadoController::class, "index"])->name('empleados');
+        Route::post('/importar', [EmpleadoController::class, "importar"])->name('importarEmpleado');
+        Route::get('/exportar', [EmpleadoController::class, "exportar"])->name('exportarEmpleado');
+        Route::get('/exportarPuesto', [EmpleadoController::class, "exportarPuesto"])->name('exportarPuesto');
         Route::get('/nuevo', [EmpleadoController::class, "nuevo"])->name('nuevo_empleado');
         Route::post('/crear', [EmpleadoController::class, "crear"]);
         Route::get('/editar/{id?}', [EmpleadoController::class, "editar"])->name('editar_empleado');

@@ -187,6 +187,37 @@ const validateFormSucursal = () => {
     return bandera;
 };
 
+const formImportarSucursales = async () => {
+    // let validate = await validateFormEmpleado();
+    // if (!validate) {
+    //     toastr.error("Campo Obligatorio.");
+    //     return;
+    // }
+    var formData = new FormData(document.getElementById("formImportarSucursales"));
+    var file = document.querySelector('#file');
+    formData.append("file", file.files[0]);
+    alertLoading(true);
+    axios
+        .post("/sucursales/importar", formData, {
+            headers: {
+                // 'Content-Type': 'multipart/form-data'
+              }
+        })
+        .then(function ({ data }) {
+            alertLoading(false);
+            let { stats } = data;
+            if (stats.status == "success") {
+                alertDefault("¡Exito!", stats.message, "success", "/sucursales");
+            } else {
+                alertDefault("¡Error!", stats.message, "error");
+            }
+            $('#importar-modal').modal('hide');
+        })
+        .catch(function (e) {
+            alertErrorServer(e);
+        });
+};
+
 $(function () {
     $("#FormCreateSucursal").on("submit", function (event) {
         event.preventDefault();
@@ -196,6 +227,11 @@ $(function () {
     $("#FormUpdateSucursal").on("submit", function (event) {
         event.preventDefault();
         FormUpdateSucursal();
+    });
+
+    $("#formImportarSucursales").on("submit", function (event) {
+        event.preventDefault();
+        formImportarSucursales();
     });
     
 });

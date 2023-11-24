@@ -7,6 +7,9 @@ use App\Http\Controllers\AdminController;
 use App\Models\Sucursal;
 use App\Models\Usuario;
 use App\Models\SucursalUsuario;
+use App\Exports\SucursalExport;
+use App\Imports\SucursalImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SucursalController extends AdminController
 {
@@ -156,6 +159,35 @@ class SucursalController extends AdminController
         } else {
             $this->responseError(500, "El nombre de la sucursal que intenta modificar, ya existe.");
         }
+        return response()->json($this->response);
+    }
+
+    public function exportar()
+    {
+
+        return Excel::download(new SucursalExport, 'sucursales.xlsx');
+    }
+
+    public function importar()
+    {
+        try{
+            Excel::import(new SucursalImport, $this->request->file('file'));
+            $this->responseSuccess("Sucursales cargadas con exito");
+
+        }catch(\Maatwebsite\Excel\Validators\ValidationException $e){
+            $failures = $e->failures();
+            foreach($failures as $failure){
+                $failure->row();
+                $failure->attribute();
+                $failure->errors();
+                $failure->values();
+            }
+            $this->responseError(400, $failures);
+        }catch(\Exception $e){
+            // var_dump($e->getMessage());
+            $this->responseError(500, $e->getMessage());
+        }
+       
         return response()->json($this->response);
     }
 }

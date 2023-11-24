@@ -44,10 +44,46 @@ const FormEditEmpledo = async () => {
             alertLoading(false);
             let { stats } = data;
             if (stats.status == "success") {
+                alertDefault("¡Exito!", stats.message, "success", "/empleados");
+            } else {
+                alertDefault("¡Error!", stats.message, "error");
+            }
+        })
+        .catch(function (e) {
+            alertErrorServer(e);
+        });
+};
+
+const formImportarEmpleados = async () => {
+    // let validate = await validateFormEmpleado();
+    // if (!validate) {
+    //     toastr.error("Campo Obligatorio.");
+    //     return;
+    // }
+    var formData = new FormData(document.getElementById("formImportarEmpleados"));
+    let archivo = document.getElementById('fileEmpleado').value,
+  // Obtener extensión del archivo
+      extension = archivo.substring(archivo.lastIndexOf('.'),archivo.length);
+      console.log(extension);
+    var file = document.querySelector('#fileEmpleado');
+    formData.append("fileEmpleado", file.files[0]);
+    console.log(formData);
+    alertLoading(true);
+    axios
+        .post("/empleados/importar", formData, {
+            headers: {
+                // 'Content-Type': 'multipart/form-data'
+              }
+        })
+        .then(function ({ data }) {
+            alertLoading(false);
+            let { stats } = data;
+            if (stats.status == "success") {
                 alertDefault("¡Exito!", stats.message, "success");
             } else {
                 alertDefault("¡Error!", stats.message, "error");
             }
+            $('#importar-modal').modal('hide');
         })
         .catch(function (e) {
             alertErrorServer(e);
@@ -208,5 +244,10 @@ $(function () {
     $("#FormEditEmpledo").on("submit", function (event) {
         event.preventDefault();
         FormEditEmpledo();
+    });
+
+    $("#formImportarEmpleados").on("submit", function (event) {
+        event.preventDefault();
+        formImportarEmpleados();
     });
 });
