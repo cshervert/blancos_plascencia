@@ -26,7 +26,8 @@ class DepartamentoController extends AdminController
         if (!$existe) {
             $crear = Departamento::create(['departamento' => $nombre, 'activo' => 1, 'eliminado' => 0]);
             if ($crear) {
-                $this->responseSuccess("Departamento Creado.");
+                $data["departametos"] = Departamento::where("activo", 1)->get();
+                $this->responseSuccess("Departamento Creado.", $data);
             } else {
                 $this->responseError(500, "No se pudo crear el departamento.");
             }

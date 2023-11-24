@@ -55,13 +55,13 @@
                             <label class="form-label" for="departamento">Departamento</label>
                             <div class="input-group mb-0">
                                 <select class="custom-select2 form-control" name="departamento" id="departamento"
-                                    style="width:85%;" onchange="searchCategoria(this);">
+                                    style="width:85%;" onchange="searchCategoria();">
                                     @foreach ($departamentos as $item)
                                     <option value="{{ $item->id }}">{{ $item->departamento }}</option>
                                     @endforeach
                                 </select>
                                 <div class="input-group-append">
-                                    <button class="btn btn-success" type="button">
+                                    <button class="btn btn-success" type="button" onclick="openModalCrearDepartamento();">
                                         <i class="icon-copy dw dw-add"></i>
                                     </button>
                                 </div>
@@ -77,7 +77,7 @@
                                     @endforeach
                                 </select>
                                 <div class="input-group-append">
-                                    <button class="btn btn-success" type="button">
+                                    <button class="btn btn-success" type="button" onclick="openModalCrearCategoria();">
                                         <i class="icon-copy dw dw-add"></i>
                                     </button>
                                 </div>
@@ -92,7 +92,7 @@
                         </div>
                         <div class="form-group col-md-6 col-lg-5">
                             <label class="form-label" for="unidad_compra">Unidad de Compra</label>
-                            <div class="input-group mb-3">
+                            <div class="input-group mb-0">
                                 <select class="custom-select2 form-control" name="unidad_compra" id="unidad_compra"
                                     style="width:85%;">
                                     @foreach ($unidades as $item)
@@ -100,7 +100,7 @@
                                     @endforeach
                                 </select>
                                 <div class="input-group-append">
-                                    <button class="btn btn-success" type="button">
+                                    <button class="btn btn-success" type="button" onclick="openModalCrearUnidad();">
                                         <i class="icon-copy dw dw-add"></i>
                                     </button>
                                 </div>
@@ -118,11 +118,11 @@
                         <div class="form-group col-md-6 col-md-6 col-lg-3">
                             <label class="form-label" for="factor">Factor</label>
                             <label class="form-control-label has-danger ml-2" id="advertencia-factor"></label>
-                            <input class="form-control text-center" type="number" name="factor" id="factor" value="1"
+                            <input class="form-control text-center" type="text" name="factor" id="factor" value="1"
                                 onkeyup="validateFormEmpleado()">
                         </div>
                     </div>
-                    <h6 class="text-blue">Precios de venta</h6>
+                    <h6 class="text-blue text-uppercase">Precios de venta</h6>
                     <hr>
                     <div class="row border-dark">
                         <div class="col-lg-3">
@@ -288,7 +288,9 @@
         </div>
     </div>
 </div>
-{{-- @include('pages.empleados.puestos.crear') --}}
+@include('pages.departamentos.crear')
+@include('pages.categorias.crear')
+@include('pages.unidades.crear')
 @endsection
 @section('scripts')
 <script src="{{ asset('js/articulos.js') }}"></script>

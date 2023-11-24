@@ -27,7 +27,8 @@ class UnidadController extends AdminController
         if (!$existe) {
             $crear  = Unidad::create(['unidad' => $nombre, 'clave_sat' => $clave, 'activo' => 1, 'eliminado' => 0]);
             if ($crear) {
-                $this->responseSuccess("Unidad Creada.");
+                $data["unidades"] = Unidad::where('activo', 1)->get();
+                $this->responseSuccess("Unidad Creada.", $data);
             } else {
                 $this->responseError(500, "No se pudo crear la unidad.");
             }

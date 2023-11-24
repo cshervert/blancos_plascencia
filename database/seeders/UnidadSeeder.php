@@ -18,7 +18,7 @@ class UnidadSeeder extends Seeder
         $unities = [
             ['unidad' => 'CAJA',  'clave_sat' => '', 'activo' => 1, 'eliminado' => 0],
             ['unidad' => 'PZA', 'clave_sat' => '', 'activo' => 1, 'eliminado' => 0],
-            ['unidad' => 'm', 'clave_sat' => '', 'activo' => 1, 'eliminado' => 0],
+            ['unidad' => 'm', 'clave_sat' => '', 'activo' => 0, 'eliminado' => 0],
             ['unidad' => 'KG',  'clave_sat' => '', 'activo' => 0, 'eliminado' => 0],
             ['unidad' => 'Lt',  'clave_sat' => '', 'activo' => 0, 'eliminado' => 0]
         ];

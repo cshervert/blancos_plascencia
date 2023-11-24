@@ -66,7 +66,7 @@ class ArticuloController extends AdminController
     public function obtenerCategoria($id_departamento)
     {
         $categorias = Categoria::where("id_departamento", $id_departamento)->get();
-        if ($categorias) {
+        if ($categorias->count()) {
             $data["categorias"] = $categorias->toArray();
             $this->responseSuccess("Categorías Encontradas.", $data);
         } else {

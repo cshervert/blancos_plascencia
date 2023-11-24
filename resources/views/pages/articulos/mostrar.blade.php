@@ -36,7 +36,8 @@
                             <th class="col-1 text-uppercase tb-font-12">Clave</th>
                             <th class="col-1 text-uppercase tb-font-12">Alterno</th>
                             <th class="col-4 text-uppercase tb-font-12">Descripción</th>
-                            <th class="col-2 text-uppercase tb-font-12">Categoría</th>
+                            <th class="col-1 text-uppercase tb-font-12">Categoría</th>
+                            <th class="col-1 text-uppercase tb-font-12">Departamento</th>
                             <th class="col-1 text-uppercase text-center tb-font-12">Estatus</th>
                             <th class="col-2 text-uppercase text-center tb-font-12">Acciones</th>
                         </tr>
@@ -49,6 +50,7 @@
                             <td class="tb-font-12">{{ $item->clave_alterna }}</td>
                             <td class="tb-font-12">{{ $item->descripcion }}</td>
                             <td class="tb-font-12">{{ $item->categoria->categoria }}</td>
+                            <td class="tb-font-12">{{ $item->categoria->departamento->departamento }}</td>
                             <td class="text-center">
                                 <label class="cl-switch cl-switch-large cl-switch-green">
                                     <input type="checkbox" id="{{ $item->id }}" onchange="ChangeStatusEmpleado(this)"
