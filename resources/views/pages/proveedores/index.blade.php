@@ -4,7 +4,7 @@
 <div class="main-container">
     <div class="pd-ltr-20">
         <div class="row">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <div class="title">
                     <h4 class="text-blue">Proveedores</h4>
                 </div>
@@ -15,10 +15,10 @@
                     </ol>
                 </nav>
             </div>
-            <div class="col-md-6 col-sm-12 text-right">
-                <button class="btn btn-dark mb-3">
+            <div class="col-md-8 col-sm-12 text-right">
+                <a class="btn btn-dark mb-3" href="{{ route('exportarProveedor') }}">
                     EXPORTAR <i class="icon-copy dw dw-download1 ml-1"></i>
-                </button>
+                </a>
                 <button class="btn btn-warning mb-3">
                     IMPORTAR <i class="icon-copy dw dw-upload1 ml-1"></i>
                 </button>

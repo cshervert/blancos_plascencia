@@ -3,21 +3,16 @@
 namespace App\Exports;
 
 use App\Models\PuestoTrabajo;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class PuestoTrabajoExport implements FromCollection, WithHeadings
+class PuestoTrabajoExport implements FromView
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    public function view(): View
     {
-        return PuestoTrabajo::all();
+        return view('pages.exports.puesto', [
+            'items' =>PuestoTrabajo::all()
+        ]);
     }
 
-    public function headings() : array 
-    {
-        return ["ID","Puesto","Activo"];
-    }
 }

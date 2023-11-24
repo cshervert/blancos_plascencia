@@ -1,20 +1,23 @@
 <table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Domicilio</th>
-        <th>Num Ext</th>
-        <th>Num Int</th>
-        <th>Colonia</th>
-        <th>CP</th>
-        <th>Ciudad</th>
-        <th>Estado</th>
-        <th>Email</th>
-        <th>Telefono</th>
-        <th>Celular</th>
-        <th>Activo</th>
-        <th>Eliminado</th>
+    <thead style="background-color:#0547A2; color:white;">
+    <tr >
+        <th style="font-weight:700; font-size: 16px;" colspan="14" align="center">Catalago de Sucursales</th>
+    </tr>
+    <tr >
+        <th style="background-color:#4B7EC4; color:white;">ID</th>
+        <th style="background-color:#4B7EC4; color:white;">Nombre</th>
+        <th style="background-color:#4B7EC4; color:white;">Domicilio</th>
+        <th style="background-color:#4B7EC4; color:white;">Num Ext</th>
+        <th style="background-color:#4B7EC4; color:white;">Num Int</th>
+        <th style="background-color:#4B7EC4; color:white;">Colonia</th>
+        <th style="background-color:#4B7EC4; color:white;">CP</th>
+        <th style="background-color:#4B7EC4; color:white;">Ciudad</th>
+        <th style="background-color:#4B7EC4; color:white;">Estado</th>
+        <th style="background-color:#4B7EC4; color:white;">Email</th>
+        <th style="background-color:#4B7EC4; color:white;">Telefono</th>
+        <th style="background-color:#4B7EC4; color:white;">Celular</th>
+        <th style="background-color:#4B7EC4; color:white;">Activo</th>
+        <th style="background-color:#4B7EC4; color:white;">Eliminado</th>
     </tr>
     </thead>
     <tbody>
