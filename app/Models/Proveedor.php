@@ -24,4 +24,9 @@ class Proveedor extends Model
         'dias_credito',
         'id_facturacion',
     ];
+
+    public function datos_facturacion()
+    {
+        return $this->hasOne(DatosFacturacion::class, 'id', 'id_facturacion');
+    }
 }

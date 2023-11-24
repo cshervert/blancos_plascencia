@@ -6,6 +6,9 @@ use App\Models\Proveedor;
 use App\Models\DatosFacturacion;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use App\Exports\ProveedorExport;
+// use App\Imports\ProveedorImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProveedorController extends AdminController
 {
@@ -171,5 +174,10 @@ class ProveedorController extends AdminController
         }
         
         return $data;
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new ProveedorExport, 'proveedores.xlsx');
     }
 }

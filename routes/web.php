@@ -109,6 +109,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/editar/{id?}', [ProveedorController::class, "editar"])->name('editarProveedor');
         Route::put('/editar', [ProveedorController::class, "modificar"]);
         Route::delete('/eliminar', [ProveedorController::class, "eliminar"]);
+        Route::get('/exportar', [ProveedorController::class, "exportar"])->name('exportarProveedor');
     });
 
     Route::prefix('impuestos')->group(function () {
