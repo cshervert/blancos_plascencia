@@ -7,7 +7,7 @@ use App\Models\DatosFacturacion;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use App\Exports\ProveedorExport;
-// use App\Imports\ProveedorImport;
+use App\Imports\ProveedorImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProveedorController extends AdminController
@@ -19,7 +19,7 @@ class ProveedorController extends AdminController
 
     public function index()
     {
-        $proveedores = Proveedor::all();
+        $proveedores = Proveedor::where('eliminado',0)->get();
         return view('pages/proveedores/index', ['proveedores' => $proveedores]);
     }
 
@@ -37,29 +37,14 @@ class ProveedorController extends AdminController
 
     public function eliminar()
     {
-        $data['code'] = 500;
-        $data['msg'] = "Error";
-        
         $id = $this->request->get("id");
-        $cuenta = Proveedor::where("id", $id)->first();
-        if ($cuenta) {
-            $response = Proveedor::where('id', $id)->delete();
-            if($response){
-                $response = DatosFacturacion::where('id', $cuenta->id_facturacion)->delete();
-                if($response){
-                    $data['code'] = 200;
-                    $data['msg'] = "Eliminado correctamente";
-                }else{
-                    $data['msg'] = "Hubo un problema al eliminar los datos de facturación";
-                }
-            }else{
-                $data['msg'] = "Hubo un problema al eliminar el registro del Proveedor";
-            }
-        }else{
-            $data['msg'] = "No existe el registro";
+        $eliminar = Proveedor::where('id', $id)->update(["activo" => 0, "eliminado" =>  1]);
+        if ($eliminar) {
+            $this->responseSuccess("Empleado eliminada correctamente.");
+        } else {
+            $this->responseError(400, "Ocurrió un error al eliminar al empleado, vuelva a intentarlo.");
         }
-
-        return $data;
+        return response()->json($this->response);
     }
 
     public function crear(Request $request)
@@ -179,5 +164,39 @@ class ProveedorController extends AdminController
     public function exportar()
     {
         return Excel::download(new ProveedorExport, 'proveedores.xlsx');
+    }
+
+    public function importar()
+    {
+        try{
+            Excel::import(new ProveedorImport, $this->request->file('file'));
+            $this->responseSuccess("Proveedores cargados con exito");
+
+        }catch(\Maatwebsite\Excel\Validators\ValidationException $e){
+            $failures = $e->failures();
+            foreach($failures as $failure){
+                $failure->row();
+                $failure->attribute();
+                $failure->errors();
+                $failure->values();
+            }
+            $this->responseError(400, $failures);
+        }catch(\Exception $e){
+            // var_dump($e->getMessage());
+            $this->responseError(500, $e->getMessage());
+        }
+       
+        return response()->json($this->response);
+    }
+
+    public function CambiarEstatus()
+    {
+        $id       = $this->request->get("id");
+        $activo   = $this->request->get("estatus");
+        $result   = Proveedor::where('id', $id)->update(["activo" => $activo]);
+        if (!$result) {
+            $this->responseError(400, "No se realizo el cambio de estatus.");
+        }
+        return response()->json($this->response);
     }
 }

@@ -23,6 +23,8 @@ class Cliente extends Model
         'limite_credito',
         'dias_credito',
         'id_facturacion',
+        'activo',
+        'eliminado'
     ];
 
 }

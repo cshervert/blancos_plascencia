@@ -1,11 +1,11 @@
 <table>
     <thead style="background-color:#0547A2; color:white;">
     <tr >
-        <th style="font-weight:700; font-size: 16px;" colspan="14" align="center">Catalago de Proveedores</th>
+        <th style="font-weight:700; font-size: 16px;" colspan="14" align="center">Catálago de Proveedores</th>
     </tr>
     <tr >
         <th style="font-weight:700; background-color:#102C56; color:white;" colspan="12" align="center">Datos Proveedor</th>
-        <th style="font-weight:700; background-color:#345582; color:white;" colspan="12" align="center">Datos Facturacion</th>
+        <th style="font-weight:700; background-color:#345582; color:white;" colspan="12" align="center">Datos Facturación</th>
     </tr>
     <tr >
         <th style="background-color:#4B7EC4; color:white;">ID</th>
@@ -14,13 +14,13 @@
         <th style="background-color:#4B7EC4; color:white;">Alias</th>
         <th style="background-color:#4B7EC4; color:white;">RFC</th>
         <th style="background-color:#4B7EC4; color:white;">CURP</th>
-        <th style="background-color:#4B7EC4; color:white;">Telefono</th>
+        <th style="background-color:#4B7EC4; color:white;">Teléfono</th>
         <th style="background-color:#4B7EC4; color:white;">Celular</th>
         <th style="background-color:#4B7EC4; color:white;">Email</th>
         <th style="background-color:#4B7EC4; color:white;">Comentario</th>
-        <th style="background-color:#4B7EC4; color:white;">Limite Credito</th>
-        <th style="background-color:#4B7EC4; color:white;">Dias Credito</th>
-        <th style="background-color:#4B7EC4; color:white;">Razon Social</th>
+        <th style="background-color:#4B7EC4; color:white;">Límite Crédito</th>
+        <th style="background-color:#4B7EC4; color:white;">Días Crédito</th>
+        <th style="background-color:#4B7EC4; color:white;">Razón Social</th>
         <th style="background-color:#4B7EC4; color:white;">RFC</th>
         <th style="background-color:#4B7EC4; color:white;">CURP</th>
         <th style="background-color:#4B7EC4; color:white;">Domicilio</th>
@@ -31,7 +31,9 @@
         <th style="background-color:#4B7EC4; color:white;">Ciudad</th>
         <th style="background-color:#4B7EC4; color:white;">Localidad</th>
         <th style="background-color:#4B7EC4; color:white;">Estado</th>
-        <th style="background-color:#4B7EC4; color:white;">Pais</th>
+        <th style="background-color:#4B7EC4; color:white;">País</th>
+        <th style="background-color:#4B7EC4; color:white;">Activo</th>
+        <th style="background-color:#4B7EC4; color:white;">Eliminado</th>
     </tr>
     </thead>
     <tbody>

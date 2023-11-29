@@ -7,6 +7,9 @@ use App\Models\DatosFacturacion;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Exports\ClienteExport;
+use App\Imports\ClienteImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ClienteController extends AdminController
 {
@@ -17,7 +20,7 @@ class ClienteController extends AdminController
 
     public function index()
     {
-        $clientes = Cliente::all();
+        $clientes = Cliente::where('eliminado',0)->get();
         $grupos = DB::table('grupos')->get();
         return view('pages/clientes/index', ['clientes' => $clientes, 'grupos' => $grupos]);
     }
@@ -39,30 +42,14 @@ class ClienteController extends AdminController
 
     public function eliminar()
     {
-        $data['code'] = 500;
-        $data['msg'] = "Error";
-        
         $id = $this->request->get("id");
-        $cliente = Cliente::where("id", $id)->first();
-        if ($cliente) {
-            DB::table('grupos_clientes')->where('id_cliente', $id)->delete();
-            $response = Cliente::where('id', $id)->delete();
-            if($response){
-                $response = DatosFacturacion::where('id', $cliente->id_facturacion)->delete();
-                if($response){
-                    $data['code'] = 200;
-                    $data['msg'] = "Eliminado correctamente";
-                }else{
-                    $data['msg'] = "Hubo un problema al eliminar los datos de facturación";
-                }
-            }else{
-                $data['msg'] = "Hubo un problema al eliminar el registro del Cliente";
-            }
-        }else{
-            $data['msg'] = "No existe el registro";
+        $eliminar = Cliente::where('id', $id)->update(["activo" => 0, "eliminado" =>  1]);
+        if ($eliminar) {
+            $this->responseSuccess("Cliente eliminado correctamente.");
+        } else {
+            $this->responseError(400, "Ocurrió un error al eliminar al cliente, vuelva a intentarlo.");
         }
-
-        return $data;
+        return response()->json($this->response);
     }
 
     public function crear(Request $request)
@@ -207,5 +194,44 @@ class ClienteController extends AdminController
         }
         
         return $data;
+    }
+
+    public function CambiarEstatus()
+    {
+        $id       = $this->request->get("id");
+        $activo   = $this->request->get("estatus");
+        $result   = Cliente::where('id', $id)->update(["activo" => $activo]);
+        if (!$result) {
+            $this->responseError(400, "No se realizo el cambio de estatus.");
+        }
+        return response()->json($this->response);
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new ClienteExport, 'clientes.xlsx');
+    }
+
+    public function importar()
+    {
+        try{
+            Excel::import(new ClienteImport, $this->request->file('file'));
+            $this->responseSuccess("Clientes cargados con exito");
+
+        }catch(\Maatwebsite\Excel\Validators\ValidationException $e){
+            $failures = $e->failures();
+            foreach($failures as $failure){
+                $failure->row();
+                $failure->attribute();
+                $failure->errors();
+                $failure->values();
+            }
+            $this->responseError(400, $failures);
+        }catch(\Exception $e){
+            // var_dump($e->getMessage());
+            $this->responseError(500, $e->getMessage());
+        }
+       
+        return response()->json($this->response);
     }
 }

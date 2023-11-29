@@ -29,6 +29,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_facturacion');
             $table->foreign('id_facturacion')->references('id')
                 ->on('datos_facturacion');
+            $table->boolean('activo');
+            $table->boolean('eliminado');
             $table->timestamps();
         });
     }

@@ -28,6 +28,8 @@ class ProveedorSeeder extends Seeder
             'limite_credito' => 100000,
             'dias_credito'    => 30,
             'id_facturacion'    => 2,
+            'activo'    => true,
+            'eliminado' => false
         ]);
     }
 }

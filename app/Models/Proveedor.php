@@ -23,6 +23,8 @@ class Proveedor extends Model
         'limite_credito',
         'dias_credito',
         'id_facturacion',
+        'activo',
+        'eliminado'
     ];
 
     public function datos_facturacion()

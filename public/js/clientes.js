@@ -217,14 +217,89 @@ const updateCliente = async () => {
 const ActionDeleteCliente = (id) => {
     axios
         .delete("/clientes/eliminar", { params: { id: id } })
-        .then(function (res) {
-            if(res['data']['code'] == '200'){
-                alertDefault("¡Exito!", res['msg'], "success", "/clientes");
+        .then(function ({ data }) {
+            let { stats } = data;
+            if (stats.status == "success") {
+                alertDefault("¡Exito!", stats.message, "success", "/clientes");
             } else {
-                alertDefault("¡Error!", res['msg'], "error");
+                alertDefault("¡Error!", stats.message, "error");
             }
         })
         .catch(function (error) {
-            alertDefault("¡Error!", "error del servidor", "error");
+            alertErrorServer(e);
         });
 };
+
+const ChangeStatusCliente = (obj) => {
+    let id = obj.id;
+    let estatus = $(`#${id}`).prop("checked") ? 1 : 0;
+    Swal.fire({
+        icon: "question",
+        text: "¿Estás seguro de cambiar el estatus?",
+        showCancelButton: true,
+        confirmButtonColor: "#00a676",
+        cancelButtonColor: "#E73F69",
+        confirmButtonText: "Si, Continuar",
+        cancelButtonText: "Cancelar",
+        width: 400,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            validChangeStatusCliente(id, estatus);
+        } else {
+            $(`#${id}`).prop("checked", !estatus);
+        }
+    });
+};
+
+const validChangeStatusCliente = (id, estatus) => {
+    axios
+        .put("/clientes/estatus/editar", { id: id, estatus: estatus })
+        .then(function ({ data }) {
+            let { stats } = data;
+            if (stats.status == "success") {
+                toastr.success("El estatus se ha cambiado.");
+            } else {
+                $(`#${id}`).prop("checked", !estatus);
+                toastr.error(stats.message);
+            }
+        })
+        .catch(function (e) {
+            $(`#${id}`).prop("checked", !estatus);
+            toastr.error("Error del servidor.");
+        });
+};
+
+const formImportarClientes = async () => {
+
+    var formData = new FormData(document.getElementById("formImportarClientes"));
+    var file = document.querySelector('#file');
+    formData.append("file", file.files[0]);
+    alertLoading(true);
+    axios
+        .post("/clientes/importar", formData, {
+            headers: {
+                // 'Content-Type': 'multipart/form-data'
+              }
+        })
+        .then(function ({ data }) {
+            alertLoading(false);
+            let { stats } = data;
+            if (stats.status == "success") {
+                alertDefault("¡Exito!", stats.message, "success", "/clientes");
+            } else {
+                alertDefault("¡Error!", stats.message, "error");
+            }
+            $('#importar-modal').modal('hide');
+        })
+        .catch(function (e) {
+            alertErrorServer(e);
+        });
+};
+
+$(function () {
+
+    $("#formImportarClientes").on("submit", function (event) {
+        event.preventDefault();
+        formImportarClientes();
+    });
+});

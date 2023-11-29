@@ -100,6 +100,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/editar/{id?}', [ClienteController::class, "editar"])->name('editarCliente');
         Route::put('/editar', [ClienteController::class, "modificar"]);
         Route::delete('/eliminar', [ClienteController::class, "eliminar"]);
+        Route::put('/estatus/editar', [ClienteController::class, "CambiarEstatus"]);
+        Route::get('/exportar', [ClienteController::class, "exportar"])->name('exportarClientes');
+        Route::post('/importar', [ClienteController::class, "importar"])->name('importarClientes');
     });
 
     Route::prefix('proveedores')->group(function () {
@@ -110,6 +113,9 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/editar', [ProveedorController::class, "modificar"]);
         Route::delete('/eliminar', [ProveedorController::class, "eliminar"]);
         Route::get('/exportar', [ProveedorController::class, "exportar"])->name('exportarProveedor');
+        Route::post('/importar', [ProveedorController::class, "importar"])->name('importarProveedor');
+        Route::put('/estatus/editar', [ProveedorController::class, "CambiarEstatus"]);
+
     });
 
     Route::prefix('impuestos')->group(function () {

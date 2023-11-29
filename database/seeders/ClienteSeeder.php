@@ -28,6 +28,8 @@ class ClienteSeeder extends Seeder
             'limite_credito' => 100000,
             'dias_credito'    => 30,
             'id_facturacion'    => 1,
+            'activo'    => true,
+            'eliminado' => false
         ]);
     }
 }

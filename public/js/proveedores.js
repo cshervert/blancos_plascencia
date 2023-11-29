@@ -190,14 +190,89 @@ $("#btnActualizarProveedor").click(function(){
 const ActionDeleteProveedor = (obj) => {
     axios
         .delete("/proveedores/eliminar", { params: { id: obj.id } })
-        .then(function (res) {
-            if(res['data']['code'] == '200'){
-                alertDefault("¡Exito!", res['msg'], "success", "/proveedores");
+        .then(function ({ data }) {
+            let { stats } = data;
+            if (stats.status == "success") {
+                alertDefault("¡Exito!", stats.message, "success", "/proveedores");
             } else {
-                alertDefault("¡Error!", res['msg'], "error");
+                alertDefault("¡Error!", stats.message, "error");
             }
         })
         .catch(function (error) {
-            alertDefault("¡Error!", "error del servidor", "error");
+            alertErrorServer(e);
         });
 };
+
+const ChangeStatusProveedor = (obj) => {
+    let id = obj.id;
+    let estatus = $(`#${id}`).prop("checked") ? 1 : 0;
+    Swal.fire({
+        icon: "question",
+        text: "¿Estás seguro de cambiar el estatus?",
+        showCancelButton: true,
+        confirmButtonColor: "#00a676",
+        cancelButtonColor: "#E73F69",
+        confirmButtonText: "Si, Continuar",
+        cancelButtonText: "Cancelar",
+        width: 400,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            validChangeStatusProveedor(id, estatus);
+        } else {
+            $(`#${id}`).prop("checked", !estatus);
+        }
+    });
+};
+
+const validChangeStatusProveedor = (id, estatus) => {
+    axios
+        .put("/proveedores/estatus/editar", { id: id, estatus: estatus })
+        .then(function ({ data }) {
+            let { stats } = data;
+            if (stats.status == "success") {
+                toastr.success("El estatus se ha cambiado.");
+            } else {
+                $(`#${id}`).prop("checked", !estatus);
+                toastr.error(stats.message);
+            }
+        })
+        .catch(function (e) {
+            $(`#${id}`).prop("checked", !estatus);
+            toastr.error("Error del servidor.");
+        });
+};
+
+const formImportarProveedores = async () => {
+
+    var formData = new FormData(document.getElementById("formImportarProveedores"));
+    var file = document.querySelector('#file');
+    formData.append("file", file.files[0]);
+    alertLoading(true);
+    axios
+        .post("/proveedores/importar", formData, {
+            headers: {
+                // 'Content-Type': 'multipart/form-data'
+              }
+        })
+        .then(function ({ data }) {
+            alertLoading(false);
+            let { stats } = data;
+            if (stats.status == "success") {
+                alertDefault("¡Exito!", stats.message, "success", "/proveedores");
+            } else {
+                alertDefault("¡Error!", stats.message, "error");
+            }
+            $('#importar-modal').modal('hide');
+        })
+        .catch(function (e) {
+            alertErrorServer(e);
+        });
+};
+
+$(function () {
+
+    $("#formImportarProveedores").on("submit", function (event) {
+        event.preventDefault();
+        formImportarProveedores();
+    });
+});
