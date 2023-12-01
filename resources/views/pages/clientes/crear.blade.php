@@ -96,10 +96,10 @@
                         <!-- <input class="form-control" type="text" name="noprecio" id="noprecio"> -->
                         <select class="form-control custom-select2" onchange="validateFormCliente()" name="noprecio" id="noprecio" style="width: 100%">
                                 <option value="0">Seleccionar precio</option>
-                                <option value="1">Precio Publico</option>
+                                <option value="1">Precio Público</option>
                                 <option value="2">Precio Vendedor</option>
                                 <option value="3">Precio Cliente</option>
-                                <option value="4">Precio Promocion</option>
+                                <option value="4">Precio Promoción</option>
                         </select>
                     </div>
                     <div class="form-group col-sm-12 col-md-6 col-lg-4">

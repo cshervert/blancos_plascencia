@@ -27,4 +27,14 @@ class Cliente extends Model
         'eliminado'
     ];
 
+    public function datos_facturacion()
+    {
+        return $this->hasOne(DatosFacturacion::class, 'id', 'id_facturacion');
+    }
+
+    public function grupo()
+    {
+        return $this->hasOne(GrupoCliente::class, 'id_cliente', 'id');
+    }
+
 }

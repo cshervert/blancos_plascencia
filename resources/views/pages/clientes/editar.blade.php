@@ -125,7 +125,7 @@
                         <select class="custom-select2 form-control" name="grupo" id="grupo" style="width: 100%">
                             <option value="0">Seleccionar grupo</option>
                             @foreach ($grupos as $item)
-                                <option value="{{$item->id}}" {{($grupo->id_grupo == $item->id) ? 'selected' : ''}}>{{$item->nombre}}</option>
+                                <option value="{{$item->id}}" {{(empty($grupo)) ? '' : (($grupo->id_grupo == $item->id) ? 'selected' : '')}}>{{$item->nombre}}</option>
                             @endforeach
                         </select>
                     </div>

@@ -3,15 +3,18 @@
 namespace App\Exports;
 
 use App\Models\Cliente;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class ClienteExport implements FromCollection
+class ClienteExport implements FromView
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    public function view(): View
     {
-        return Cliente::all();
+        return view('pages.exports.cliente', [
+            'items' =>Cliente::with('datos_facturacion')
+            ->join('grupos_clientes', 'clientes.id', '=', 'grupos_clientes.id_cliente')
+            ->join('grupos', 'grupos_clientes.id_grupo', '=', 'grupos.id')
+            ->select('clientes.*','grupos.nombre as grupo')->get()
+        ]);
     }
 }
