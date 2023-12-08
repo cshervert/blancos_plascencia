@@ -166,6 +166,8 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/editar', [DepartamentoController::class, "modificar"]);
         Route::put('/estatus/editar', [DepartamentoController::class, "CambiarEstatus"]);
         Route::delete('/eliminar', [DepartamentoController::class, "eliminar"]);
+        Route::post('/importar', [DepartamentoController::class, "importar"])->name('importarDepartamento');
+        Route::get('/exportar', [DepartamentoController::class, "exportar"])->name('exportarDepartamento');
     });
 
     Route::prefix('categorias')->group(function () {
@@ -175,6 +177,8 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/editar', [CategoriaController::class, "modificar"]);
         Route::put('/estatus/editar', [CategoriaController::class, "CambiarEstatus"]);
         Route::delete('/eliminar', [CategoriaController::class, "eliminar"]);
+        Route::post('/importar', [CategoriaController::class, "importar"])->name('importarCategoria');
+        Route::get('/exportar', [CategoriaController::class, "exportar"])->name('exportarCategoria');
     });
 });
 // Route::get('/empresa', [EmpresaController::class, "index"])->middleware('auth')->name('empresa');

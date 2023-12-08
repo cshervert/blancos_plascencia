@@ -17,9 +17,9 @@
                     </nav>
                 </div>
                 <div class="col-md-6 col-sm-12 text-right">
-                    <button class="btn btn-dark mb-3">
+                    <a class="btn btn-dark mb-3" href="{{ route('exportarDepartamento') }}">
                         EXPORTAR <i class="icon-copy dw dw-download1 ml-1"></i>
-                    </button>
+                    </a>
                     <button class="btn btn-warning mb-3">
                         IMPORTAR <i class="icon-copy dw dw-upload1 ml-1"></i>
                     </button>

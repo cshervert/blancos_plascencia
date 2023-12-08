@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\AdminController;
 use App\Models\Categoria;
 use App\Models\Departamento;
+use App\Exports\CategoriaExport;
+use App\Imports\CategoriaImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CategoriaController extends AdminController
 {
@@ -103,6 +106,34 @@ class CategoriaController extends AdminController
         } else {
             $this->responseError(400, "Ocurrió un error al eliminar la categoría, vuelva a intentarlo.");
         }
+        return response()->json($this->response);
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new CategoriaExport, 'categorias.xlsx');
+    }
+
+    public function importar()
+    {
+        try{
+            Excel::import(new CategoriaImport, $this->request->file('file'));
+            $this->responseSuccess("Categorias cargados con exito");
+
+        }catch(\Maatwebsite\Excel\Validators\ValidationException $e){
+            $failures = $e->failures();
+            foreach($failures as $failure){
+                $failure->row();
+                $failure->attribute();
+                $failure->errors();
+                $failure->values();
+            }
+            $this->responseError(400, $failures);
+        }catch(\Exception $e){
+            // var_dump($e->getMessage());
+            $this->responseError(500, $e->getMessage());
+        }
+       
         return response()->json($this->response);
     }
 }

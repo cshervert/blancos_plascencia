@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AdminController;
 use App\Models\Departamento;
+use App\Exports\DepartamentoExport;
+use App\Imports\DepartamentoImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DepartamentoController extends AdminController
 {
@@ -87,6 +90,34 @@ class DepartamentoController extends AdminController
         } else {
             $this->responseError(400, "Ocurrió un error al eliminar el departamento, vuelva a intentarlo.");
         }
+        return response()->json($this->response);
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new DepartamentoExport, 'departamentos.xlsx');
+    }
+
+    public function importar()
+    {
+        try{
+            Excel::import(new DepartamentoImport, $this->request->file('file'));
+            $this->responseSuccess("Departamentos cargados con exito");
+
+        }catch(\Maatwebsite\Excel\Validators\ValidationException $e){
+            $failures = $e->failures();
+            foreach($failures as $failure){
+                $failure->row();
+                $failure->attribute();
+                $failure->errors();
+                $failure->values();
+            }
+            $this->responseError(400, $failures);
+        }catch(\Exception $e){
+            // var_dump($e->getMessage());
+            $this->responseError(500, $e->getMessage());
+        }
+       
         return response()->json($this->response);
     }
 }
