@@ -9,6 +9,9 @@ use App\Models\Categoria;
 use App\Models\Departamento;
 use App\Models\Impuesto;
 use App\Models\Unidad;
+use App\Exports\ArticuloExport;
+use App\Imports\ArticuloImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ArticuloController extends AdminController
 {
@@ -72,6 +75,34 @@ class ArticuloController extends AdminController
         } else {
             $this->responseError(500, "No se encontraron categorías.");
         }
+        return response()->json($this->response);
+    }
+
+    public function exportar()
+    {
+        return Excel::download(new ArticuloExport, 'articulos.xlsx');
+    }
+
+    public function importar()
+    {
+        try{
+            Excel::import(new ArticuloImport, $this->request->file('file'));
+            $this->responseSuccess("Articulos cargados con exito");
+
+        }catch(\Maatwebsite\Excel\Validators\ValidationException $e){
+            $failures = $e->failures();
+            foreach($failures as $failure){
+                $failure->row();
+                $failure->attribute();
+                $failure->errors();
+                $failure->values();
+            }
+            $this->responseError(400, $failures);
+        }catch(\Exception $e){
+            // var_dump($e->getMessage());
+            $this->responseError(500, $e->getMessage());
+        }
+       
         return response()->json($this->response);
     }
 }

@@ -16,7 +16,7 @@
                 </nav>
             </div>
             <div class="col-md-6 col-sm-12 text-right">
-            <a class="btn btn-dark mb-3" href="{{ route('exportarClientes') }}">
+                <a class="btn btn-dark mb-3" href="{{ route('exportarClientes') }}">
                     EXPORTAR <i class="icon-copy dw dw-download1 ml-1"></i>
                 </a>
                 <button class="btn btn-warning mb-3" data-toggle="modal" data-target="#importar-modal">

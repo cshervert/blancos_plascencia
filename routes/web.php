@@ -155,6 +155,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/nuevo', [ArticuloController::class, "nuevo"])->name('nuevo_articulo');
         Route::get('/generar/clave', [ArticuloController::class, "generarClave"]);
         Route::get('/categoria/{id?}', [ArticuloController::class, "obtenerCategoria"]);
+        Route::post('/importar', [ArticuloController::class, "importar"])->name('importarArticulo');
+        Route::get('/exportar', [ArticuloController::class, "exportar"])->name('exportarArticulo');
     });
 
     Route::prefix('departamentos')->group(function () {
