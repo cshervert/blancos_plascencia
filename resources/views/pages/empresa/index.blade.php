@@ -78,7 +78,7 @@
                             <input class="form-control" type="text" onkeyup="validateFormEmpresa()" id="estado" placeholder="" name="estado" value="{{ $empresa->estado ? $empresa->estado : ''}}" >
                         </div>
                         <div class="form-group col-md-6 mb-0">
-                            <label class="form-label">Telefo</label>
+                            <label class="form-label">Teléfono</label>
                             <label class="form-control-label has-danger ml-2" id="msg-telefono"></label>
                             <input class="form-control" type="text" onkeyup="validateFormEmpresa()" id="telefono" placeholder="" name="telefono" value="{{ $empresa->telefono ? $empresa->telefono : ''}}">
                         </div>

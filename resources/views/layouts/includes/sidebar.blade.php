@@ -21,7 +21,7 @@
                     </a>
                     <ul class="submenu">
                         <li><a href="{{ route('articulos') }}">Artículos</a></li>
-                        <li><a href="{{ route('articulos') }}">Paquetes</a></li>
+                        <li><a href="{{ route('paquetes') }}">Paquetes</a></li>
                         <li><a href="form-basic.html">Inventarios</a></li>
                         <li><a href="advanced-components.html">Compras</a></li>
                         <li><a href="form-pickers.html">Pedidos</a></li>

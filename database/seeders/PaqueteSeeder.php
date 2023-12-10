@@ -35,6 +35,7 @@ class PaqueteSeeder extends Seeder
                 'caracteristicas'  => '',
                 'etiquetas'        => '[]',
                 'activo'           => 1,
+                'eliminado'        => 0,
             ]
         ];
         foreach ($package as $item) {

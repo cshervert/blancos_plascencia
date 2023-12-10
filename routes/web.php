@@ -17,6 +17,8 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\PaqueteController;
+use App\Http\Controllers\VentaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -179,6 +181,15 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/eliminar', [CategoriaController::class, "eliminar"]);
         Route::post('/importar', [CategoriaController::class, "importar"])->name('importarCategoria');
         Route::get('/exportar', [CategoriaController::class, "exportar"])->name('exportarCategoria');
+    });
+
+    Route::prefix('paquetes')->group(function () {
+        Route::get('/', [PaqueteController::class, "index"])->name('paquetes');
+    });
+
+    Route::prefix('ventas')->group(function () {
+        Route::get('/', [VentaController::class, "index"])->name('ventas');
+        Route::get('/nueva', [VentaController::class, "nueva"])->name('nueva_venta');
     });
 });
 // Route::get('/empresa', [EmpresaController::class, "index"])->middleware('auth')->name('empresa');

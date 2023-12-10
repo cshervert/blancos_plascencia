@@ -20,12 +20,12 @@
         </div>
         <div class="row">
             <div class="col-xl-3 mb-30">
-                <a href="">
+                <a href="{{ route('nueva_venta') }}">
                     <div class="card-box height-100-p text-center p-2">
                         <img src="{{ asset('assets/vendors/images/sales.svg') }}" width="120" height="70" alt="ventas">
                         <hr class="mt-0 mb-0">
                         <div class="h4 mb-0 mt-1 text-uppercase">Ventas</div>
-                        <div class="weight-600 font-14 mt-0">salidas</div>
+                        <div class="weight-600 font-14 mt-0">Nueva Venta</div>
                     </div>
                 </a>
             </div>
